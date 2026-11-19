@@ -128,6 +128,9 @@ function page({ code, family, subtitle, body }) {
   .ck .fl { margin-left: auto; }
   .fl { display:inline-block; border-bottom: 1px solid var(--muted); background: var(--fill); height: 13px; vertical-align: bottom; }
   .w60{width:.6in}.w120{width:1.2in}.w240{width:2.4in}
+  .desc { margin: 2px 0 5px; text-align: justify; }
+  .feat { margin: 0; padding-left: 14px; } .feat li { margin: 1px 0; }
+  .vf { background: #fff4d6; padding: 0 2px; border-radius: 2px; }
   .fillline { margin: 4px 0; line-height: 2; }
   .two { display:grid; grid-template-columns: 1fr 1fr; gap: 0 18px; }
   .disc { margin-top: 16px; padding: 8px 10px; border-left: 3px solid var(--accent); background: #f6f8fb; font-size: 7.2pt; color: var(--muted); break-inside: avoid; }
@@ -153,9 +156,9 @@ function page({ code, family, subtitle, body }) {
   </body></html>`;
 }
 
-const intro = (apps) => `
+const intro = (apps, desc) => `
   <div class="two">
-    <div>${lines('Product Description', 4)}</div>
+    <div><h2>Product Description</h2><p class="desc">${desc.text}</p><ul class="feat">${desc.features.map((f) => `<li>${f}</li>`).join('')}</ul></div>
     <div><h2>Typical Applications</h2><div class="checks" style="grid-template-columns:1fr">${apps.map((a) => `<div class="ck"><span class="box"></span>${a}</div>`).join('')}</div></div>
   </div>`;
 
@@ -168,7 +171,10 @@ docs.push({
   code: 'TDS-PC-S-___',
   family: 'Solid Polycarbonate Sheet',
   subtitle: 'Extruded, UV-protected solid polycarbonate sheet',
-  body: intro(['Glazing &amp; skylights', 'Machine guards &amp; protective barriers', 'Signage &amp; displays', 'Security / vandal-resistant glazing', 'Thermoformed parts', 'Other: ____________________']) +
+  body: intro(['Glazing &amp; skylights', 'Machine guards &amp; protective barriers', 'Signage &amp; displays', 'Security / vandal-resistant glazing', 'Thermoformed parts', 'Other: ____________________'], {
+    text: '[BRAND]™ solid polycarbonate sheet is a transparent, UV-protected thermoplastic glazing material that combines glass-like clarity with exceptional toughness. Virtually unbreakable and roughly half the weight of glass, it provides lasting performance in demanding indoor and outdoor applications where safety, durability and design freedom matter.',
+    features: ['Impact strength up to <span class="vf">[250]</span> times that of glass', 'High light transmission — up to <span class="vf">[86–88]</span> % (clear)', 'Co-extruded UV protection against yellowing and loss of clarity', 'Can be cold-formed, thermoformed, drilled, cut and machined with standard tools', 'Wide service temperature range: <span class="vf">[−40 °F to 250 °F]</span>'],
+  }) +
     propTable('Physical Properties', [
       ['Specific Gravity', 'ASTM D792', '—', 'g/cm³'],
       ['Water Absorption, 24 h', 'ASTM D570', '%', ''],
@@ -222,7 +228,10 @@ docs.push({
   code: 'TDS-PC-TW-___',
   family: 'Twin Wall / Multiwall Polycarbonate Sheet',
   subtitle: 'Extruded multiwall polycarbonate sheet with co-extruded UV protection',
-  body: intro(['Greenhouses &amp; agricultural glazing', 'Skylights &amp; daylighting', 'Canopies, carports &amp; pergolas', 'Walls &amp; partitions', 'Swimming pool enclosures', 'Other: ____________________']) +
+  body: intro(['Greenhouses &amp; agricultural glazing', 'Skylights &amp; daylighting', 'Canopies, carports &amp; pergolas', 'Walls &amp; partitions', 'Swimming pool enclosures', 'Other: ____________________'], {
+    text: '[BRAND]™ multiwall polycarbonate sheet is a lightweight, high-strength structured panel engineered for glazing and roofing. Its hollow-rib construction traps air for thermal insulation while transmitting abundant, evenly diffused daylight. A co-extruded UV layer protects the sheet against weathering, making it a durable and economical alternative to glass.',
+    features: ['Excellent thermal insulation — U-value down to <span class="vf">[0.41]</span> BTU/h·ft²·°F (16 mm)', 'High light transmission with diffused, glare-reduced daylight', 'Lightweight — approx. <span class="vf">[1/6]</span> the weight of glass; easy to handle and install', 'High impact and hail resistance', 'Can be cold-curved on site; available in clear, bronze, opal and special tints'],
+  }) +
     matrix('Product Data by Thickness', ['Thickness', 'Structure', 'Weight lb/ft² (kg/m²)', 'Light Trans. % (clear)', 'U-value BTU/h·ft²·°F (W/m²K)', 'R-value h·ft²·°F/BTU', 'Min. Cold Bend Radius in (mm)', 'Rib Spacing in (mm)'],
       ['4 mm', '6 mm', '8 mm', '10 mm', '16 mm', '____ mm'],
       'U-value per EN ISO 10077-2 / ASTM C1363 (state method). R-value = 1 / U (imperial). Cold bend radius typically ≈ 175 × thickness — confirm by test.') +
@@ -267,7 +276,10 @@ docs.push({
   code: 'TDS-PP-TW-___',
   family: 'Twin Wall (Fluted) Polypropylene Sheet',
   subtitle: 'Extruded twin wall polypropylene copolymer sheet',
-  body: intro(['Signage &amp; screen / digital printing', 'Returnable packaging &amp; dividers', 'Construction floor &amp; surface protection', 'Agriculture &amp; horticulture', 'Point-of-purchase displays', 'Other: ____________________']) +
+  body: intro(['Signage &amp; screen / digital printing', 'Returnable packaging &amp; dividers', 'Construction floor &amp; surface protection', 'Agriculture &amp; horticulture', 'Point-of-purchase displays', 'Other: ____________________'], {
+    text: '[BRAND]™ twin wall polypropylene sheet is a lightweight, rigid fluted board made from high-impact polypropylene copolymer. It is waterproof, chemical- and stain-resistant and will not rot, warp or delaminate when wet. Corona-treated surfaces accept screen and digital printing inks, making it an economical, reusable choice for signage, packaging and protection applications.',
+    features: ['Corona-treated on both sides for excellent ink adhesion (min. <span class="vf">[46]</span> dyne/cm)', 'Waterproof, moisture- and chemical-resistant; non-toxic', 'Lightweight yet rigid — easy to cut, score, fold, die-cut and fasten', 'Available UV-stabilized, flame-retardant, anti-static and in custom colors', '100 % recyclable (#5 PP)'],
+  }) +
     propTable('Material Properties (Resin)', [
       ['Polymer Type', '—', 'PP homo / copolymer', ''],
       ['Density', 'ASTM D792', '—', 'g/cm³'],
@@ -308,7 +320,10 @@ docs.push({
   code: 'TDS-PMMA-X-___',
   family: 'Extruded Acrylic (PMMA) Sheet',
   subtitle: 'Continuously extruded acrylic sheet',
-  body: intro(['Signage &amp; letters', 'Point-of-purchase displays', 'Picture framing', 'Sneeze guards &amp; protective barriers', 'Lighting &amp; LED diffusers', 'Other: ____________________']) +
+  body: intro(['Signage &amp; letters', 'Point-of-purchase displays', 'Picture framing', 'Sneeze guards &amp; protective barriers', 'Lighting &amp; LED diffusers', 'Other: ____________________'], {
+    text: '[BRAND]™ extruded acrylic sheet is a crystal-clear, continuously manufactured PMMA sheet offering outstanding optical quality, weatherability and consistent thickness. Lighter and more impact-resistant than glass, it is easy to cut, bond, thermoform and polish, making it the material of choice for signage, displays, glazing and fabricated parts.',
+    features: ['Light transmission of <span class="vf">[92]</span> % — optically clear with low haze', 'Approx. half the weight of glass, with up to <span class="vf">[10–17]</span> times its impact strength', 'Excellent outdoor weathering and UV stability', 'Tight thickness tolerance and low internal stress for consistent fabrication', 'Easy to laser-cut, router, solvent-bond and thermoform'],
+  }) +
     propTable('Physical &amp; Optical Properties', [
       ['Specific Gravity', 'ASTM D792', '—', 'g/cm³'],
       ['Water Absorption, 24 h', 'ASTM D570', '%', ''],
