@@ -5,6 +5,7 @@ const path = require('path');
 const { chromium } = require('playwright');
 
 const OUT = path.join(__dirname, 'pdf');
+const LOGO = 'data:image/jpeg;base64,' + fs.readFileSync(path.join(__dirname, 'assets', 'usplast-logo.jpg')).toString('base64');
 fs.mkdirSync(OUT, { recursive: true });
 
 // ---------- helpers ----------
@@ -95,7 +96,8 @@ function page({ code, family, subtitle, body }) {
   * { box-sizing: border-box; }
   body { font-family: 'Inter', 'DejaVu Sans', sans-serif; color: var(--ink); font-size: 8.6pt; line-height: 1.35; margin: 0; }
   .hdr { display:flex; justify-content:space-between; align-items:stretch; border-bottom: 3px solid var(--accent); padding-bottom: 10px; margin-bottom: 12px; }
-  .logo { width: 1.6in; height: 0.62in; border: 1.5px dashed var(--line); display:flex; align-items:center; justify-content:center; color: var(--muted); font-size: 7.5pt; letter-spacing: .08em; }
+  .logo { width: 1.3in; height: 0.62in; display:flex; align-items:center; justify-content:flex-start; flex: none; }
+  .logo img { max-width: 1.2in; max-height: 0.62in; object-fit: contain; }
   .titlebox { flex:1; padding: 0 16px; }
   .fam { font-size: 7.5pt; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
   h1 { font-size: 17pt; margin: 2px 0 2px; font-weight: 700; letter-spacing: -.01em; }
@@ -132,7 +134,7 @@ function page({ code, family, subtitle, body }) {
   .avoid { break-inside: avoid; }
   </style></head><body>
   <div class="hdr">
-    <div class="logo">COMPANY LOGO</div>
+    <div class="logo"><img src="${LOGO}" alt="US Plast"></div>
     <div class="titlebox">
       <div class="fam">Technical Data Sheet · ${family}</div>
       <h1>[BRAND]™ <span class="ph">[Product Name] [Grade]</span></h1>
@@ -147,7 +149,7 @@ function page({ code, family, subtitle, body }) {
   </div>
   ${body}
   <div class="disc"><b>Disclaimer.</b> The information contained herein represents typical values and is not intended for specification purposes. Values may vary with thickness, color, finish and test conditions. It is the user's responsibility to determine the suitability of this product for the intended application and to comply with applicable building codes. Refer to the Safety Data Sheet (SDS) for handling information.<br><br>
-  <b>[Company Name]</b> · [US Address] · [Phone] · [Email] · [Website]</div>
+  <b>US Plast</b> · [US Address] · [Phone] · [Email] · [Website]</div>
   </body></html>`;
 }
 
