@@ -112,4 +112,4 @@ Bu şablonun bölüm başlıkları ve tablo başlıkları ABD sürümünde **İn
 
 ---
 
-*The information contained herein is based on typical values and is not intended for specification purposes. Values may vary with thickness, color and test conditions. Users should determine the suitability of the product for their specific application. US Plast, 1128 Roosevelt Avenue, York, PA 17404, USA, [phone], info@usplast.com, www.usplast.com.*
+*The information contained herein is based on typical values and is not intended for specification purposes. Values may vary with thickness, color and test conditions. Users should determine the suitability of the product for their specific application. US Plast, 1128 Roosevelt Avenue, York, PA 17404, USA, +1 (717) 356-2448, info@usplast.com, www.usplast.com.*

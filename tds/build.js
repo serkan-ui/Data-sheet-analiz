@@ -149,7 +149,7 @@ function page({ code, family, subtitle, body }) {
   </div>
   ${body}
   <div class="disc"><b>Disclaimer.</b> The information contained herein represents typical values and is not intended for specification purposes. Values may vary with thickness, color, finish and test conditions. It is the user's responsibility to determine the suitability of this product for the intended application and to comply with applicable building codes. Refer to the Safety Data Sheet (SDS) for handling information.<br><br>
-  <b>US Plast</b> · 1128 Roosevelt Avenue, York, PA 17404, USA · [Phone] · info@usplast.com · www.usplast.com</div>
+  <b>US Plast</b> · 1128 Roosevelt Avenue, York, PA 17404, USA · +1 (717) 356-2448 · info@usplast.com · www.usplast.com</div>
   </body></html>`;
 }
 
