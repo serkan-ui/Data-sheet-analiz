@@ -112,4 +112,4 @@ Bu şablonun bölüm başlıkları ve tablo başlıkları ABD sürümünde **İn
 
 ---
 
-*The information contained herein is based on typical values and is not intended for specification purposes. Values may vary with thickness, color and test conditions. Users should determine the suitability of the product for their specific application. [Company], [US address / phone / web].*
+*The information contained herein is based on typical values and is not intended for specification purposes. Values may vary with thickness, color and test conditions. Users should determine the suitability of the product for their specific application. US Plast, [US address], [phone], info@usplast.com, www.usplast.com.*
