@@ -206,7 +206,8 @@ docs.push({
       ['Width', 'ISO 11963', 'All sizes'],
       ['Length', 'ISO 11963', 'All sizes'],
       ['Squareness (diagonal difference)', 'ISO 11963', 'All sizes'],
-      ['Flatness / bow', 'Internal', 'Per 48" (1,220 mm)'],
+      ['Flatness', 'ISO 11963 / EN 16240', 'Sheet length < 13 ft (4 m)'],
+      ['Flatness', 'ISO 11963 / EN 16240', 'Sheet length ≥ 13 ft (4 m)'],
       ['Dimensional change on heating (MD / TD)', 'Internal (e.g. 30 min @ 300 °F)', 'All thicknesses'],
     ], 'Width/length measured at 73 °F (23 °C). State whether tolerances apply to mill-run or cut-to-size sheet.') +
     certifications(['ICC-ES Evaluation Report', 'UL Recognized (file no.)', 'ANSI Z97.1 / CPSC 16 CFR 1201', 'Florida Product Approval', 'FDA 21 CFR 177.1580 (resin)', 'ISO 9001 Quality System', 'California Prop 65 statement', 'REACH / RoHS']) +
@@ -249,7 +250,9 @@ docs.push({
       ['Length (parallel to ribs)', 'Tape / EN 16153', 'All lengths'],
       ['Squareness (diagonal difference)', 'EN 16153', 'All sizes'],
       ['Area weight', 'Gravimetric', 'Per thickness'],
-      ['Rib straightness / sheet bow', 'Internal', 'Per 3 ft (1 m)'],
+      ['Flatness across width ("waves")', 'EN 16153', '% of width or in/ft (mm/m)'],
+      ['Planar bow ("banana")', 'EN 16153', '% of nominal length'],
+      ['Lateral curvature (edge straightness)', 'EN 16153 §5.1.12', 'All lengths'],
       ['Thermal expansion allowance (installation)', 'Guide value', 'Per ft (m) of length/width'],
     ], 'Length is defined parallel to the ribs; width perpendicular to the ribs.') +
     certifications(['ICC-ES Evaluation Report', 'UL Recognized (file no.)', 'Florida Product Approval', 'Miami-Dade NOA', 'ISO 9001 Quality System', 'California Prop 65 statement']) +
@@ -290,7 +293,8 @@ docs.push({
       ['Squareness (diagonal difference)', 'Tape', 'Standard < 60" / ≥ 60"; square-cut'],
       ['Board weight', 'Gravimetric', 'Per thickness'],
       ['Corona treatment level (min.)', 'Dyne pens, ASTM D2578', '2–12 mm'],
-      ['Flatness / warp', 'Internal', 'Per 48"'],
+      ['Warp / bow (max. height above flat surface)', 'Internal', '< 96" / > 96" / ≥ 70" × 70"'],
+      ['Edge straightness', 'Straight edge, corner to corner', 'Length < 98" / ≥ 98"'],
     ], 'Specify flute direction for every size (e.g. 48" × 96", flutes running 96").') +
     certifications(['FDA resin compliance letter', 'UL 94 listing (FR grade)', '100% recyclable (#5 PP)', 'PCR content certification', 'ISO 9001 Quality System', 'California Prop 65 statement']) +
     storage,
@@ -346,7 +350,8 @@ docs.push({
       ['Width', 'ASTM D4802', 'All sizes'],
       ['Length', 'ASTM D4802', 'All sizes'],
       ['Squareness (diagonal difference)', 'Internal', 'All sizes'],
-      ['Flatness / bow', 'ASTM D4802 §5.6.1', 'Dimensions ≤ 48" / > 48"'],
+      ['Overall bow warp', 'ASTM D4802 §5.6.1', 'Per 4 ft of length (sheet flat, own weight)'],
+      ['Edge kink / edge "S" warp', 'ASTM D4802', 'All sheet (state: none permitted)'],
       ['Shrinkage on heating (MD / TD)', 'Internal (e.g. 30 min @ 320 °F)', 'All thicknesses'],
     ], 'Extruded sheet shrinks mainly in the extrusion (machine) direction; state test temperature and time.') +
     certifications(['UL Recognized (file no.)', 'ICC-ES Evaluation Report', 'FDA 21 CFR 177.1010 (resin)', 'NSF / ANSI 51', 'ISO 9001 Quality System', 'California Prop 65 statement']) +

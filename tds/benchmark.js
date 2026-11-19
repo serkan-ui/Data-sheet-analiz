@@ -148,9 +148,12 @@ docs.push({
       ['Width / Length', '—', 'All sizes', '± 1/4" (± 6 mm)', 'Acme Plastics (distributor standard)', 'K'],
       ['Squareness (diagonal difference)', 'ISO 11963', 'All sizes', '≤ 3.5 × 10⁻³ × width, min. 2 mm', 'ISO 11963 (PC sheet standard)', 'K'],
       ['Thickness / width / length', 'ISO 11963', 'Tables 1–2', 'Per standard tables', 'Values not retrieved', 'N'],
-      ['Flatness / bow', '—', '—', '—', 'Not published in sources found', 'N'],
+      ['Thickness (EU data sheets)', 'ISO 11963 / EN 16240', '< 1.5 / 1.5–2.0 / 2–12 mm', '± 8 / ± 4 / ± 3 (%, units unclear in source)', 'TUFFAK EU (pds416), TUFFAK F (pds519) — verify', 'K'],
+      ['Flatness', 'ISO 11963 / EN 16240', 'Sheet length < 4 m / ≥ 4 m', '≤ 2 mm/m / ≤ 4 mm/m (≈ 0.024 / 0.048 in/ft)', 'TUFFAK EU (pds416) — table pairing to verify', 'K'],
+      ['Width / Length (EU data sheets)', 'ISO 11963', 'Mill-run sheet', '≤ 5 mm/m', 'TUFFAK EU (pds416) — verify', 'K'],
+      ['Flatness / bow (US data sheets)', '—', '—', '—', 'Not published in US PDS found', 'N'],
       ['Dimensional change on heating', '—', '—', '—', 'Not published in sources found', 'N'],
-    ], 'TUFFAK, LEXAN and PALSUN tolerance tables were not retrieved. ASTM D3935 classifies PC resin properties; it does not set sheet dimensional tolerances.') +
+    ], 'Plaskolite states TUFFAK solid sheet is produced to ISO 11963:2012 and EN 16240:2013; its EU data sheet tables were partly garbled in extraction. US LEXAN and PALSUN tolerance tables were not retrieved. ASTM D3935 classifies PC resin properties; it does not set sheet dimensional tolerances.') +
     list('Warranty (published)', [
       ['TUFFAK GP / Makrolon GP', '5-year limited warranty against breakage', 'K'],
       ['TUFFAK AR', '7-year limited warranty: breakage, yellowing, hazing', 'K'],
@@ -226,8 +229,15 @@ docs.push({
       ['Standard lengths', '—', 'POLYGAL / SUNLITE DIY', '6 / 12 m; 96" / 120"', 'Plaskolite; Palram', 'K'],
       ['Nominal area weight', '—', '6 / 8 / 10 / 16 mm', '1,300 / 1,500 / 1,700 / 2,700 g/m²', 'Polygal technical guide', 'K'],
       ['Thermal expansion allowance', 'Guide value', 'Clear sheet', '2.5 mm/m (≈ 0.03"/ft) of length & width', 'Plaskolite POLYGAL', 'K'],
-      ['Thickness, width, length, squareness, weight tolerance', 'EN 16153', '—', '—', 'Not published in sources found', 'N'],
-    ], 'Competitors publish nominal sizes and weights but no numeric manufacturing tolerances in the sources found. EN 16153 (multiwall PC sheet) is the usual reference — obtain the standard.') +
+      ['Length', 'EN 16153', '≤ 3,000 mm / > 3,000 mm', '0 / + 12 mm; 0 / + 0.40 %', 'EN 16153:2013+A1:2015', 'K'],
+      ['Width', 'EN 16153', 'All widths', '− 2 / + 6 mm', 'EN 16153', 'K'],
+      ['Flatness across width', 'EN 16153', 'All widths', '≤ 5 mm per m of width', 'EN 16153', 'K'],
+      ['Flatness ("waves")', 'EN 16153', 'All widths', '≤ 0.5 % of nominal width', 'Plaskolite multiwall PDS (pds413)', 'K'],
+      ['Planar bow ("banana")', 'EN 16153', 'All lengths', '≤ 0.3 % of nominal length (0.15 % on some products)', 'Plaskolite multiwall PDS (pds413, pds431/445)', 'K'],
+      ['Thickness', 'EN 16153', '6 mm', '± 0.3 mm', 'Plaskolite multiwall PDS', 'K'],
+      ['Lateral curvature (edge straightness)', 'EN 16153 §5.1.12', '—', 'Limit not retrieved', 'EN 16153', 'N'],
+      ['Squareness, weight tolerance', '—', '—', '—', 'Not published in sources found', 'N'],
+    ], 'Example: a 1,220 mm wide sheet may deviate ≤ 6 mm across its width (EN 16153); a 6 m long sheet may bow ≤ 18 mm in plane at 0.3 %. US Palram/Polygal literature publishes nominal values only.') +
     list('Warranty', [
       ['SUNLITE / POLYGAL / THERMOCLEAR', '≈ 10-year limited warranty: yellowing, loss of light transmission; hail (THERMOCLEAR)', 'T'],
     ]),
@@ -285,7 +295,11 @@ docs.push({
       ['Squareness (diagonal diff.) — square-cut', '—', '< 60"', '1/8" (3 mm)', 'Coroplast', 'K'],
       ['Board weight (4 mm)', '—', 'Natural/white; colors', '750 / 700 g/m² ± 5 %', 'Coroplast (distributor spec)', 'K'],
       ['Corona treatment (min.)', 'Dyne', '2–12 mm', '46 dyne/cm', 'Coroplast', 'K'],
-    ], 'Coroplast: "All tolerances are subject to change without notice." Curbell notes square-cut sheets cannot be guaranteed "off the line".') +
+      ['Warp / bow', '—', 'Sheet size < 96"', '1/4" (6 mm) max.', 'Coroplast Print graphic-board spec', 'K'],
+      ['Warp / bow', '—', 'Sheet size > 96"', '1.0" (25 mm) max.', 'Coroplast Print graphic-board spec', 'K'],
+      ['Warp / bow', '—', '≥ 70" × 70"', '2.0" (51 mm) max.', 'Coroplast Print graphic-board spec', 'K'],
+      ['Edge straightness', '—', 'Length < 98"', '1/8" (3 mm) max.', 'Coroplast Print graphic-board spec', 'K'],
+    ], 'Warp/bow = max. height of any part of the sheet above a flat surface. Straightness = max. gap between sheet edge and a straight edge touching both corners. A 48"×96" sheet sits on the < / > 96" boundary — confirm with Coroplast. Coroplast: "All tolerances are subject to change without notice." Curbell notes square-cut sheets cannot be guaranteed "off the line".') +
     list('Options offered by competitors', [
       ['FDA / UL compliant materials', 'Available on request (Primex)', 'K'],
       ['Conductive / anti-static', 'Primex conductive COR-X', 'K'],
@@ -365,7 +379,9 @@ docs.push({
       ['Thickness (commercial extruded)', '—', '≤ 0.125"', 'May not meet ASTM D4802', 'A&amp;C Plastics supplier note', 'K'],
       ['Thickness (commercial extruded)', '—', 'All gauges', '≈ ± 10 %', 'Industry typical', 'T'],
       ['Width / Length', 'ASTM D4802', 'All sizes', '+ 1/4" / − 0 (+ 6 / − 0 mm)', 'Supplier citations of ASTM D4802', 'K'],
-      ['Flatness / bow', 'ASTM D4802 §5.6.1', 'Dimensions ≤ 48"', 'Max. 1/4" (6 mm) as manufactured', 'Supplier citation of ASTM D4802', 'K'],
+      ['Overall bow warp', 'ASTM D4802 §5.6.1', 'Per 4 ft of length or fraction', 'Max. 0.250" (6.3 mm), sheet flat under own weight', 'ASTM D4802-16 (all sheet types)', 'K'],
+      ['Overall bow warp — 4 ft × 8 ft sheet', 'ASTM D4802', '96" length = 2 × 4 ft', '≈ 0.50" (12.6 mm) — interpretation', 'Derived from ASTM D4802 rule', 'T'],
+      ['Edge kink warp / edge "S" warp', 'ASTM D4802', 'All sheet', 'Not permitted ("S" warp that becomes bow when flipped is allowed)', 'ASTM D4802-16', 'K'],
       ['Tight-tolerance positioning', '—', '—', '"Tight thickness tolerance, low stress"', 'ACRYLITE Premium FF (marketing claim)', 'K'],
       ['Squareness', '—', '—', '—', 'Not published in sources found', 'N'],
       ['Shrinkage on heating (MD / TD)', '—', '—', '—', 'Not published in sources found', 'N'],
