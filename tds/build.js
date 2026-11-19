@@ -66,6 +66,16 @@ const flammability = (extra = []) =>
     ['UL File Number', 'UL Product iQ'],
   ]);
 
+
+// Dimensional tolerance table: rows = [parameter, standard/method, condition]
+function tolBlank(rows, note = '') {
+  return `<div class="avoid"><h2>Dimensional Tolerances</h2>
+  <table class="props">
+    <colgroup><col style="width:28%"><col style="width:17%"><col style="width:21%"><col style="width:12%"><col style="width:12%"><col style="width:10%"></colgroup>
+    <thead><tr><th>Parameter</th><th>Standard / Method</th><th>Condition / Range</th><th>Tolerance (US)</th><th>Tolerance (SI)</th><th>Notes</th></tr></thead>
+    <tbody>${rows.map(([p, m, c]) => `<tr><td>${p}</td><td class="m">${m}</td><td class="m">${c}</td>${B}${B}${B}</tr>`).join('')}</tbody>
+  </table>${note ? `<p class="note">${note}</p>` : ''}</div>`;
+}
 const certifications = (items) =>
   checklist('Certifications &amp; Compliance', items);
 
@@ -188,6 +198,17 @@ docs.push({
     ]) +
     flammability([['Safety Glazing', 'ANSI Z97.1 / CPSC 16 CFR 1201'], ['Bullet Resistance (if applicable)', 'UL 752 Level']]) +
     `<div class="avoid">` + matrix('Product Availability', ['Thickness (in)', 'Thickness (mm)', 'Tolerance (±)', 'Standard Sizes (in)', 'Max Width × Length', 'Colors / Finish'], ['', '', '', '', '', '', ''], 'Masking: ☐ PE film  ☐ Paper  ☐ Laser-compatible   ·   UV protection: ☐ One side  ☐ Two sides  ☐ None   ·   Coatings: ☐ Abrasion-resistant  ☐ Matte  ☐ Light-diffusing') + `</div>` +
+    tolBlank([
+      ['Thickness', 'ASTM D5947', '≤ 0.118" (3 mm)'],
+      ['Thickness', 'ASTM D5947', '0.118"–0.236" (3–6 mm)'],
+      ['Thickness', 'ASTM D5947', '> 0.236" (6 mm)'],
+      ['Thickness variation within sheet', 'ASTM D5947', 'Max – min, same sheet'],
+      ['Width', 'ISO 11963', 'All sizes'],
+      ['Length', 'ISO 11963', 'All sizes'],
+      ['Squareness (diagonal difference)', 'ISO 11963', 'All sizes'],
+      ['Flatness / bow', 'Internal', 'Per 48" (1,220 mm)'],
+      ['Dimensional change on heating (MD / TD)', 'Internal (e.g. 30 min @ 300 °F)', 'All thicknesses'],
+    ], 'Width/length measured at 73 °F (23 °C). State whether tolerances apply to mill-run or cut-to-size sheet.') +
     certifications(['ICC-ES Evaluation Report', 'UL Recognized (file no.)', 'ANSI Z97.1 / CPSC 16 CFR 1201', 'Florida Product Approval', 'FDA 21 CFR 177.1580 (resin)', 'ISO 9001 Quality System', 'California Prop 65 statement', 'REACH / RoHS']) +
     warrantyBlock + storage,
 });
@@ -221,6 +242,16 @@ docs.push({
     flammability() +
     matrix('Product Availability', ['Thickness', 'Standard Widths (in)', 'Standard Lengths (ft)', 'Colors', 'UV Side(s)', 'Coatings'], ['4 mm', '6 mm', '8 mm', '10 mm', '16 mm'],
       'Coatings: ☐ Anti-drip / condensation control  ☐ IR-reflective / solar control  ☐ Diffuser   ·   Accessories: ☐ H-profile  ☐ U-profile  ☐ Vent tape  ☐ Anti-dust tape  ☐ Fasteners') +
+    tolBlank([
+      ['Thickness', 'Caliper', '4–10 mm'],
+      ['Thickness', 'Caliper', '16 mm and above'],
+      ['Width (perpendicular to ribs)', 'Tape / EN 16153', 'All widths'],
+      ['Length (parallel to ribs)', 'Tape / EN 16153', 'All lengths'],
+      ['Squareness (diagonal difference)', 'EN 16153', 'All sizes'],
+      ['Area weight', 'Gravimetric', 'Per thickness'],
+      ['Rib straightness / sheet bow', 'Internal', 'Per 3 ft (1 m)'],
+      ['Thermal expansion allowance (installation)', 'Guide value', 'Per ft (m) of length/width'],
+    ], 'Length is defined parallel to the ribs; width perpendicular to the ribs.') +
     certifications(['ICC-ES Evaluation Report', 'UL Recognized (file no.)', 'Florida Product Approval', 'Miami-Dade NOA', 'ISO 9001 Quality System', 'California Prop 65 statement']) +
     warrantyBlock + storage,
 });
@@ -250,6 +281,17 @@ docs.push({
       ['Corona treatment level, dyne/cm', 'Surface energy', 'Treatment retention period', 'Sides treated (1 / 2)', 'Recommended inks', 'Surface resistivity (anti-static / conductive), Ω/sq']) +
     checklist('Options', ['UV-stabilized (outdoor life ____ years)', 'Flame retardant (UL 94 ____ )', 'Anti-static / conductive', 'FDA-compliant resin (21 CFR 177.1520)', 'Post-consumer recycled content ____ %', 'Custom color matching', 'Edge-sealed / ultrasonic sealed', 'Die-cutting &amp; printing service']) +
     matrix('Product Availability', ['Thickness', 'Standard Sizes (in)', 'Flute Direction', 'Colors', 'Pack Qty / Pallet', 'Min. Order'], ['2–3 mm', '4 mm', '5–6 mm', '8–10 mm']) +
+    tolBlank([
+      ['Thickness', 'Caliper', '2–12 mm'],
+      ['Width — standard sheet', 'Tape', '2–12 mm'],
+      ['Width — square-cut sheet', 'Tape', '2–12 mm'],
+      ['Length — standard sheet', 'Tape', '< 36" / 36"–60" / 60"–97"'],
+      ['Length — square-cut sheet', 'Tape', 'All lengths'],
+      ['Squareness (diagonal difference)', 'Tape', 'Standard < 60" / ≥ 60"; square-cut'],
+      ['Board weight', 'Gravimetric', 'Per thickness'],
+      ['Corona treatment level (min.)', 'Dyne pens, ASTM D2578', '2–12 mm'],
+      ['Flatness / warp', 'Internal', 'Per 48"'],
+    ], 'Specify flute direction for every size (e.g. 48" × 96", flutes running 96").') +
     certifications(['FDA resin compliance letter', 'UL 94 listing (FR grade)', '100% recyclable (#5 PP)', 'PCR content certification', 'ISO 9001 Quality System', 'California Prop 65 statement']) +
     storage,
 });
@@ -296,6 +338,17 @@ docs.push({
     `<div class="avoid">` + matrix('Product Availability &amp; Thickness Tolerance', ['Nominal (in)', 'Nominal (mm)', 'Tolerance (±)', 'Standard Sizes (in)', 'Colors / Finish', 'Masking'], ['', '', '', '', '', '', '', ''],
       'Series: ☐ Clear  ☐ White / LED  ☐ Colors  ☐ Patterned  ☐ Non-glare  ☐ Abrasion-resistant  ☐ UV-filtering  ☐ Mirror  ☐ Frosted  ☐ Recycled content') + `</div>` +
     checklist('Fabrication Suitability', ['Saw / router cutting', 'Laser cutting (CO₂)', 'CNC machining', 'Solvent cementing', 'Thermoforming / line bending', 'Flame / diamond polishing', 'Screen / digital printing', 'Drilling']) +
+    tolBlank([
+      ['Thickness', 'ASTM D4802 / D5947', '0.060"–0.118"'],
+      ['Thickness', 'ASTM D4802 / D5947', '0.177"–0.236"'],
+      ['Thickness', 'ASTM D4802 / D5947', '0.375"–0.500"'],
+      ['Thickness', 'ASTM D4802 / D5947', '> 0.500"'],
+      ['Width', 'ASTM D4802', 'All sizes'],
+      ['Length', 'ASTM D4802', 'All sizes'],
+      ['Squareness (diagonal difference)', 'Internal', 'All sizes'],
+      ['Flatness / bow', 'ASTM D4802 §5.6.1', 'Dimensions ≤ 48" / > 48"'],
+      ['Shrinkage on heating (MD / TD)', 'Internal (e.g. 30 min @ 320 °F)', 'All thicknesses'],
+    ], 'Extruded sheet shrinks mainly in the extrusion (machine) direction; state test temperature and time.') +
     certifications(['UL Recognized (file no.)', 'ICC-ES Evaluation Report', 'FDA 21 CFR 177.1010 (resin)', 'NSF / ANSI 51', 'ISO 9001 Quality System', 'California Prop 65 statement']) +
     warrantyBlock + storage,
 });

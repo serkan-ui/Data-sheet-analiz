@@ -37,6 +37,14 @@ function list(title, items) {
 
 const para = (title, html) => `<h2>${title}</h2><p class="para">${html}</p>`;
 
+// Tolerance table: rows = [parameter, standard, condition, tolerance, reference, status]
+function tol(rows, note = '') {
+  return `<div class="avoid"><h2>Dimensional Tolerances</h2><table class="props">
+  <colgroup><col style="width:24%"><col style="width:13%"><col style="width:17%"><col style="width:20%"><col style="width:21%"><col style="width:5%"></colgroup>
+  <thead><tr><th>Parameter</th><th>Standard</th><th>Condition / Range</th><th>Tolerance</th><th>Reference (competitor)</th><th></th></tr></thead>
+  <tbody>${rows.map(([p, m, c, t, r, s]) => `<tr><td>${p}</td><td class="m">${m}</td><td class="m">${c}</td><td class="v">${t}</td><td class="r">${r}</td><td class="c">${badge(s)}</td></tr>`).join('')}</tbody></table>${note ? `<p class="note">${note}</p>` : ''}</div>`;
+}
+
 function page({ code, family, refs, body, sources }) {
   return `<!doctype html><html><head><meta charset="utf-8"><style>
   @page { size: Letter; margin: 0.55in 0.6in 0.75in 0.6in; }
@@ -135,6 +143,14 @@ docs.push({
     matrix('Product Availability (typical US offering)', ['Thickness (in)', 'Thickness (mm)', 'Tolerance', 'Standard Sizes (in)', 'Status'],
       [['0.060"', '1.5', '±10 %', '48×96', 'T'], ['0.093"', '2.4', '±10 %', '48×96, 60×96, 72×96', 'T'], ['0.118"', '3.0', '±10 %', '48×96, 60×96, 72×96', 'T'], ['0.177"', '4.5', '±10 %', '48×96, 60×96, 72×96', 'T'], ['0.236"', '6.0', '±10 %', '48×96, 60×96, 72×96', 'T'], ['0.375"', '9.5', '±10 %', '48×96, 60×96, 72×96', 'T'], ['0.500"', '12.7', '±10 %', '48×96, 60×96, 72×96', 'T']].map((r) => [...r.slice(0, 4), r[4] === 'T' ? '<span class="b bT">T</span>' : r[4]]),
       'Typical options: PE film masking (laser-compatible available), UV-protected one/two sides, abrasion-resistant coated (TUFFAK AR, LEXAN MARGARD), matte, light-diffusing (TUFFAK LF).') +
+    tol([
+      ['Thickness', '—', 'All gauges', '± 10 % (may vary within sheet)', 'Acme Plastics (distributor standard)', 'K'],
+      ['Width / Length', '—', 'All sizes', '± 1/4" (± 6 mm)', 'Acme Plastics (distributor standard)', 'K'],
+      ['Squareness (diagonal difference)', 'ISO 11963', 'All sizes', '≤ 3.5 × 10⁻³ × width, min. 2 mm', 'ISO 11963 (PC sheet standard)', 'K'],
+      ['Thickness / width / length', 'ISO 11963', 'Tables 1–2', 'Per standard tables', 'Values not retrieved', 'N'],
+      ['Flatness / bow', '—', '—', '—', 'Not published in sources found', 'N'],
+      ['Dimensional change on heating', '—', '—', '—', 'Not published in sources found', 'N'],
+    ], 'TUFFAK, LEXAN and PALSUN tolerance tables were not retrieved. ASTM D3935 classifies PC resin properties; it does not set sheet dimensional tolerances.') +
     list('Warranty (published)', [
       ['TUFFAK GP / Makrolon GP', '5-year limited warranty against breakage', 'K'],
       ['TUFFAK AR', '7-year limited warranty: breakage, yellowing, hazing', 'K'],
@@ -204,6 +220,14 @@ docs.push({
       ['Accessories', 'H- and U-profiles (PC / aluminum), vent tape, anti-dust tape, fasteners', 'T'],
       ['Retail channel', 'Home Depot / Lowe\'s (SUNLITE DIY, Tuftex)', 'K'],
     ]) +
+    tol([
+      ['Width / length definition', '—', '—', 'Length ∥ ribs; width ⊥ ribs', 'Palram SUNLITE Technical Guide', 'K'],
+      ['Standard widths', '—', 'POLYGAL', '980 / 1,050 / 1,200 / 1,250 / 2,100 mm', 'Plaskolite POLYGAL', 'K'],
+      ['Standard lengths', '—', 'POLYGAL / SUNLITE DIY', '6 / 12 m; 96" / 120"', 'Plaskolite; Palram', 'K'],
+      ['Nominal area weight', '—', '6 / 8 / 10 / 16 mm', '1,300 / 1,500 / 1,700 / 2,700 g/m²', 'Polygal technical guide', 'K'],
+      ['Thermal expansion allowance', 'Guide value', 'Clear sheet', '2.5 mm/m (≈ 0.03"/ft) of length & width', 'Plaskolite POLYGAL', 'K'],
+      ['Thickness, width, length, squareness, weight tolerance', 'EN 16153', '—', '—', 'Not published in sources found', 'N'],
+    ], 'Competitors publish nominal sizes and weights but no numeric manufacturing tolerances in the sources found. EN 16153 (multiwall PC sheet) is the usual reference — obtain the standard.') +
     list('Warranty', [
       ['SUNLITE / POLYGAL / THERMOCLEAR', '≈ 10-year limited warranty: yellowing, loss of light transmission; hail (THERMOCLEAR)', 'T'],
     ]),
@@ -250,6 +274,18 @@ docs.push({
       ['Treatment Retention Period', '—', '—', '—', 'Not retrieved', 'N'],
       ['Surface Resistivity (conductive grade)', '—', '≤ 10⁵ Ω/sq', '—', 'Primex (tested on 3 mm)', 'K'],
     ]) +
+    tol([
+      ['Thickness', '—', '2–12 mm', '± 5 %', 'Coroplast Tolerances (05/2021)', 'K'],
+      ['Width — standard & square-cut', '—', '2–12 mm', '± 1/8" (± 3 mm)', 'Coroplast', 'K'],
+      ['Length — standard sheet', '—', '< 36"', '0 / + 3/8" (+ 10 mm)', 'Coroplast', 'K'],
+      ['Length — standard sheet', '—', '36"–< 60"', '0 / + 1/2" (+ 13 mm)', 'Coroplast', 'K'],
+      ['Length — standard sheet', '—', '60"–< 97"', '0 / + 1" (+ 25 mm)', 'Coroplast', 'K'],
+      ['Length — square-cut sheet', '—', 'All', '0 / + 1/8" (+ 3 mm)', 'Coroplast', 'K'],
+      ['Squareness (diagonal diff.) — standard', '—', '< 60" / ≥ 60"', '1/4" / 5/8" (6 / 16 mm)', 'Coroplast', 'K'],
+      ['Squareness (diagonal diff.) — square-cut', '—', '< 60"', '1/8" (3 mm)', 'Coroplast', 'K'],
+      ['Board weight (4 mm)', '—', 'Natural/white; colors', '750 / 700 g/m² ± 5 %', 'Coroplast (distributor spec)', 'K'],
+      ['Corona treatment (min.)', 'Dyne', '2–12 mm', '46 dyne/cm', 'Coroplast', 'K'],
+    ], 'Coroplast: "All tolerances are subject to change without notice." Curbell notes square-cut sheets cannot be guaranteed "off the line".') +
     list('Options offered by competitors', [
       ['FDA / UL compliant materials', 'Available on request (Primex)', 'K'],
       ['Conductive / anti-static', 'Primex conductive COR-X', 'K'],
@@ -324,6 +360,16 @@ docs.push({
       ['Series', 'Clear, white/LED, colors &amp; designer colors, patterned (P95), non-glare, abrasion-resistant (DA), UV-filtering, mirror, frosted, recycled (OPTIX R)', 'K'],
       ['Masking', 'PE film or paper; laser-compatible masking', 'T'],
     ]) +
+    tol([
+      ['Thickness', 'ASTM D4802 Table 3', 'Category A-1 / B-1', 'Per standard table', 'ASTM D4802 (values not retrieved)', 'N'],
+      ['Thickness (commercial extruded)', '—', '≤ 0.125"', 'May not meet ASTM D4802', 'A&amp;C Plastics supplier note', 'K'],
+      ['Thickness (commercial extruded)', '—', 'All gauges', '≈ ± 10 %', 'Industry typical', 'T'],
+      ['Width / Length', 'ASTM D4802', 'All sizes', '+ 1/4" / − 0 (+ 6 / − 0 mm)', 'Supplier citations of ASTM D4802', 'K'],
+      ['Flatness / bow', 'ASTM D4802 §5.6.1', 'Dimensions ≤ 48"', 'Max. 1/4" (6 mm) as manufactured', 'Supplier citation of ASTM D4802', 'K'],
+      ['Tight-tolerance positioning', '—', '—', '"Tight thickness tolerance, low stress"', 'ACRYLITE Premium FF (marketing claim)', 'K'],
+      ['Squareness', '—', '—', '—', 'Not published in sources found', 'N'],
+      ['Shrinkage on heating (MD / TD)', '—', '—', '—', 'Not published in sources found', 'N'],
+    ], 'ASTM D4802 (PMMA sheet specification) is the US reference; current edition D4802-16(2024) — confirm with ASTM.') +
     list('Fabrication claims', [
       ['Thermoforming &amp; solvent cementing', 'Extruded is the easiest grade to thermoform and solvent bond (vs. cast)', 'K'],
       ['Saw, router, laser, CNC, drilling, polishing', 'Covered in separate fabrication guides (OPTIX FAB004, ACRYLITE)', 'K'],

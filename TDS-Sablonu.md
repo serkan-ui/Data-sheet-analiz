@@ -89,6 +89,18 @@ Bu şablonun bölüm başlıkları ve tablo başlıkları ABD sürümünde **İn
 - **Masking:** [PE film / paper; laser-compatible]
 - **UV protection:** [one side / two sides; marked side faces out]
 
+### 7A. Dimensional Tolerances
+| Parameter | Standard / Method | Condition / Range | Tolerance (US) | Tolerance (SI) |
+|---|---|---|---|---|
+| Thickness | ASTM D5947 / D4802 (acrylic) | kalınlık aralığına göre | | |
+| Width | ISO 11963 (PC) / ASTM D4802 (PMMA) | | | |
+| Length | | (PP: < 36" / 36–60" / 60–97") | | |
+| Squareness (diagonal difference) | | | | |
+| Flatness / bow | ASTM D4802 §5.6.1 (PMMA) | ≤ 48" / > 48" | | |
+| Area / board weight (twin wall) | Gravimetric | kalınlığa göre | | |
+| Shrinkage on heating (MD / TD) (solid PC, PMMA) | Internal | sıcaklık ve süre belirtilir | | |
+| Corona level, min. (twin wall PP) | ASTM D2578 | | | |
+
 ### 8. Certifications and Compliance
 [ICC-ES ESR, UL File No., ANSI Z97.1 / CPSC 16 CFR 1201, FDA 21 CFR [177.xxxx], NSF, Florida Product Approval, ISO 9001, Prop 65 beyanı]
 
