@@ -309,8 +309,6 @@ function buildDocs() {
         ['Service Temperature Range', '—', '°F', '°C', V('−40 to 250', 'typ.'), V('−40 to 121', 'typ.')],
         ['Hail Resistance (ice ball Ø / velocity)', 'Internal / FM 4473', 'in / mph', 'mm / m/s', V('PASS*', 'US Plast'), V('PASS*', 'US Plast')],
       ], DRAFT ? '* Above 8 mm.' : '') +
-      `<div class="avoid">` + matrix('Load / Span Table (Allowable Uniform Load, psf)', ['Thickness', 'Span 24 in', 'Span 32 in', 'Span 40 in', 'Span 48 in', 'Span 60 in', 'Span 72 in'],
-        ['6 mm', '8 mm', '10 mm', '16 mm'], 'State support condition (two-edge / four-edge), rib direction and deflection limit (e.g. L/20).' + (DRAFT ? ' Competitor load/span values not retrieved — US Plast test data required.' : '')) + `</div>` +
       flammability({
         d635: V('CC2 (twin / triple wall)', 'SUNLITE · ESR-1893'),
         e84: V('Smoke-developed index ≤ 450', 'SUNLITE · ESR-1893'),
