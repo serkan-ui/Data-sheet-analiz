@@ -248,9 +248,9 @@ function buildDocs() {
         d1929: V('≈ 1,080 °F (580 °C)', 'typ.'),
         e84: V('Smoke-developed index ≤ 450', 'Palram · ESR-1893'),
       }, [['Safety Glazing', 'ANSI Z97.1 / CPSC 16 CFR 1201'], ['Bullet Resistance (if applicable)', 'UL 752 Level']]) +
-      `<div class="avoid">` + matrix('Product Availability', ['Thickness (in)', 'Thickness (mm)', 'Tolerance (±)', 'Standard Sizes (in)', 'Max Width × Length', 'Colors / Finish'],
+      `<div class="avoid">` + matrix('Product Availability*', ['Thickness (in)', 'Thickness (mm)', 'Tolerance (±)', 'Standard Sizes (in)', 'Max Width × Length', 'Colors / Finish'],
         thkPC.map((t, i) => [DRAFT ? t + '"' : '', V(mmPC[i]), V('10 %', 'distributor std.'), V('48×96, 60×96, 72×96', 'typ.'), undefined, V('Clear, bronze, gray', 'typ.')]).concat(DRAFT ? [] : ['', '', '', '', '', '', ''].slice(7)),
-        'Masking: ☐ PE film  ☐ Paper  ☐ Laser-compatible   ·   UV protection: ☐ One side  ☐ Two sides  ☐ None   ·   Coatings: ☐ Abrasion-resistant  ☐ Matte  ☐ Light-diffusing') + `</div>` +
+        '<b>* For other colors and sizes, please contact our sales team.</b><br>Masking: ☐ PE film  ☐ Paper  ☐ Laser-compatible   ·   UV protection: ☐ One side  ☐ Two sides  ☐ None   ·   Coatings: ☐ Abrasion-resistant  ☐ Matte  ☐ Light-diffusing') + `</div>` +
       tolTable([
         ['Thickness', 'ASTM D5947', '< 1.5 mm / 1.5–2.0 mm', V('± 8 % / ± 4 %', 'TUFFAK EU*'), V('± 8 % / ± 4 %')],
         ['Thickness', 'ASTM D5947', '2–6 mm', V('± 3 %', 'TUFFAK EU*'), V('± 3 %')],
@@ -263,8 +263,6 @@ function buildDocs() {
         ['Flatness', 'ISO 11963 / EN 16240', 'Sheet length ≥ 13 ft (4 m)', V('≤ 0.048 in/ft', 'TUFFAK EU'), V('≤ 4 mm/m')],
         ['Dimensional change on heating (MD / TD)', 'Internal (e.g. 30 min @ 300 °F)', 'All thicknesses'],
       ], 'Width/length measured at 73 °F (23 °C). State whether tolerances apply to mill-run or cut-to-size sheet.' + (DRAFT ? ' *TUFFAK EU table partly illegible in source — units/pairing to be verified.' : '')) +
-      certifications(['ICC-ES Evaluation Report', 'UL Recognized (file no.)', 'ANSI Z97.1 / CPSC 16 CFR 1201', 'Florida Product Approval', 'FDA 21 CFR 177.1580 (resin)', 'ISO 9001 Quality System', 'California Prop 65 statement', 'REACH / RoHS']) +
-      warrantyBlock('5', 'breakage', 'TUFFAK GP') +
       storage('Store sheets flat on a smooth, full-size pallet, indoors, away from direct sunlight and heat sources; do not store outdoors with masking in place. Remove masking promptly after installation. Clean with mild soap and lukewarm water using a soft cloth or sponge, rinse and dry. Do not use abrasive cleaners, ammonia, acetone, benzene, MEK or chlorinated solvents.'),
   });
 
@@ -374,13 +372,13 @@ function buildDocs() {
           ['Surface resistivity (anti-static / conductive), Ω/sq', undefined, V('≤ 10⁵ (conductive)', 'COR-X')],
         ]) +
       checklist('Options', ['UV-stabilized (outdoor life ____ years)', 'Flame retardant (UL 94 ____ )', 'Anti-static / conductive', 'FDA-compliant resin (21 CFR 177.1520)', 'Post-consumer recycled content ____ %', 'Custom color matching', 'Edge-sealed / ultrasonic sealed', 'Die-cutting &amp; printing service']) +
-      matrix('Product Availability', ['Thickness', 'Standard Sizes (in)', 'Flute Direction', 'Colors', 'Pack Qty / Pallet', 'Min. Order'],
+      matrix('Product Availability*', ['Thickness', 'Standard Sizes (in)', 'Flute Direction', 'Colors', 'Pack Qty / Pallet', 'Min. Order'],
         [
           ['2–3 mm', V('48×96', 'typ.'), V('96 in', 'typ.'), V('White, natural, colors', 'Coroplast')],
           ['4 mm', V('48×96; 18×24, 24×18', 'typ.'), V('96 in / 24 in', 'typ.'), V('White, natural, colors', 'Coroplast')],
           ['5–6 mm', V('48×96', 'typ.'), V('96 in', 'typ.'), V('White, natural, colors', 'Coroplast')],
           ['8–10 mm', V('48×96', 'typ.'), V('96 in', 'typ.'), V('White, natural, black', 'typ.')],
-        ]) +
+        ], '<b>* For other colors and sizes, please contact our sales team.</b>') +
       tolTable([
         ['Thickness', 'Caliper', '2–12 mm', V('± 5 %', 'Coroplast'), V('± 5 %')],
         ['Width — standard sheet', 'Tape', '2–12 mm', V('± 1/8 in', 'Coroplast'), V('± 3 mm')],
@@ -393,7 +391,6 @@ function buildDocs() {
         ['Warp / bow (max. height above flat surface)', 'Internal', '< 96" / > 96" / ≥ 70" × 70"', V('1/4; 1; 2 in', 'Coroplast'), V('6; 25; 51 mm')],
         ['Edge straightness', 'Straight edge, corner to corner', 'Length < 98" / ≥ 98"', V('1/8 in (< 98")', 'Coroplast'), V('3 mm')],
       ], 'Specify flute direction for every size (e.g. 48" × 96", flutes running 96").' + (DRAFT ? ' Coroplast warp table: a 48"×96" sheet sits on the < / > 96" boundary — define our own limit.' : '')) +
-      certifications(['FDA resin compliance letter', 'UL 94 listing (FR grade)', '100% recyclable (#5 PP)', 'PCR content certification', 'ISO 9001 Quality System', 'California Prop 65 statement']) +
       storage('Store sheets flat on a full-size pallet, indoors, away from direct sunlight and heat sources; standard (non-UV) grades are intended for short-term outdoor use only. Keep printing surfaces clean and dry; handle with clean gloves to preserve corona treatment. Clean with mild detergent and water.'),
   });
 
@@ -447,9 +444,9 @@ function buildDocs() {
         ['Dielectric Strength', 'ASTM D149', 'V/mil', 'kV/mm', V('400–500', 'typ.'), V('16–20', 'typ.')],
         ['Volume Resistivity', 'ASTM D257', 'ohm·cm', '', V('> 10¹⁵', 'typ.')],
       ]) +
-      `<div class="avoid">` + matrix('Product Availability &amp; Thickness Tolerance', ['Nominal (in)', 'Nominal (mm)', 'Tolerance (±)', 'Standard Sizes (in)', 'Colors / Finish', 'Masking'],
+      `<div class="avoid">` + matrix('Product Availability &amp; Thickness Tolerance*', ['Nominal (in)', 'Nominal (mm)', 'Tolerance (±)', 'Standard Sizes (in)', 'Colors / Finish', 'Masking'],
         thkA.map((t, i) => [DRAFT ? t + '"' : '', V(mmA[i]), V('10 %', 'typ.'), V(i === 7 ? '48×96' : '48×96, 60×96, 72×96', i === 7 ? 'OPTIX' : 'typ.'), V(i === 7 ? 'Clear' : 'Clear, white, colors', 'typ.'), V('PE film / paper', 'typ.')]),
-        'Series: ☐ Clear  ☐ White / LED  ☐ Colors  ☐ Patterned  ☐ Non-glare  ☐ Abrasion-resistant  ☐ UV-filtering  ☐ Mirror  ☐ Frosted  ☐ Recycled content') + `</div>` +
+        '<b>* For other colors and sizes, please contact our sales team.</b><br>Series: ☐ Clear  ☐ White / LED  ☐ Colors  ☐ Patterned  ☐ Non-glare  ☐ Abrasion-resistant  ☐ UV-filtering  ☐ Mirror  ☐ Frosted  ☐ Recycled content') + `</div>` +
       checklist('Fabrication Suitability', ['Saw / router cutting', 'Laser cutting (CO₂)', 'CNC machining', 'Solvent cementing', 'Thermoforming / line bending', 'Flame / diamond polishing', 'Screen / digital printing', 'Drilling']) +
       tolTable([
         ['Thickness', 'ASTM D4802 / D5947', '0.060"–0.118"', V('≈ ± 10 %', 'typ.'), V('≈ ± 10 %'), V('≤ 0.125": may not meet D4802', 'A&amp;C')],
@@ -463,8 +460,6 @@ function buildDocs() {
         ['Edge kink / edge "S" warp', 'ASTM D4802', 'All sheet (state: none permitted)', V('None permitted', 'ASTM D4802'), V('None permitted')],
         ['Shrinkage on heating (MD / TD)', 'Internal (e.g. 30 min @ 320 °F)', 'All thicknesses'],
       ], 'Extruded sheet shrinks mainly in the extrusion (machine) direction; state test temperature and time.') +
-      certifications(['UL Recognized (file no.)', 'ICC-ES Evaluation Report', 'FDA 21 CFR 177.1010 (resin)', 'NSF / ANSI 51', 'ISO 9001 Quality System', 'California Prop 65 statement']) +
-      warrantyBlock() +
       storage('Store sheets flat or on A-frame racks inclined ≈ 10°, indoors, away from heat sources and direct sunlight. Keep masking on during fabrication. Clean with mild soap and lukewarm water or a plastic cleaner using a soft cloth; do not use ammonia-based glass cleaners, alcohol, acetone, gasoline or abrasive cleaners.'),
   });
 
