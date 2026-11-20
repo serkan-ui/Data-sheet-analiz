@@ -288,27 +288,27 @@ function buildDocs() {
     subtitle: 'Extruded multiwall polycarbonate sheet with co-extruded UV protection',
     body: intro(['Greenhouses &amp; agricultural glazing', 'Skylights &amp; daylighting', 'Canopies, carports &amp; pergolas', 'Walls &amp; partitions', 'Swimming pool enclosures', 'Other: ____________________'], {
       text: 'US Plast multiwall polycarbonate sheet is a lightweight, high-strength structured panel engineered for glazing and roofing. Its hollow-rib construction traps air for thermal insulation while transmitting abundant, evenly diffused daylight. A co-extruded UV layer protects the sheet against weathering, making it a durable and economical alternative to glass.',
-      features: [`Excellent thermal insulation — U-value down to ${fv('0.41')} BTU/h·ft²·°F (16 mm)`, 'High light transmission with diffused, glare-reduced daylight', `Lightweight — approx. ${fv('1/6')} the weight of glass; easy to handle and install`, 'High impact and hail resistance', 'Can be cold-curved on site; available in clear, bronze, opal and special tints'],
+      features: [`Excellent thermal insulation — U-value down to ${fv('0.37')} BTU/h·ft²·°F (16 mm)`, 'High light transmission with diffused, glare-reduced daylight', `Lightweight — approx. ${fv('1/6')} the weight of glass; easy to handle and install`, 'High impact and hail resistance', 'Can be cold-curved on site; available in clear, bronze, opal and special tints'],
     }) +
       matrix('Product Data by Thickness', ['Thickness', 'Structure', 'Weight lb/ft² (kg/m²)', 'Light Trans. % (clear)', 'U-value BTU/h·ft²·°F (W/m²K)', 'R-value h·ft²·°F/BTU', 'Min. Cold Bend Radius in (mm)', 'Rib Spacing in (mm)'],
         [
-          ['4 mm', V('Twin wall'), V('0.16 (0.8)', 'typ.'), V('82', 'typ.'), V('0.67 (3.8)', 'Palram'), V('1.5', 'Palram'), V('≈ 28 (700)', 'typ.')],
-          ['6 mm', V('Twin wall'), V('0.27 (1.3)', 'POLYGAL'), V('80', 'SUNLITE'), V('0.63 (3.6)', 'POLYGAL'), V('1.59', 'POLYGAL'), V('34 (865)', 'THERMOCLEAR')],
-          ['8 mm', V('Twin wall'), V('0.31 (1.5)', 'POLYGAL'), V('80', 'SUNLITE'), V('0.60 (3.4)', 'POLYGAL'), V('1.67', 'POLYGAL'), V('55 (1,400)', 'THERMOCLEAR')],
-          ['8 mm', V('Quad wall'), V('0.33 (1.6)', 'UVPlastic'), V('71', 'UVPlastic'), V('0.45 (2.56)', 'UVPlastic'), V('2.22', 'UVPlastic'), V('≈ 55 (1,400)', 'typ.')],
-          ['10 mm', V('Twin wall'), V('0.35 (1.7)', 'POLYGAL'), V('79', 'SUNLITE'), V('0.53 (3.0)', 'POLYGAL'), V('1.89', 'POLYGAL'), V('69 (1,750)', 'THERMOCLEAR')],
-          ['10 mm', V('Quad wall'), V('0.39 (1.9)', 'UVPlastic'), V('71', 'UVPlastic'), V('0.42 (2.39)', 'UVPlastic'), V('2.38', 'UVPlastic'), V('≈ 69 (1,750)', 'typ.')],
-          ['16 mm', V('Triple wall'), V('0.55 (2.7)', 'POLYGAL'), V('73', 'IMPEX'), V('0.41 (2.3)', 'POLYGAL'), V('2.44', 'POLYGAL'), V('110 (2,800)', 'THERMOCLEAR')],
+          ['4 mm', V('Twin wall'), V('0.16 (0.8)', 'typ.'), V('79', 'Işık TDS'), V('0.66 (3.77)', 'Işık TDS'), V('1.51', 'Işık TDS'), V('≈ 28 (700)', 'typ.')],
+          ['6 mm', V('Twin wall'), V('0.27 (1.3)', 'POLYGAL'), V('75', 'Işık TDS'), V('0.59 (3.33)', 'Işık TDS'), V('1.71', 'Işık TDS'), V('34 (865)', 'THERMOCLEAR')],
+          ['8 mm', V('Twin wall'), V('0.31 (1.5)', 'POLYGAL'), V('76', 'Işık TDS'), V('0.54 (3.04)', 'Işık TDS'), V('1.87', 'Işık TDS'), V('55 (1,400)', 'THERMOCLEAR')],
+          ['8 mm', V('Quad wall'), V('0.33 (1.6)', 'UVPlastic'), V('65', 'Işık DoP'), V('0.47 (2.69)', 'Işık DoP'), V('2.11', 'Işık DoP'), V('≈ 55 (1,400)', 'typ.')],
+          ['10 mm', V('Twin wall'), V('0.35 (1.7)', 'POLYGAL'), V('75', 'Işık TDS'), V('0.50 (2.83)', 'Işık TDS'), V('2.01', 'Işık TDS'), V('69 (1,750)', 'THERMOCLEAR')],
+          ['10 mm', V('Quad wall'), V('0.39 (1.9)', 'UVPlastic'), V('63', 'Işık DoP'), V('0.43 (2.43)', 'Işık DoP'), V('2.34', 'Işık DoP'), V('≈ 69 (1,750)', 'typ.')],
+          ['16 mm', V('Triple wall'), V('0.55 (2.7)', 'POLYGAL'), V('73', 'Işık TDS'), V('0.37 (2.10)', 'Işık TDS'), V('2.70', 'Işık TDS'), V('110 (2,800)', 'THERMOCLEAR')],
           ['____ mm'],
         ],
-        'U-value per EN ISO 10077-2 / ASTM C1363 (state method). R-value = 1 / U (imperial). Cold bend radius typically ≈ 175 × thickness' + (FINAL ? '.' : ' — confirm by test.')) +
+        'U-value per EN 16153 (EN ISO 10077-2). R-value = 1 / U (imperial). Cold bend radius typically ≈ 175 × thickness' + (FINAL ? '.' : ' — confirm by test.')) +
       `<div class="avoid">` + matrix('Light Transmission &amp; Solar Heat Gain by Color', ['Thickness', 'Clear LT %', 'Clear SHGC', 'Bronze LT %', 'Bronze SHGC', 'Opal LT %', 'Opal SHGC', 'Gray / Ice LT %'],
         [
-          ['4 mm', V('82', 'SUNLITE'), undefined, V('35', 'SUNLITE'), undefined, V('30', 'SUNLITE*')],
-          ['6 mm', V('80', 'SUNLITE'), V('0.82', 'SUNLITE'), V('35', 'SUNLITE'), V('0.66', 'Gothic Arch'), V('30', 'Gothic Arch'), V('0.66', 'Gothic Arch')],
-          ['8 mm', V('80', 'SUNLITE'), V('0.81', 'SUNLITE 10 mm'), V('35', 'SUNLITE 10 mm'), undefined, V('30', 'SUNLITE 10 mm'), undefined, V('20', 'SUNLITE 10 mm')],
-          ['10 mm', V('79', 'SUNLITE'), V('0.80', 'SUNLITE AU'), V('35', 'SUNLITE AU'), V('0.55', 'SUNLITE AU'), V('30', 'SUNLITE AU'), V('0.54', 'SUNLITE AU'), V('20', 'SUNLITE')],
-          ['16 mm', V('73', 'IMPEX'), V('0.75', 'Gothic Arch'), V('37', 'Gothic Arch'), V('0.57', 'Gothic Arch'), V('30', 'Gothic Arch'), V('0.44', 'Gothic Arch')],
+          ['4 mm', V('79', 'Işık TDS'), undefined, V('35', 'SUNLITE'), undefined, V('30', 'SUNLITE*')],
+          ['6 mm', V('75', 'Işık TDS'), V('0.82', 'SUNLITE'), V('35', 'SUNLITE'), V('0.66', 'Gothic Arch'), V('30', 'Gothic Arch'), V('0.66', 'Gothic Arch')],
+          ['8 mm', V('76', 'Işık TDS'), V('0.81', 'SUNLITE 10 mm'), V('35', 'SUNLITE 10 mm'), undefined, V('30', 'SUNLITE 10 mm'), undefined, V('20', 'SUNLITE 10 mm')],
+          ['10 mm', V('75', 'Işık TDS'), V('0.80', 'SUNLITE AU'), V('35', 'SUNLITE AU'), V('0.55', 'SUNLITE AU'), V('30', 'SUNLITE AU'), V('0.54', 'SUNLITE AU'), V('20', 'SUNLITE')],
+          ['16 mm', V('73', 'Işık TDS'), V('0.75', 'Gothic Arch'), V('37', 'Gothic Arch'), V('0.57', 'Gothic Arch'), V('30', 'Gothic Arch'), V('0.44', 'Gothic Arch')],
         ],
         'Light transmission per ASTM D1003; SHGC per NFRC 200 / EN 410 (state method).' + (DRAFT && !FINAL ? ' *Opal column assignment unclear in source (OCR) — verify.' : '')) + `</div>` +
       propTable('Material Properties (Polycarbonate)', [
