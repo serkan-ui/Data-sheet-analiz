@@ -289,7 +289,7 @@ function buildDocs() {
           ['____ mm'],
         ],
         'U-value per EN ISO 10077-2 / ASTM C1363 (state method). R-value = 1 / U (imperial). Cold bend radius typically ≈ 175 × thickness — confirm by test.') +
-      matrix('Light Transmission &amp; Solar Heat Gain by Color', ['Thickness', 'Clear LT %', 'Clear SHGC', 'Bronze LT %', 'Bronze SHGC', 'Opal LT %', 'Opal SHGC', 'Gray / Ice LT %'],
+      `<div class="avoid">` + matrix('Light Transmission &amp; Solar Heat Gain by Color', ['Thickness', 'Clear LT %', 'Clear SHGC', 'Bronze LT %', 'Bronze SHGC', 'Opal LT %', 'Opal SHGC', 'Gray / Ice LT %'],
         [
           ['4 mm'],
           ['6 mm', V('80', 'SUNLITE'), V('0.82', 'SUNLITE')],
@@ -297,7 +297,7 @@ function buildDocs() {
           ['10 mm'],
           ['16 mm'],
         ],
-        'Light transmission per ASTM D1003; SHGC per NFRC 200 / EN 410 (state method).') +
+        'Light transmission per ASTM D1003; SHGC per NFRC 200 / EN 410 (state method).') + `</div>` +
       propTable('Material Properties (Polycarbonate)', [
         ['Specific Gravity', 'ASTM D792', '—', 'g/cm³', V('1.20', 'Palram'), V('1.20', 'Palram')],
         ['Tensile Strength, Yield', 'ASTM D638', 'psi', 'MPa', V('9,000', 'typ.'), V('62', 'typ.')],
