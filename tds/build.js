@@ -31,7 +31,7 @@ function vc(v, cls = '') {
 const iv = (val, src) => (DRAFT ? `${val}${tag(src)}` : '');
 
 // Property table: rows = [property, method, usUnit, siUnit, [us, src]?, [si, src]?]
-function propTable(title, rows) {
+function propTable(title, rows, note = '') {
   return `
   <h2>${title}</h2>
   <table class="props">
@@ -40,7 +40,7 @@ function propTable(title, rows) {
     <tbody>
     ${rows.map(([p, m, u, si, us, siv]) => `<tr><td>${p}</td><td class="m">${m}</td><td class="u">${u}</td>${vc(us)}<td class="u">${si}</td>${si === '' ? '<td class="na"></td>' : vc(siv)}</tr>`).join('')}
     </tbody>
-  </table>`;
+  </table>${note ? `<p class="note">${note}</p>` : ''}`;
 }
 
 // Result table: rows = [property, method, [result, src]?]
@@ -307,8 +307,8 @@ function buildDocs() {
         ['Heat Deflection Temperature @ 264 psi', 'ASTM D648', '°F', '°C', V('270', 'typ.'), V('132', 'typ.')],
         ['Coefficient of Linear Thermal Expansion', 'ASTM D696', 'in/in·°F', 'mm/mm·°C', V('3.75 × 10⁻⁵', 'typ.'), V('6.75 × 10⁻⁵', 'typ.')],
         ['Service Temperature Range', '—', '°F', '°C', V('−40 to 250', 'typ.'), V('−40 to 121', 'typ.')],
-        ['Hail Resistance (ice ball Ø / velocity)', 'Internal / FM 4473', 'in / mph', 'mm / m/s'],
-      ]) +
+        ['Hail Resistance (ice ball Ø / velocity)', 'Internal / FM 4473', 'in / mph', 'mm / m/s', V('PASS*', 'US Plast'), V('PASS*', 'US Plast')],
+      ], DRAFT ? '* Above 8 mm.' : '') +
       `<div class="avoid">` + matrix('Load / Span Table (Allowable Uniform Load, psf)', ['Thickness', 'Span 24 in', 'Span 32 in', 'Span 40 in', 'Span 48 in', 'Span 60 in', 'Span 72 in'],
         ['6 mm', '8 mm', '10 mm', '16 mm'], 'State support condition (two-edge / four-edge), rib direction and deflection limit (e.g. L/20).' + (DRAFT ? ' Competitor load/span values not retrieved — US Plast test data required.' : '')) + `</div>` +
       flammability({
