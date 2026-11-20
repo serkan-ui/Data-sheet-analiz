@@ -304,13 +304,13 @@ function buildDocs() {
         'U-value per EN ISO 10077-2 / ASTM C1363 (state method). R-value = 1 / U (imperial). Cold bend radius typically ≈ 175 × thickness' + (FINAL ? '.' : ' — confirm by test.')) +
       `<div class="avoid">` + matrix('Light Transmission &amp; Solar Heat Gain by Color', ['Thickness', 'Clear LT %', 'Clear SHGC', 'Bronze LT %', 'Bronze SHGC', 'Opal LT %', 'Opal SHGC', 'Gray / Ice LT %'],
         [
-          ['4 mm'],
-          ['6 mm', V('80', 'SUNLITE'), V('0.82', 'SUNLITE')],
-          ['8 mm', V('79', 'SUNLITE 10 mm'), V('0.81', 'SUNLITE 10 mm'), V('35', 'SUNLITE 10 mm'), undefined, V('30', 'SUNLITE 10 mm'), undefined, V('20', 'SUNLITE 10 mm')],
-          ['10 mm'],
-          ['16 mm'],
+          ['4 mm', V('82', 'SUNLITE'), undefined, V('35', 'SUNLITE'), undefined, V('30', 'SUNLITE*')],
+          ['6 mm', V('80', 'SUNLITE'), V('0.82', 'SUNLITE'), V('35', 'SUNLITE'), V('0.66', 'Gothic Arch'), V('30', 'Gothic Arch'), V('0.66', 'Gothic Arch')],
+          ['8 mm', V('80', 'SUNLITE'), V('0.81', 'SUNLITE 10 mm'), V('35', 'SUNLITE 10 mm'), undefined, V('30', 'SUNLITE 10 mm'), undefined, V('20', 'SUNLITE 10 mm')],
+          ['10 mm', V('79', 'SUNLITE'), V('0.80', 'SUNLITE AU'), V('35', 'SUNLITE AU'), V('0.55', 'SUNLITE AU'), V('30', 'SUNLITE AU'), V('0.54', 'SUNLITE AU'), V('20', 'SUNLITE')],
+          ['16 mm', V('73', 'IMPEX'), V('0.75', 'Gothic Arch'), V('37', 'Gothic Arch'), V('0.57', 'Gothic Arch'), V('30', 'Gothic Arch'), V('0.44', 'Gothic Arch')],
         ],
-        'Light transmission per ASTM D1003; SHGC per NFRC 200 / EN 410 (state method).') + `</div>` +
+        'Light transmission per ASTM D1003; SHGC per NFRC 200 / EN 410 (state method).' + (DRAFT && !FINAL ? ' *Opal column assignment unclear in source (OCR) — verify.' : '')) + `</div>` +
       propTable('Material Properties (Polycarbonate)', [
         ['Specific Gravity', 'ASTM D792', '—', 'g/cm³', V('1.20', 'Palram'), V('1.20', 'Palram')],
         ['Tensile Strength, Yield', 'ASTM D638', 'psi', 'MPa', V('9,000', 'typ.'), V('62', 'typ.')],
