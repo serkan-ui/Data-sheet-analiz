@@ -250,7 +250,7 @@ function buildDocs() {
       }, [['Safety Glazing', 'ANSI Z97.1 / CPSC 16 CFR 1201'], ['Bullet Resistance (if applicable)', 'UL 752 Level']]) +
       `<div class="avoid">` + matrix('Product Availability*', ['Thickness (in)', 'Thickness (mm)', 'Tolerance (±)', 'Standard Sizes (in)', 'Max Width × Length', 'Colors / Finish'],
         thkPC.map((t, i) => [DRAFT ? t + '"' : '', V(mmPC[i]), V('10 %', 'distributor std.'), V('48×96, 60×96, 72×96', 'typ.'), undefined, V('Clear, bronze, gray', 'typ.')]).concat(DRAFT ? [] : ['', '', '', '', '', '', ''].slice(7)),
-        '<b>* For other colors and sizes, please contact our sales team.</b><br>Masking: ☐ PE film  ☐ Paper  ☐ Laser-compatible   ·   UV protection: ☐ One side  ☐ Two sides  ☐ None   ·   Coatings: ☐ Abrasion-resistant  ☐ Matte  ☐ Light-diffusing') + `</div>` +
+        '<b>* For other colors and sizes, please contact our sales team.</b>') + `</div>` +
       tolTable([
         ['Thickness', 'ASTM D5947', '< 1.5 mm / 1.5–2.0 mm', V('± 8 % / ± 4 %', 'TUFFAK EU*'), V('± 8 % / ± 4 %')],
         ['Thickness', 'ASTM D5947', '2–6 mm', V('± 3 %', 'TUFFAK EU*'), V('± 3 %')],
@@ -317,7 +317,7 @@ function buildDocs() {
       ]) +
       matrix('Product Availability*', ['Thickness', 'Standard Widths (in)', 'Standard Lengths (ft)', 'Colors', 'UV Side(s)', 'Coatings'],
         ['4 mm', '6 mm', '8 mm', '10 mm', '16 mm'].map((t) => [t, V('48, 72', 'typ.'), V('8, 12, 24', 'typ.'), V('Clear, bronze, opal', 'SUNLITE'), V('1 (marked)', 'typ.'), V('Anti-drip (opt.)', 'typ.')]),
-        '<b>* For other colors and sizes, please contact our sales team.</b><br>Coatings: ☐ Anti-drip / condensation control  ☐ IR-reflective / solar control  ☐ Diffuser   ·   Accessories: ☐ H-profile  ☐ U-profile  ☐ Vent tape  ☐ Anti-dust tape  ☐ Fasteners') +
+        '<b>* For other colors and sizes, please contact our sales team.</b>') +
       tolTable([
         ['Thickness', 'Caliper', 'All thicknesses', V('± 5 %', 'US Plast'), V('± 5 %')],
         ['Width (perpendicular to ribs)', 'Tape / EN 16153', 'All widths', V('− 0.08 / + 0.24 in', 'EN 16153'), V('− 2 / + 6 mm')],
@@ -448,7 +448,7 @@ function buildDocs() {
       ]) +
       `<div class="avoid">` + matrix('Product Availability &amp; Thickness Tolerance*', ['Nominal (in)', 'Nominal (mm)', 'Tolerance (±)', 'Standard Sizes (in)', 'Colors / Finish', 'Masking'],
         thkA.map((t, i) => [DRAFT ? t + '"' : '', V(mmA[i]), V('10 %', 'typ.'), V(i === 7 ? '48×96' : '48×96, 60×96, 72×96', i === 7 ? 'OPTIX' : 'typ.'), V(i === 7 ? 'Clear' : 'Clear, white, colors', 'typ.'), V('PE film / paper', 'typ.')]),
-        '<b>* For other colors and sizes, please contact our sales team.</b><br>Series: ☐ Clear  ☐ White / LED  ☐ Colors  ☐ Patterned  ☐ Non-glare  ☐ Abrasion-resistant  ☐ UV-filtering  ☐ Mirror  ☐ Frosted  ☐ Recycled content') + `</div>` +
+        '<b>* For other colors and sizes, please contact our sales team.</b>') + `</div>` +
       checklist('Fabrication Suitability', ['Saw / router cutting', 'Laser cutting (CO₂)', 'CNC machining', 'Solvent cementing', 'Thermoforming / line bending', 'Flame / diamond polishing', 'Screen / digital printing', 'Drilling']) +
       tolTable([
         ['Thickness', 'ASTM D4802 / D5947', '0.060"–0.118"', V('≈ ± 10 %', 'typ.'), V('≈ ± 10 %'), V('≤ 0.125": may not meet D4802', 'A&amp;C')],
