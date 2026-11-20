@@ -309,10 +309,12 @@ function buildDocs() {
         ['Service Temperature Range', '—', '°F', '°C', V('−40 to 250', 'typ.'), V('−40 to 121', 'typ.')],
         ['Hail Resistance (ice ball Ø / velocity)', 'Internal / FM 4473', 'in / mph', 'mm / m/s', V('PASS*', 'US Plast'), V('PASS*', 'US Plast')],
       ], DRAFT ? '* Above 8 mm.' : '') +
-      flammability({
-        d635: V('CC2 (twin / triple wall)', 'SUNLITE · ESR-1893'),
-        e84: V('Smoke-developed index ≤ 450', 'SUNLITE · ESR-1893'),
-      }) +
+      resultTable('Flammability &amp; Building Code', [
+        ['Surface Burning Characteristics', 'ASTM E84-01', V('Class A (NFPA); Class I (UBC)', 'US Plast')],
+        ['Burn Rate / Plastic Classification', 'ASTM D635-74', V('Class CC1', 'US Plast')],
+        ['Smoke Density', 'ASTM D2843-93', V('Low smoke density (UBC Standard No. 26.5)', 'US Plast')],
+        ['Self-Ignition Temperature', 'ASTM D1929-68', V('Greater than 650 °F (343 °C)', 'US Plast')],
+      ]) +
       matrix('Product Availability', ['Thickness', 'Standard Widths (in)', 'Standard Lengths (ft)', 'Colors', 'UV Side(s)', 'Coatings'],
         ['4 mm', '6 mm', '8 mm', '10 mm', '16 mm'].map((t) => [t, V('48, 72', 'typ.'), V('8, 12, 24', 'typ.'), V('Clear, bronze, opal', 'SUNLITE'), V('1 (marked)', 'typ.'), V('Anti-drip (opt.)', 'typ.')]),
         'Coatings: ☐ Anti-drip / condensation control  ☐ IR-reflective / solar control  ☐ Diffuser   ·   Accessories: ☐ H-profile  ☐ U-profile  ☐ Vent tape  ☐ Anti-dust tape  ☐ Fasteners') +
