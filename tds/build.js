@@ -17,11 +17,12 @@ fs.mkdirSync(OUT, { recursive: true });
 
 const SHOW_DRAFT_MARKS = true; // ribbon + source tags on filled drafts
 let DRAFT = false;             // set per build pass
+let FINAL = false;             // clean release build: values shown, no ribbon/tags/highlights
 
 // ---------- helpers ----------
 const B = '<td class="fill"></td>';
 const esc = (s) => String(s);
-const tag = (src) => (DRAFT && SHOW_DRAFT_MARKS && src ? `<span class="src">${src}</span>` : '');
+const tag = (src) => (DRAFT && SHOW_DRAFT_MARKS && !FINAL && src ? `<span class="src">${src}</span>` : '');
 // value cell: v = [value, source] or undefined
 function vc(v, cls = '') {
   if (!DRAFT || !v || v[0] === '' || v[0] == null) return `<td class="fill ${cls}"></td>`;
@@ -56,14 +57,21 @@ function resultTable(title, rows) {
 
 // Matrix: rows = [label, ...cells] where each cell = [value, src] or undefined
 function matrix(title, cols, rows, note = '') {
+  const has = (c) => c && c[0] !== '' && c[0] != null;
+  const keepRow = (cells) => cells.some(has);
+  const norm = rows.map((r) => (Array.isArray(r) ? r.slice(1) : []));
+  const keepCol = cols.slice(1).map((_, i) => norm.some((cells) => has(cells[i])));
+  const nCells = cols.length - 1;
+  if (FINAL) cols = [cols[0], ...cols.slice(1).filter((_, i) => keepCol[i])];
   return `
   <h2>${title}</h2>
   <table class="matrix">
     <thead><tr>${cols.map((c) => `<th>${c}</th>`).join('')}</tr></thead>
     <tbody>${rows.map((r) => {
       const [label, ...cells] = Array.isArray(r) ? r : [r];
+      if (FINAL && !keepRow(cells)) return '';
       const tds = [];
-      for (let i = 0; i < cols.length - 1; i++) tds.push(vc(cells[i]));
+      for (let i = 0; i < nCells; i++) if (!FINAL || keepCol[i]) tds.push(vc(cells[i]));
       return `<tr><td class="rl">${label}</td>${tds.join('')}</tr>`;
     }).join('')}</tbody>
   </table>${note ? `<p class="note">${note}</p>` : ''}`;
@@ -92,11 +100,12 @@ const flammability = (v = {}, extra = []) =>
 
 // Tolerance table: rows = [parameter, standard, condition, [us, src]?, [si]?, [note]?]
 function tolTable(rows, note = '') {
+  const notes = !FINAL || rows.some((r) => r[5] && r[5][0]);
   return `<div class="avoid"><h2>Dimensional Tolerances</h2>
   <table class="props">
-    <colgroup><col style="width:24%"><col style="width:15%"><col style="width:18%"><col style="width:17%"><col style="width:15%"><col style="width:11%"></colgroup>
-    <thead><tr><th>Parameter</th><th>Standard / Method</th><th>Condition / Range</th><th>Tolerance (US)</th><th>Tolerance (SI)</th><th>Notes</th></tr></thead>
-    <tbody>${rows.map(([p, m, c, us, si, n]) => `<tr><td>${p}</td><td class="m">${m}</td><td class="m">${c}</td>${vc(us)}${vc(si)}${vc(n, 'sm')}</tr>`).join('')}</tbody>
+    <colgroup><col style="width:24%"><col style="width:15%"><col style="width:18%"><col style="width:${notes ? 17 : 22}%"><col style="width:${notes ? 15 : 21}%">${notes ? '<col style="width:11%">' : ''}</colgroup>
+    <thead><tr><th>Parameter</th><th>Standard / Method</th><th>Condition / Range</th><th>Tolerance (US)</th><th>Tolerance (SI)</th>${notes ? '<th>Notes</th>' : ''}</tr></thead>
+    <tbody>${rows.map(([p, m, c, us, si, n]) => `<tr><td>${p}</td><td class="m">${m}</td><td class="m">${c}</td>${vc(us)}${vc(si)}${notes ? vc(n, 'sm') : ''}</tr>`).join('')}</tbody>
   </table>${note ? `<p class="note">${note}</p>` : ''}</div>`;
 }
 
@@ -113,10 +122,11 @@ const storage = (text) => DRAFT && text
     'Store flat, indoors, protected from sunlight and heat; remove masking / protective film (if any) within ___ months of outdoor exposure. List approved / prohibited cleaning agents.');
 
 // feature value highlight: in blank mode show [placeholder], in draft show value
-const fv = (val) => (DRAFT ? `<span class="vf">${val}</span>` : `<span class="vf">[${val}]</span>`);
+const fv = (val) => (FINAL ? val : DRAFT ? `<span class="vf">${val}</span>` : `<span class="vf">[${val}]</span>`);
 
 // ---------- document shell ----------
 function page({ code, family, subtitle, body }) {
+  if (FINAL) body = body.replace(/ \(state method\)/g, '');
   return `<!doctype html><html><head><meta charset="utf-8"><style>
   @page { size: Letter; margin: 0.55in 0.6in 0.75in 0.6in; }
   :root { --ink:#1d2430; --muted:#5b6575; --line:#c9d0da; --accent:#0b4f8a; --fill:#f3f7fc; --head:#e7eef7; }
@@ -166,7 +176,7 @@ function page({ code, family, subtitle, body }) {
   .disc { margin-top: 16px; padding: 8px 10px; border-left: 3px solid var(--accent); background: #f6f8fb; font-size: 7.2pt; color: var(--muted); break-inside: avoid; }
   .avoid { break-inside: avoid; }
   </style></head><body>
-  ${DRAFT && SHOW_DRAFT_MARKS ? '<div class="ribbon">Draft — values are competitor reference data (see source tags) — replace with US Plast test data before release</div>' : ''}
+  ${DRAFT && SHOW_DRAFT_MARKS && !FINAL ? '<div class="ribbon">Draft — values are competitor reference data (see source tags) — replace with US Plast test data before release</div>' : ''}
   <div class="hdr">
     <div class="logo"><img src="${LOGO}" alt="US Plast"></div>
     <div class="titlebox">
@@ -175,10 +185,10 @@ function page({ code, family, subtitle, body }) {
       <div class="sub">${subtitle}</div>
     </div>
     <table class="meta">
-      <tr><td>Doc. No.</td><td>${code}</td></tr>
-      <tr><td>Revision</td><td></td></tr>
-      <tr><td>Issue Date</td><td></td></tr>
-      <tr><td>Supersedes</td><td></td></tr>
+      <tr><td>Doc. No.</td><td>${FINAL ? code.replace('___', '01') : code}</td></tr>
+      <tr><td>Revision</td><td>${FINAL ? '00' : ''}</td></tr>
+      <tr><td>Issue Date</td><td>${FINAL ? '11/2026' : ''}</td></tr>
+      ${FINAL ? '' : '<tr><td>Supersedes</td><td></td></tr>'}
     </table>
   </div>
   ${body}
@@ -190,7 +200,9 @@ function page({ code, family, subtitle, body }) {
 const intro = (apps, desc) => `
   <div class="two">
     <div><h2>Product Description</h2><p class="desc">${desc.text}</p><ul class="feat">${desc.features.map((f) => `<li>${f}</li>`).join('')}</ul></div>
-    <div><h2>Typical Applications</h2><div class="checks" style="grid-template-columns:1fr">${apps.map((a) => `<div class="ck"><span class="box"></span>${a}</div>`).join('')}</div></div>
+    <div><h2>Typical Applications</h2>${FINAL
+      ? `<ul class="feat">${apps.filter((a) => !a.startsWith('Other')).map((a) => `<li>${a}</li>`).join('')}</ul>`
+      : `<div class="checks" style="grid-template-columns:1fr">${apps.map((a) => `<div class="ck"><span class="box"></span>${a}</div>`).join('')}</div>`}</div>
   </div>`;
 
 // shorthand for [value, source]
@@ -270,6 +282,7 @@ function buildDocs() {
   // Draft sources: Plaskolite POLYGAL first; Palram SUNLITE / LEXAN THERMOCLEAR / IMPEX / EN 16153 where POLYGAL value not found.
   docs.push({
     slug: 'Twin-Wall-Polycarbonate',
+    final: true, // approved for release by US Plast (values: resin / competitor reference + US Plast data)
     code: 'TDS-PC-TW-___',
     family: 'Twin Wall / Multiwall Polycarbonate Sheet',
     subtitle: 'Extruded multiwall polycarbonate sheet with co-extruded UV protection',
@@ -288,7 +301,7 @@ function buildDocs() {
           ['16 mm', V('Triple wall'), V('0.55 (2.7)', 'POLYGAL'), V('73', 'IMPEX'), V('0.41 (2.3)', 'POLYGAL'), V('2.44', 'POLYGAL'), V('110 (2,800)', 'THERMOCLEAR')],
           ['____ mm'],
         ],
-        'U-value per EN ISO 10077-2 / ASTM C1363 (state method). R-value = 1 / U (imperial). Cold bend radius typically ≈ 175 × thickness — confirm by test.') +
+        'U-value per EN ISO 10077-2 / ASTM C1363 (state method). R-value = 1 / U (imperial). Cold bend radius typically ≈ 175 × thickness' + (FINAL ? '.' : ' — confirm by test.')) +
       `<div class="avoid">` + matrix('Light Transmission &amp; Solar Heat Gain by Color', ['Thickness', 'Clear LT %', 'Clear SHGC', 'Bronze LT %', 'Bronze SHGC', 'Opal LT %', 'Opal SHGC', 'Gray / Ice LT %'],
         [
           ['4 mm'],
@@ -472,15 +485,17 @@ function buildDocs() {
 (async () => {
   const browser = await chromium.launch();
   const pg = await browser.newPage();
-  for (const mode of ['Template', 'Draft']) {
-    DRAFT = mode === 'Draft';
+  for (const mode of ['Template', 'Draft', 'Final']) {
+    DRAFT = mode !== 'Template';
+    FINAL = mode === 'Final';
     for (const d of buildDocs()) {
+      if (FINAL && !d.final) continue;
       const file = `TDS-${mode}-${d.slug}.pdf`;
       await pg.setContent(page(d), { waitUntil: 'load' });
       await pg.pdf({
         path: path.join(OUT, file), format: 'Letter', printBackground: true, preferCSSPageSize: true,
         displayHeaderFooter: true, headerTemplate: '<span></span>',
-        footerTemplate: `<div style="font-family:Inter,sans-serif;font-size:7px;color:#5b6575;width:100%;padding:0 0.6in;display:flex;justify-content:space-between"><span>US Plast · ${esc(d.code)} · ${esc(d.family)} · Rev. ___${DRAFT && SHOW_DRAFT_MARKS ? ' · DRAFT' : ''}</span><span>Page <span class="pageNumber"></span> of <span class="totalPages"></span></span></div>`,
+        footerTemplate: `<div style="font-family:Inter,sans-serif;font-size:7px;color:#5b6575;width:100%;padding:0 0.6in;display:flex;justify-content:space-between"><span>US Plast · ${esc(FINAL ? d.code.replace('___', '01') : d.code)} · ${esc(d.family)} · Rev. ${FINAL ? '00' : '___'}${DRAFT && SHOW_DRAFT_MARKS && !FINAL ? ' · DRAFT' : ''}</span><span>Page <span class="pageNumber"></span> of <span class="totalPages"></span></span></div>`,
       });
       console.log('wrote', file);
     }
