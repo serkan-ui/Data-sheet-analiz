@@ -319,16 +319,13 @@ function buildDocs() {
         ['4 mm', '6 mm', '8 mm', '10 mm', '16 mm'].map((t) => [t, V('48, 72', 'typ.'), V('8, 12, 24', 'typ.'), V('Clear, bronze, opal', 'SUNLITE'), V('1 (marked)', 'typ.'), V('Anti-drip (opt.)', 'typ.')]),
         '<b>* For other colors and sizes, please contact our sales team.</b><br>Coatings: ☐ Anti-drip / condensation control  ☐ IR-reflective / solar control  ☐ Diffuser   ·   Accessories: ☐ H-profile  ☐ U-profile  ☐ Vent tape  ☐ Anti-dust tape  ☐ Fasteners') +
       tolTable([
-        ['Thickness', 'Caliper', '4–10 mm', V('± 0.012 in (6 mm)', 'POLYGAL'), V('± 0.3 mm (6 mm)')],
-        ['Thickness', 'Caliper', '16 mm and above'],
+        ['Thickness', 'Caliper', 'All thicknesses', V('± 5 %', 'US Plast'), V('± 5 %')],
         ['Width (perpendicular to ribs)', 'Tape / EN 16153', 'All widths', V('− 0.08 / + 0.24 in', 'EN 16153'), V('− 2 / + 6 mm')],
         ['Length (parallel to ribs)', 'Tape / EN 16153', '≤ 10 ft (3 m) / > 10 ft', V('0 / + 0.47 in; 0 / + 0.40 %', 'EN 16153'), V('0 / + 12 mm; 0 / + 0.40 %')],
-        ['Squareness (diagonal difference)', 'EN 16153', 'All sizes'],
-        ['Area weight', 'Gravimetric', 'Per thickness'],
+        ['Squareness (diagonal difference)', 'EN 16153', 'All sizes', V('Max. 0.20 in', 'US Plast'), V('Max. 5 mm')],
+        ['Area weight', 'Gravimetric', 'Per thickness', V('± 5 %', 'US Plast'), V('± 5 %')],
         ['Flatness across width ("waves")', 'EN 16153', '% of width', V('≤ 0.5 % of width', 'Plaskolite'), V('≤ 0.5 % (≤ 5 mm/m)')],
         ['Planar bow ("banana")', 'EN 16153', '% of nominal length', V('≤ 0.3 % of length', 'Plaskolite'), V('≤ 0.3 %')],
-        ['Lateral curvature (edge straightness)', 'EN 16153 §5.1.12', 'All lengths'],
-        ['Thermal expansion allowance (installation)', 'Guide value', 'Per ft (m) of length/width', V('≈ 0.03 in/ft', 'POLYGAL'), V('2.5 mm/m')],
       ], 'Length is defined parallel to the ribs; width perpendicular to the ribs.') +
       certifications(['ICC-ES Evaluation Report', 'UL Recognized (file no.)', 'Florida Product Approval', 'Miami-Dade NOA', 'ISO 9001 Quality System', 'California Prop 65 statement']) +
       warrantyBlock('10', 'yellowing and loss of light transmission', 'typ.') +
