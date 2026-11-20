@@ -293,8 +293,8 @@ function buildDocs() {
         [
           ['4 mm'],
           ['6 mm', V('80', 'SUNLITE'), V('0.82', 'SUNLITE')],
-          ['8 mm'],
-          ['10 mm', V('79', 'SUNLITE'), V('0.81', 'SUNLITE'), V('35', 'SUNLITE'), undefined, V('30', 'SUNLITE'), undefined, V('20', 'SUNLITE')],
+          ['8 mm', undefined, undefined, V('35', 'SUNLITE 10 mm'), undefined, V('30', 'SUNLITE 10 mm'), undefined, V('20', 'SUNLITE 10 mm')],
+          ['10 mm', V('79', 'SUNLITE'), V('0.81', 'SUNLITE')],
           ['16 mm'],
         ],
         'Light transmission per ASTM D1003; SHGC per NFRC 200 / EN 410 (state method).') +
