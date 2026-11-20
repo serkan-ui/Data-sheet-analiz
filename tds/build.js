@@ -327,7 +327,6 @@ function buildDocs() {
         ['Flatness across width ("waves")', 'EN 16153', '% of width', V('≤ 0.5 % of width', 'Plaskolite'), V('≤ 0.5 % (≤ 5 mm/m)')],
         ['Planar bow ("banana")', 'EN 16153', '% of nominal length', V('≤ 0.3 % of length', 'Plaskolite'), V('≤ 0.3 %')],
       ], 'Length is defined parallel to the ribs; width perpendicular to the ribs.') +
-      certifications(['ICC-ES Evaluation Report', 'UL Recognized (file no.)', 'Florida Product Approval', 'Miami-Dade NOA', 'ISO 9001 Quality System', 'California Prop 65 statement']) +
       warrantyBlock('10', 'yellowing and loss of light transmission', 'typ.') +
       storage('Store sheets flat on a pallet, indoors or under an opaque cover, away from direct sunlight and heat; never store under clear plastic. Keep protective film on until installation, then remove immediately. Seal top edges with anti-dust tape and bottom edges with vented tape. Clean with mild soap and lukewarm water; do not use abrasive cleaners, ammonia or solvents.'),
   });
