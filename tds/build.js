@@ -315,9 +315,9 @@ function buildDocs() {
         ['Smoke Density', 'ASTM D2843-93', V('Low smoke density (UBC Standard No. 26.5)', 'US Plast')],
         ['Self-Ignition Temperature', 'ASTM D1929-68', V('Greater than 650 °F (343 °C)', 'US Plast')],
       ]) +
-      matrix('Product Availability', ['Thickness', 'Standard Widths (in)', 'Standard Lengths (ft)', 'Colors', 'UV Side(s)', 'Coatings'],
+      matrix('Product Availability*', ['Thickness', 'Standard Widths (in)', 'Standard Lengths (ft)', 'Colors', 'UV Side(s)', 'Coatings'],
         ['4 mm', '6 mm', '8 mm', '10 mm', '16 mm'].map((t) => [t, V('48, 72', 'typ.'), V('8, 12, 24', 'typ.'), V('Clear, bronze, opal', 'SUNLITE'), V('1 (marked)', 'typ.'), V('Anti-drip (opt.)', 'typ.')]),
-        'Coatings: ☐ Anti-drip / condensation control  ☐ IR-reflective / solar control  ☐ Diffuser   ·   Accessories: ☐ H-profile  ☐ U-profile  ☐ Vent tape  ☐ Anti-dust tape  ☐ Fasteners') +
+        '<b>* For other colors and sizes, please contact our sales team.</b><br>Coatings: ☐ Anti-drip / condensation control  ☐ IR-reflective / solar control  ☐ Diffuser   ·   Accessories: ☐ H-profile  ☐ U-profile  ☐ Vent tape  ☐ Anti-dust tape  ☐ Fasteners') +
       tolTable([
         ['Thickness', 'Caliper', '4–10 mm', V('± 0.012 in (6 mm)', 'POLYGAL'), V('± 0.3 mm (6 mm)')],
         ['Thickness', 'Caliper', '16 mm and above'],
