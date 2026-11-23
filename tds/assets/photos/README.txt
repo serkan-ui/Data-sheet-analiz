@@ -6,3 +6,4 @@ Kaynaklar / lisans:
 - twinwall-greenhouse.jpg: Pexels, fotograf: Ahmet Kadioglu (Pexels License, ticari kullanim serbest). Yatay kirpildi, kontrast hafif artirildi.
 - twinwall-greenhouse-wide.jpg: ayni Pexels fotografinin panoramik kirpimi (tek fotograf oldugunda genis bant icin).
 - twinwall-datacenter.jpg: Adobe Firefly ile uretildi (kullanici tarafindan, Firefly ticari kullanim kosullari). 1280x720 webp; ortadan kirpildi, parlaklik hafif artirildi.
+- twinwall-skylight.jpg: Adobe Firefly ile uretildi (kullanici tarafindan). 2000x1116 webp; yatay kirpildi.
