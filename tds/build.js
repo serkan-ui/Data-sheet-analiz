@@ -26,8 +26,10 @@ function photo(name) {
 // hero = [{ file, caption }, ...]
 function heroStrip(hero) {
   if (!hero || !hero.length) return '';
-  return `<div class="hero">${hero.map((h) => {
-    const src = photo(h.file);
+  if (FINAL) hero = hero.filter((h) => photo(h.file)); // final: only real photos, strip resizes
+  if (!hero.length) return '';
+  return `<div class="hero" style="grid-template-columns: repeat(${hero.length}, 1fr)">${hero.map((h) => {
+    const src = (hero.length === 1 && photo(h.file + '-wide')) || photo(h.file); // single banner: use panoramic crop if present
     return `<figure>${src ? `<img src="${src}" alt="${h.caption}">` : `<div class="ph-img">PHOTO<br><span>${h.file}</span></div>`}<figcaption>${h.caption}</figcaption></figure>`;
   }).join('')}</div>`;
 }
