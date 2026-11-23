@@ -13,6 +13,24 @@ const { chromium } = require('playwright');
 
 const OUT = path.join(__dirname, 'pdf');
 const LOGO = 'data:image/jpeg;base64,' + fs.readFileSync(path.join(__dirname, 'assets', 'usplast-logo.jpg')).toString('base64');
+
+// Application photos: put files in tds/assets/photos/<name>.jpg|.jpeg|.png (e.g. twinwall-datacenter.jpg).
+// Missing files render as a grey placeholder box with the caption.
+function photo(name) {
+  for (const ext of ['jpg', 'jpeg', 'png', 'webp']) {
+    const f = path.join(__dirname, 'assets', 'photos', `${name}.${ext}`);
+    if (fs.existsSync(f)) return `data:image/${ext === 'jpg' ? 'jpeg' : ext};base64,` + fs.readFileSync(f).toString('base64');
+  }
+  return null;
+}
+// hero = [{ file, caption }, ...]
+function heroStrip(hero) {
+  if (!hero || !hero.length) return '';
+  return `<div class="hero">${hero.map((h) => {
+    const src = photo(h.file);
+    return `<figure>${src ? `<img src="${src}" alt="${h.caption}">` : `<div class="ph-img">PHOTO<br><span>${h.file}</span></div>`}<figcaption>${h.caption}</figcaption></figure>`;
+  }).join('')}</div>`;
+}
 fs.mkdirSync(OUT, { recursive: true });
 
 const SHOW_DRAFT_MARKS = true; // ribbon + source tags on filled drafts
@@ -125,7 +143,7 @@ const storage = (text) => DRAFT && text
 const fv = (val) => (FINAL ? val : DRAFT ? `<span class="vf">${val}</span>` : `<span class="vf">[${val}]</span>`);
 
 // ---------- document shell ----------
-function page({ code, family, subtitle, body }) {
+function page({ code, family, subtitle, body, hero }) {
   if (FINAL) body = body.replace(/ \(state method\)/g, '');
   return `<!doctype html><html><head><meta charset="utf-8"><style>
   @page { size: Letter; margin: 0.55in 0.6in 0.75in 0.6in; }
@@ -175,6 +193,12 @@ function page({ code, family, subtitle, body }) {
   .two { display:grid; grid-template-columns: 1fr 1fr; gap: 0 18px; }
   .disc { margin-top: 16px; padding: 8px 10px; border-left: 3px solid var(--accent); background: #f6f8fb; font-size: 7.2pt; color: var(--muted); break-inside: avoid; }
   .avoid { break-inside: avoid; }
+  .hero { display:grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: -4px 0 6px; }
+  .hero figure { margin: 0; position: relative; border-radius: 6px; overflow: hidden; height: 1.45in; background: #dfe6ef; }
+  .hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero .ph-img { height: 100%; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#7a8699; font-size:8pt; font-weight:600; letter-spacing:.12em; background: repeating-linear-gradient(45deg,#e4eaf2,#e4eaf2 8px,#dbe3ed 8px,#dbe3ed 16px); }
+  .hero .ph-img span { font-size:6.5pt; font-weight:400; letter-spacing:0; margin-top:3px; }
+  .hero figcaption { position:absolute; left:0; right:0; bottom:0; padding: 14px 8px 5px; color:#fff; font-weight:600; font-size:8pt; letter-spacing:.04em; background: linear-gradient(transparent, rgba(11,79,138,.92)); }
   </style></head><body>
   ${DRAFT && SHOW_DRAFT_MARKS && !FINAL ? '<div class="ribbon">Draft — values are competitor reference data (see source tags) — replace with US Plast test data before release</div>' : ''}
   <div class="hdr">
@@ -191,6 +215,7 @@ function page({ code, family, subtitle, body }) {
       ${FINAL ? '' : '<tr><td>Supersedes</td><td></td></tr>'}
     </table>
   </div>
+  ${heroStrip(hero)}
   ${body}
   <div class="disc"><b>Disclaimer.</b> The information contained herein represents typical values and is not intended for specification purposes. Values may vary with thickness, color, finish and test conditions. It is the user's responsibility to determine the suitability of this product for the intended application and to comply with applicable building codes. Refer to the Safety Data Sheet (SDS) for handling information.<br><br>
   <b>US Plast</b> · 1128 Roosevelt Avenue, York, PA 17404, USA · +1 (717) 356-2448 · info@usplast.com · www.usplast.com</div>
@@ -282,6 +307,11 @@ function buildDocs() {
   // Draft sources: Plaskolite POLYGAL first; Palram SUNLITE / LEXAN THERMOCLEAR / IMPEX / EN 16153 where POLYGAL value not found.
   docs.push({
     slug: 'Twin-Wall-Polycarbonate',
+    hero: [
+      { file: 'twinwall-datacenter', caption: 'Data Centers' },
+      { file: 'twinwall-greenhouse', caption: 'Greenhouses' },
+      { file: 'twinwall-skylight', caption: 'Skylights &amp; Canopies' },
+    ],
     final: true, // approved for release by US Plast (values: resin / competitor reference + US Plast data)
     code: 'TDS-PC-TW-___',
     family: 'Twin Wall / Multiwall Polycarbonate Sheet',
