@@ -308,15 +308,15 @@ function buildDocs() {
   // ===================== 2. TWIN WALL POLYCARBONATE =====================
   // Draft sources: Plaskolite POLYGAL first; Palram SUNLITE / LEXAN THERMOCLEAR / IMPEX / EN 16153 where POLYGAL value not found.
   docs.push({
-    slug: 'Twin-Wall-Polycarbonate',
+    slug: 'Multiwall-Polycarbonate',
     hero: [
       { file: 'twinwall-datacenter', caption: 'Data Centers' },
       { file: 'twinwall-greenhouse', caption: 'Greenhouses' },
       { file: 'twinwall-skylight', caption: 'Skylights &amp; Canopies' },
     ],
     final: true, // approved for release by US Plast (values: resin / competitor reference + US Plast data)
-    code: 'TDS-PC-TW-___',
-    family: 'Twin Wall / Multiwall Polycarbonate Sheet',
+    code: 'TDS-PC-MW-___',
+    family: 'Multiwall Polycarbonate Sheet',
     subtitle: 'Extruded multiwall polycarbonate sheet with co-extruded UV protection',
     body: intro(['Data centers', 'Greenhouses &amp; agricultural glazing (anti-con sheets can be produced)', 'Skylights &amp; daylighting', 'Canopies, carports &amp; pergolas', 'Walls &amp; partitions', 'Swimming pool enclosures', 'Other: ____________________'], {
       text: 'US Plast multiwall polycarbonate sheet is a lightweight, high-strength structured panel engineered for glazing and roofing. Its hollow-rib construction traps air for thermal insulation while transmitting abundant, evenly diffused daylight. A co-extruded UV layer protects the sheet against weathering, making it a durable and economical alternative to glass.',
