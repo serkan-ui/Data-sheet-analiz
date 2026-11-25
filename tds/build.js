@@ -109,7 +109,7 @@ function checklist(title, items) {
 
 // flammability rows: values object keyed by short key
 const flammability = (v = {}, extra = []) =>
-  resultTable('Flammability &amp; Building Code', [
+  resultTable(v.title || 'Flammability &amp; Building Code', [
     ['Flammability Rating (state thickness)', 'UL 94', v.ul94],
     ['Burn Rate / Plastic Classification (CC1 / CC2)', 'ASTM D635', v.d635],
     [NO_SI ? 'Self-Ignition Temperature, °F' : 'Self-Ignition Temperature, °F (°C)', 'ASTM D1929', v.d1929],
@@ -253,45 +253,51 @@ function buildDocs() {
     subtitle: 'Extruded, UV-protected solid polycarbonate sheet',
     body: intro(['Glazing &amp; skylights', 'Machine guards &amp; protective barriers', 'Signage &amp; displays', 'Security / vandal-resistant glazing', 'Thermoformed parts', 'Other: ____________________'], {
       text: 'US Plast solid polycarbonate sheet is a transparent, UV-protected thermoplastic glazing material that combines glass-like clarity with exceptional toughness. Virtually unbreakable and roughly half the weight of glass, it provides lasting performance in demanding indoor and outdoor applications where safety, durability and design freedom matter.',
-      features: [`Impact strength up to ${fv('250')} times that of glass`, `High light transmission — up to ${fv('86')} % (clear, 0.118")`, 'Co-extruded UV protection against yellowing and loss of clarity', 'Can be cold-formed, thermoformed, drilled, cut and machined with standard tools', `Wide service temperature range: ${fv('−40 °F to 250 °F')}`],
+      features: [`Over ${fv('90')} times the impact energy of glass (ASTM D3763)`, `High light transmission — up to ${fv('86')} % (clear, 0.118")`, 'Co-extruded UV protection against yellowing and loss of clarity', 'Can be cold-formed, thermoformed, drilled, cut and machined with standard tools', `Wide service temperature range: ${fv('−40 °F to 250 °F')}`],
     }) +
       propTable('Physical Properties', [
         ['Specific Gravity', 'ASTM D792', '—', 'g/cm³', V('1.20', 'TUFFAK'), V('1.20', 'TUFFAK')],
-        ['Water Absorption, 24 h', 'ASTM D570', '%', '', V('0.15', 'PALSUN')],
+        ['Water Absorption, 24 h', 'ASTM D570', '%', '', V('0.15', 'TUFFAK')],
       ]) +
       propTable('Optical Properties', [
         ['Light Transmission, clear (@ 0.118 in)', 'ASTM D1003', '%', '', V('86', 'TUFFAK')],
+        ['Light Transmission, gray / bronze (@ 0.118 in)', 'ASTM D1003', '%', '', V('50', 'TUFFAK')],
+        ['Light Transmission, dark gray (@ 0.118 in)', 'ASTM D1003', '%', '', V('18', 'TUFFAK')],
         ['Haze', 'ASTM D1003', '%', '', V('< 1', 'typ.')],
         ['Refractive Index', 'ASTM D542', '—', '', V('1.586', 'TUFFAK')],
         ['Yellowness Index', 'ASTM E313', '—', ''],
       ]) +
       propTable('Mechanical Properties', [
-        ['Tensile Strength, Yield', 'ASTM D638', 'psi', 'MPa', V('9,000', 'LEXAN'), V('62', 'LEXAN')],
-        ['Tensile Modulus', 'ASTM D638', 'psi', 'MPa', V('345,000', 'typ.'), V('2,380', 'typ.')],
-        ['Elongation at Break', 'ASTM D638', '%', '', V('110', 'typ.')],
-        ['Flexural Strength', 'ASTM D790', 'psi', 'MPa', V('13,500', 'typ.'), V('93', 'typ.')],
-        ['Flexural Modulus', 'ASTM D790', 'psi', 'MPa', V('345,000', 'LEXAN'), V('2,380', 'LEXAN')],
-        ['Izod Impact, Notched (1/8")', 'ASTM D256', 'ft-lb/in', 'J/m', V('12–16', 'LEXAN'), V('640–850', 'LEXAN')],
-        ['Instrumented Impact, Total Energy (@ 0.125 in)', 'ASTM D3763', 'ft-lb', 'J', V('≈ 45', 'typ.'), V('≈ 60', 'typ.')],
-        ['Rockwell Hardness', 'ASTM D785', 'M / R scale', '', V('M70 / R118', 'typ.')],
+        ['Tensile Strength, Yield', 'ASTM D638', 'psi', 'MPa', V('9,000', 'TUFFAK'), V('62', 'TUFFAK')],
+        ['Tensile Strength, Ultimate', 'ASTM D638', 'psi', 'MPa', V('9,500', 'TUFFAK'), V('65', 'TUFFAK')],
+        ['Tensile Modulus', 'ASTM D638', 'psi', 'MPa', V('340,000', 'TUFFAK'), V('2,340', 'TUFFAK')],
+        ['Elongation at Break', 'ASTM D638', '%', '', V('110', 'TUFFAK')],
+        ['Flexural Strength', 'ASTM D790', 'psi', 'MPa', V('13,500', 'TUFFAK'), V('93', 'TUFFAK')],
+        ['Flexural Modulus', 'ASTM D790', 'psi', 'MPa', V('345,000', 'TUFFAK'), V('2,380', 'TUFFAK')],
+        ['Izod Impact, Notched (1/8")', 'ASTM D256', 'ft-lb/in', 'J/m', V('18', 'TUFFAK'), V('960', 'TUFFAK')],
+        ['Izod Impact, Unnotched (1/8")', 'ASTM D256', 'ft-lb/in', 'J/m', V('60 (no break)', 'TUFFAK'), V('3,200 (no break)', 'TUFFAK')],
+        ['Instrumented Impact, Total Energy (@ 0.125 in)', 'ASTM D3763', 'ft-lb', 'J', V('47', 'TUFFAK'), V('64', 'TUFFAK')],
+        ['Rockwell Hardness', 'ASTM D785', 'M / R scale', '', V('M70 / R118', 'TUFFAK')],
       ]) +
       propTable('Thermal Properties', [
-        ['Heat Deflection Temperature @ 264 psi', 'ASTM D648', '°F', '°C', V('270', 'typ.'), V('132', 'typ.')],
-        ['Heat Deflection Temperature @ 66 psi', 'ASTM D648', '°F', '°C', V('280', 'typ.'), V('138', 'typ.')],
+        ['Heat Deflection Temperature @ 264 psi', 'ASTM D648', '°F', '°C', V('270', 'TUFFAK'), V('132', 'TUFFAK')],
+        ['Heat Deflection Temperature @ 66 psi', 'ASTM D648', '°F', '°C', V('280', 'TUFFAK'), V('138', 'TUFFAK')],
         ['Vicat Softening Temperature', 'ASTM D1525', '°F', '°C', V('300', 'typ.'), V('149', 'typ.')],
-        ['Coefficient of Linear Thermal Expansion', 'ASTM D696', 'in/in·°F', 'mm/mm·°C', V('3.75 × 10⁻⁵', 'typ.'), V('6.75 × 10⁻⁵', 'typ.')],
-        ['Thermal Conductivity', 'ASTM C177', 'BTU·in/h·ft²·°F', 'W/m·K', V('1.35', 'typ.'), V('0.19', 'typ.')],
+        ['Coefficient of Linear Thermal Expansion', 'ASTM D696', 'in/in·°F', 'mm/mm·°C', V('3.75 × 10⁻⁵', 'TUFFAK'), V('6.75 × 10⁻⁵', 'TUFFAK')],
+        ['Thermal Conductivity', 'ASTM C177', 'BTU·in/h·ft²·°F', 'W/m·K', V('1.35', 'TUFFAK'), V('0.19', 'TUFFAK')],
+        ['Brittleness Temperature', 'ASTM D746', '°F', '°C', V('−200', 'TUFFAK'), V('−129', 'TUFFAK')],
         ['Max. Continuous Service Temperature', '—', '°F', '°C', V('250', 'typ.'), V('121', 'typ.')],
         ['Thermoforming Temperature Range', '—', '°F', '°C', V('340–400', 'typ.'), V('170–205', 'typ.')],
       ]) +
       flammability({
+        title: 'Flammability',
         ul94: V('HB @ 0.060 in; V-0 @ 0.394 in', 'TUFFAK'),
-        d635: V('CC1', 'PALSUN · ESR-1893'),
-        d1929: V(NO_SI ? '≈ 1,080 °F' : '≈ 1,080 °F (580 °C)', 'typ.'),
+        d635: V('Average extent of burn < 1 in (CC1)', 'TUFFAK'),
+        d1929: V(NO_SI ? '1,022 °F (self); 824 °F (flash)' : '1,022 °F (550 °C)', 'TUFFAK'),
         e84: V('Smoke-developed index ≤ 450', 'Palram · ESR-1893'),
       }, [['Safety Glazing', 'ANSI Z97.1 / CPSC 16 CFR 1201'], ['Bullet Resistance (if applicable)', 'UL 752 Level']]) +
       `<div class="avoid">` + matrix('Product Availability*', ['Thickness (in)', 'Thickness (mm)', 'Tolerance (±)', 'Standard Sizes (in)', 'Max Width × Length', 'Colors / Finish'],
-        thkPC.map((t, i) => [DRAFT ? t + '"' : '', V(mmPC[i]), V('10 %', 'distributor std.'), V('48×96, 60×96, 72×96', 'typ.'), undefined, V('Clear, bronze, gray', 'typ.')]).concat(DRAFT ? [] : ['', '', '', '', '', '', ''].slice(7)),
+        thkPC.map((t, i) => [DRAFT ? t + '"' : '', V(mmPC[i]), V('10 %', 'distributor std.'), V('48×96, 60×96, 72×96', 'typ.'), undefined, V('Clear, gray, bronze, dark gray', 'TUFFAK')]).concat(DRAFT ? [] : ['', '', '', '', '', '', ''].slice(7)),
         '<b>* For other colors and sizes, please contact our sales team.</b>') + `</div>` +
       tolTable([
         ['Thickness', 'ASTM D5947', '< 1.5 mm / 1.5–2.0 mm', V('± 8 % / ± 4 %', 'TUFFAK EU*'), V('± 8 % / ± 4 %')],
