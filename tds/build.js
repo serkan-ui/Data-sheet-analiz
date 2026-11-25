@@ -256,46 +256,45 @@ function buildDocs() {
       features: [`Over ${fv('90')} times the impact energy of glass (ASTM D3763)`, `High light transmission — up to ${fv('86')} % (clear, 0.118")`, 'Co-extruded UV protection against yellowing and loss of clarity', 'Can be cold-formed, thermoformed, drilled, cut and machined with standard tools', `Wide service temperature range: ${fv('−40 °F to 250 °F')}`],
     }) +
       propTable('Physical Properties', [
-        ['Specific Gravity', 'ASTM D792', '—', 'g/cm³', V('1.20', 'TUFFAK'), V('1.20', 'TUFFAK')],
-        ['Water Absorption, 24 h', 'ASTM D570', '%', '', V('0.15', 'TUFFAK')],
+        ['Specific Gravity', 'ASTM D792', '—', 'g/cm³', V('1.20'), V('1.20')],
+        ['Water Absorption, 24 h', 'ASTM D570', '%', '', V('0.15')],
       ]) +
       propTable('Optical Properties', [
-        ['Light Transmission, clear (@ 0.118 in)', 'ASTM D1003', '%', '', V('86', 'TUFFAK')],
-        ['Light Transmission, gray / bronze (@ 0.118 in)', 'ASTM D1003', '%', '', V('50', 'TUFFAK')],
-        ['Light Transmission, dark gray (@ 0.118 in)', 'ASTM D1003', '%', '', V('18', 'TUFFAK')],
+        ['Light Transmission, clear (@ 0.118 in)', 'ASTM D1003', '%', '', V('86')],
+        ['Light Transmission, gray / bronze (@ 0.118 in)', 'ASTM D1003', '%', '', V('50')],
+        ['Light Transmission, dark gray (@ 0.118 in)', 'ASTM D1003', '%', '', V('18')],
         ['Haze', 'ASTM D1003', '%', '', V('< 1', 'typ.')],
-        ['Refractive Index', 'ASTM D542', '—', '', V('1.586', 'TUFFAK')],
+        ['Refractive Index', 'ASTM D542', '—', '', V('1.586')],
         ['Yellowness Index', 'ASTM E313', '—', ''],
       ]) +
       propTable('Mechanical Properties', [
-        ['Tensile Strength, Yield', 'ASTM D638', 'psi', 'MPa', V('9,000', 'TUFFAK'), V('62', 'TUFFAK')],
-        ['Tensile Strength, Ultimate', 'ASTM D638', 'psi', 'MPa', V('9,500', 'TUFFAK'), V('65', 'TUFFAK')],
-        ['Tensile Modulus', 'ASTM D638', 'psi', 'MPa', V('340,000', 'TUFFAK'), V('2,340', 'TUFFAK')],
-        ['Elongation at Break', 'ASTM D638', '%', '', V('110', 'TUFFAK')],
-        ['Flexural Strength', 'ASTM D790', 'psi', 'MPa', V('13,500', 'TUFFAK'), V('93', 'TUFFAK')],
-        ['Flexural Modulus', 'ASTM D790', 'psi', 'MPa', V('345,000', 'TUFFAK'), V('2,380', 'TUFFAK')],
-        ['Izod Impact, Notched (1/8")', 'ASTM D256', 'ft-lb/in', 'J/m', V('18', 'TUFFAK'), V('960', 'TUFFAK')],
-        ['Izod Impact, Unnotched (1/8")', 'ASTM D256', 'ft-lb/in', 'J/m', V('60 (no break)', 'TUFFAK'), V('3,200 (no break)', 'TUFFAK')],
-        ['Instrumented Impact, Total Energy (@ 0.125 in)', 'ASTM D3763', 'ft-lb', 'J', V('47', 'TUFFAK'), V('64', 'TUFFAK')],
-        ['Rockwell Hardness', 'ASTM D785', 'M / R scale', '', V('M70 / R118', 'TUFFAK')],
+        ['Tensile Strength, Yield', 'ASTM D638', 'psi', 'MPa', V('9,000'), V('62')],
+        ['Tensile Strength, Ultimate', 'ASTM D638', 'psi', 'MPa', V('9,500'), V('65')],
+        ['Tensile Modulus', 'ASTM D638', 'psi', 'MPa', V('340,000'), V('2,340')],
+        ['Elongation at Break', 'ASTM D638', '%', '', V('110')],
+        ['Flexural Strength', 'ASTM D790', 'psi', 'MPa', V('13,500'), V('93')],
+        ['Flexural Modulus', 'ASTM D790', 'psi', 'MPa', V('345,000'), V('2,380')],
+        ['Izod Impact, Notched (1/8")', 'ASTM D256', 'ft-lb/in', 'J/m', V('18'), V('960')],
+        ['Izod Impact, Unnotched (1/8")', 'ASTM D256', 'ft-lb/in', 'J/m', V('60 (no break)'), V('3,200 (no break)')],
+        ['Instrumented Impact, Total Energy (@ 0.125 in)', 'ASTM D3763', 'ft-lb', 'J', V('47'), V('64')],
+        ['Rockwell Hardness', 'ASTM D785', 'M / R scale', '', V('M70 / R118')],
       ]) +
       propTable('Thermal Properties', [
-        ['Heat Deflection Temperature @ 264 psi', 'ASTM D648', '°F', '°C', V('270', 'TUFFAK'), V('132', 'TUFFAK')],
-        ['Heat Deflection Temperature @ 66 psi', 'ASTM D648', '°F', '°C', V('280', 'TUFFAK'), V('138', 'TUFFAK')],
+        ['Heat Deflection Temperature @ 264 psi', 'ASTM D648', '°F', '°C', V('270'), V('132')],
+        ['Heat Deflection Temperature @ 66 psi', 'ASTM D648', '°F', '°C', V('280'), V('138')],
         ['Vicat Softening Temperature', 'ASTM D1525', '°F', '°C', V('300', 'typ.'), V('149', 'typ.')],
-        ['Coefficient of Linear Thermal Expansion', 'ASTM D696', 'in/in·°F', 'mm/mm·°C', V('3.75 × 10⁻⁵', 'TUFFAK'), V('6.75 × 10⁻⁵', 'TUFFAK')],
-        ['Thermal Conductivity', 'ASTM C177', 'BTU·in/h·ft²·°F', 'W/m·K', V('1.35', 'TUFFAK'), V('0.19', 'TUFFAK')],
-        ['Brittleness Temperature', 'ASTM D746', '°F', '°C', V('−200', 'TUFFAK'), V('−129', 'TUFFAK')],
+        ['Coefficient of Linear Thermal Expansion', 'ASTM D696', 'in/in·°F', 'mm/mm·°C', V('3.75 × 10⁻⁵'), V('6.75 × 10⁻⁵')],
+        ['Thermal Conductivity', 'ASTM C177', 'BTU·in/h·ft²·°F', 'W/m·K', V('1.35'), V('0.19')],
+        ['Brittleness Temperature', 'ASTM D746', '°F', '°C', V('−200'), V('−129')],
         ['Max. Continuous Service Temperature', '—', '°F', '°C', V('250', 'typ.'), V('121', 'typ.')],
         ['Thermoforming Temperature Range', '—', '°F', '°C', V('340–400', 'typ.'), V('170–205', 'typ.')],
       ]) +
-      flammability({
-        title: 'Flammability',
-        ul94: V('HB @ 0.060 in; V-0 @ 0.394 in', 'TUFFAK'),
-        d635: V('Burning extent 1 in — Class CC1 (IBC 2024 §2606.4)', 'US Plast · QAI'),
-        d1929: V('Self-ignition 825 °F (FBC requirement &gt; 650 °F)', 'US Plast · QAI'),
-        e84: V('Flame spread 10 / Smoke developed 250 — Class A', 'US Plast · QAI'),
-      }, [['Safety Glazing', 'ANSI Z97.1 / CPSC 16 CFR 1201'], ['Bullet Resistance (if applicable)', 'UL 752 Level']]) +
+      resultTable('Flammability', [
+        ['Flammability Rating (state thickness)', 'UL 94', V('HB @ 0.060 in; V-0 @ 0.394 in')],
+        ['Burn Rate / Plastic Classification (CC1 / CC2)', 'ASTM D635', V('Burning extent 1 in — Class CC1 (IBC 2024 §2606.4)', 'US Plast · QAI')],
+        ['Self-Ignition Temperature, °F', 'ASTM D1929', V('Self-ignition 825 °F (FBC requirement &gt; 650 °F)', 'US Plast · QAI')],
+        ['Flame Spread Index / Smoke-Developed Index', 'ASTM E84 (UL 723)', V('Flame spread 10 / Smoke developed 250 — Class A', 'US Plast · QAI')],
+      ]) +
       (DRAFT ? `<p class="note">ASTM E84-24a, D635-18 and D1929-16 tested by QAI Laboratories on 0.118 in (3 mm) clear sheet — Reports QA-1634F-1a-R1, QA-1634F-2, QA-1634-FT. E84 classification per NFPA 101 and IBC Section 803.</p>` : '') +
       `<div class="avoid">` + resultTable('Weathering Performance — Tensile Strength Retention', [
         ['Tensile Strength, Ultimate — unexposed', 'ASTM D638', V('9,550 psi', 'US Plast · QAI')],
@@ -303,20 +302,20 @@ function buildDocs() {
         ['Change in tensile strength', 'Miami-Dade Checklist #0445 (&lt; 10 %)', V('+2.4 % — PASS', 'US Plast · QAI')],
       ]) + (DRAFT ? `<p class="note">Tested by QAI Laboratories on 0.118 in (3 mm) clear sheet — Report QA-1634-3.</p>` : '') + `</div>` +
       `<div class="avoid">` + matrix('Product Availability*', ['Thickness (in)', 'Thickness (mm)', 'Tolerance (±)', 'Standard Sizes (in)', 'Max Width × Length', 'Colors / Finish'],
-        thkPC.map((t, i) => [DRAFT ? t + '"' : '', V(mmPC[i]), V('10 %', 'distributor std.'), V('48×96, 60×96, 72×96', 'typ.'), undefined, V('Clear, gray, bronze, dark gray', 'TUFFAK')]).concat(DRAFT ? [] : ['', '', '', '', '', '', ''].slice(7)),
+        thkPC.map((t, i) => [DRAFT ? t + '"' : '', V(mmPC[i]), V('10 %', 'distributor std.'), V('48×96, 60×96, 72×96', 'typ.'), undefined, V('Clear, gray, bronze, dark gray')]).concat(DRAFT ? [] : ['', '', '', '', '', '', ''].slice(7)),
         '<b>* For other colors and sizes, please contact our sales team.</b>') + `</div>` +
       tolTable([
-        ['Thickness', 'ASTM D5947', '< 1.5 mm / 1.5–2.0 mm', V('± 8 % / ± 4 %', 'TUFFAK EU*'), V('± 8 % / ± 4 %')],
-        ['Thickness', 'ASTM D5947', '2–6 mm', V('± 3 %', 'TUFFAK EU*'), V('± 3 %')],
-        ['Thickness', 'ASTM D5947', '> 6 mm (to 12 mm)', V('± 3 %', 'TUFFAK EU*'), V('± 3 %')],
+        ['Thickness', 'ASTM D5947', '< 1.5 mm / 1.5–2.0 mm', V('± 8 % / ± 4 %'), V('± 8 % / ± 4 %')],
+        ['Thickness', 'ASTM D5947', '2–6 mm', V('± 3 %'), V('± 3 %')],
+        ['Thickness', 'ASTM D5947', '> 6 mm (to 12 mm)', V('± 3 %'), V('± 3 %')],
         ['Thickness variation within sheet', 'ASTM D5947', 'Max – min, same sheet'],
-        ['Width', 'ISO 11963', 'All sizes', V('≤ 0.06 in/ft', 'TUFFAK EU'), V('≤ 5 mm/m')],
-        ['Length', 'ISO 11963', 'All sizes', V('≤ 0.06 in/ft', 'TUFFAK EU'), V('≤ 5 mm/m')],
+        ['Width', 'ISO 11963', 'All sizes', V('≤ 0.06 in/ft'), V('≤ 5 mm/m')],
+        ['Length', 'ISO 11963', 'All sizes', V('≤ 0.06 in/ft'), V('≤ 5 mm/m')],
         ['Squareness (diagonal difference)', 'ISO 11963', 'All sizes', V('≤ 0.0035 × width', 'ISO 11963'), V('≤ 3.5×10⁻³ × width, min. 2 mm')],
-        ['Flatness', 'ISO 11963 / EN 16240', 'Sheet length < 13 ft (4 m)', V('≤ 0.024 in/ft', 'TUFFAK EU'), V('≤ 2 mm/m')],
-        ['Flatness', 'ISO 11963 / EN 16240', 'Sheet length ≥ 13 ft (4 m)', V('≤ 0.048 in/ft', 'TUFFAK EU'), V('≤ 4 mm/m')],
+        ['Flatness', 'ISO 11963 / EN 16240', 'Sheet length < 13 ft (4 m)', V('≤ 0.024 in/ft'), V('≤ 2 mm/m')],
+        ['Flatness', 'ISO 11963 / EN 16240', 'Sheet length ≥ 13 ft (4 m)', V('≤ 0.048 in/ft'), V('≤ 4 mm/m')],
         ['Dimensional change on heating (MD / TD)', 'Internal (e.g. 30 min @ 300 °F)', 'All thicknesses'],
-      ], (NO_SI ? 'Width/length measured at 73 °F.' : 'Width/length measured at 73 °F (23 °C).') + ' State whether tolerances apply to mill-run or cut-to-size sheet.' + (DRAFT ? ' *TUFFAK EU table partly illegible in source — units/pairing to be verified.' : '')) +
+      ], (NO_SI ? 'Width/length measured at 73 °F.' : 'Width/length measured at 73 °F (23 °C).') + ' State whether tolerances apply to mill-run or cut-to-size sheet.') +
       storage('Store sheets flat on a smooth, full-size pallet, indoors, away from direct sunlight and heat sources; do not store outdoors with masking in place. Remove masking promptly after installation. Clean with mild soap and lukewarm water using a soft cloth or sponge, rinse and dry. Do not use abrasive cleaners, ammonia, acetone, benzene, MEK or chlorinated solvents.'),
   });
 
