@@ -38,6 +38,7 @@ fs.mkdirSync(OUT, { recursive: true });
 const SHOW_DRAFT_MARKS = true; // ribbon + source tags on filled drafts
 let DRAFT = false;             // set per build pass
 let FINAL = false;             // clean release build: values shown, no ribbon/tags/highlights
+let NO_SI = false;             // per-product: show only US (ASTM / imperial) units, no SI columns
 
 // ---------- helpers ----------
 const B = '<td class="fill"></td>';
@@ -56,10 +57,11 @@ function propTable(title, rows, note = '') {
   return `
   <h2>${title}</h2>
   <table class="props">
-    <colgroup><col style="width:32%"><col style="width:14%"><col style="width:12%"><col style="width:15%"><col style="width:12%"><col style="width:15%"></colgroup>
-    <thead><tr><th>Property</th><th>Test Method</th><th>Units</th><th>Value</th><th>Units (SI)</th><th>Value (SI)</th></tr></thead>
+    ${NO_SI
+      ? '<colgroup><col style="width:42%"><col style="width:18%"><col style="width:16%"><col style="width:24%"></colgroup><thead><tr><th>Property</th><th>Test Method</th><th>Units</th><th>Value</th></tr></thead>'
+      : '<colgroup><col style="width:32%"><col style="width:14%"><col style="width:12%"><col style="width:15%"><col style="width:12%"><col style="width:15%"></colgroup><thead><tr><th>Property</th><th>Test Method</th><th>Units</th><th>Value</th><th>Units (SI)</th><th>Value (SI)</th></tr></thead>'}
     <tbody>
-    ${rows.map(([p, m, u, si, us, siv]) => `<tr><td>${p}</td><td class="m">${m}</td><td class="u">${u}</td>${vc(us)}<td class="u">${si}</td>${si === '' ? '<td class="na"></td>' : vc(siv)}</tr>`).join('')}
+    ${rows.map(([p, m, u, si, us, siv]) => `<tr><td>${p}</td><td class="m">${m}</td><td class="u">${u}</td>${vc(us)}${NO_SI ? '' : `<td class="u">${si}</td>${si === '' ? '<td class="na"></td>' : vc(siv)}`}</tr>`).join('')}
     </tbody>
   </table>${note ? `<p class="note">${note}</p>` : ''}`;
 }
@@ -110,7 +112,7 @@ const flammability = (v = {}, extra = []) =>
   resultTable('Flammability &amp; Building Code', [
     ['Flammability Rating (state thickness)', 'UL 94', v.ul94],
     ['Burn Rate / Plastic Classification (CC1 / CC2)', 'ASTM D635', v.d635],
-    ['Self-Ignition Temperature, °F (°C)', 'ASTM D1929', v.d1929],
+    [NO_SI ? 'Self-Ignition Temperature, °F' : 'Self-Ignition Temperature, °F (°C)', 'ASTM D1929', v.d1929],
     ['Flame Spread Index / Smoke-Developed Index', 'ASTM E84 (UL 723)', v.e84],
     ['Smoke Density Rating', 'ASTM D2843', v.d2843],
     ...extra,
@@ -123,9 +125,9 @@ function tolTable(rows, note = '') {
   const notes = !FINAL || rows.some((r) => r[5] && r[5][0]);
   return `<div class="avoid"><h2>Dimensional Tolerances</h2>
   <table class="props">
-    <colgroup><col style="width:24%"><col style="width:15%"><col style="width:18%"><col style="width:${notes ? 17 : 22}%"><col style="width:${notes ? 15 : 21}%">${notes ? '<col style="width:11%">' : ''}</colgroup>
-    <thead><tr><th>Parameter</th><th>Standard / Method</th><th>Condition / Range</th><th>Tolerance (US)</th><th>Tolerance (SI)</th>${notes ? '<th>Notes</th>' : ''}</tr></thead>
-    <tbody>${rows.map(([p, m, c, us, si, n]) => `<tr><td>${p}</td><td class="m">${m}</td><td class="m">${c}</td>${vc(us)}${vc(si)}${notes ? vc(n, 'sm') : ''}</tr>`).join('')}</tbody>
+    <colgroup><col style="width:26%"><col style="width:17%"><col style="width:20%"><col style="width:${NO_SI ? (notes ? 26 : 37) : (notes ? 17 : 22)}%">${NO_SI ? '' : `<col style="width:${notes ? 15 : 21}%">`}${notes ? '<col style="width:11%">' : ''}</colgroup>
+    <thead><tr><th>Parameter</th><th>Standard / Method</th><th>Condition / Range</th><th>Tolerance</th>${NO_SI ? '' : '<th>Tolerance (SI)</th>'}${notes ? '<th>Notes</th>' : ''}</tr></thead>
+    <tbody>${rows.map(([p, m, c, us, si, n]) => `<tr><td>${p}</td><td class="m">${m}</td><td class="m">${c}</td>${vc(us)}${NO_SI ? '' : vc(si)}${notes ? vc(n, 'sm') : ''}</tr>`).join('')}</tbody>
   </table>${note ? `<p class="note">${note}</p>` : ''}</div>`;
 }
 
@@ -240,6 +242,7 @@ function buildDocs() {
   const docs = [];
 
   // ===================== 1. SOLID POLYCARBONATE =====================
+  NO_SI = true; // US units only (ASTM) — requested for Solid PC
   // Draft sources: Plaskolite TUFFAK first; LEXAN / PALSUN where TUFFAK value not found; typ. = industry typical.
   const thkPC = ['0.060', '0.093', '0.118', '0.177', '0.236', '0.375', '0.500'];
   const mmPC = ['1.5', '2.4', '3.0', '4.5', '6.0', '9.5', '12.7'];
@@ -284,7 +287,7 @@ function buildDocs() {
       flammability({
         ul94: V('HB @ 0.060 in; V-0 @ 0.394 in', 'TUFFAK'),
         d635: V('CC1', 'PALSUN · ESR-1893'),
-        d1929: V('≈ 1,080 °F (580 °C)', 'typ.'),
+        d1929: V(NO_SI ? '≈ 1,080 °F' : '≈ 1,080 °F (580 °C)', 'typ.'),
         e84: V('Smoke-developed index ≤ 450', 'Palram · ESR-1893'),
       }, [['Safety Glazing', 'ANSI Z97.1 / CPSC 16 CFR 1201'], ['Bullet Resistance (if applicable)', 'UL 752 Level']]) +
       `<div class="avoid">` + matrix('Product Availability*', ['Thickness (in)', 'Thickness (mm)', 'Tolerance (±)', 'Standard Sizes (in)', 'Max Width × Length', 'Colors / Finish'],
@@ -301,9 +304,11 @@ function buildDocs() {
         ['Flatness', 'ISO 11963 / EN 16240', 'Sheet length < 13 ft (4 m)', V('≤ 0.024 in/ft', 'TUFFAK EU'), V('≤ 2 mm/m')],
         ['Flatness', 'ISO 11963 / EN 16240', 'Sheet length ≥ 13 ft (4 m)', V('≤ 0.048 in/ft', 'TUFFAK EU'), V('≤ 4 mm/m')],
         ['Dimensional change on heating (MD / TD)', 'Internal (e.g. 30 min @ 300 °F)', 'All thicknesses'],
-      ], 'Width/length measured at 73 °F (23 °C). State whether tolerances apply to mill-run or cut-to-size sheet.' + (DRAFT ? ' *TUFFAK EU table partly illegible in source — units/pairing to be verified.' : '')) +
+      ], (NO_SI ? 'Width/length measured at 73 °F.' : 'Width/length measured at 73 °F (23 °C).') + ' State whether tolerances apply to mill-run or cut-to-size sheet.' + (DRAFT ? ' *TUFFAK EU table partly illegible in source — units/pairing to be verified.' : '')) +
       storage('Store sheets flat on a smooth, full-size pallet, indoors, away from direct sunlight and heat sources; do not store outdoors with masking in place. Remove masking promptly after installation. Clean with mild soap and lukewarm water using a soft cloth or sponge, rinse and dry. Do not use abrasive cleaners, ammonia, acetone, benzene, MEK or chlorinated solvents.'),
   });
+
+  NO_SI = false;
 
   // ===================== 2. TWIN WALL POLYCARBONATE =====================
   // Draft sources: Plaskolite POLYGAL first; Palram SUNLITE / LEXAN THERMOCLEAR / IMPEX / EN 16153 where POLYGAL value not found.
