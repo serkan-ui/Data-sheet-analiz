@@ -312,7 +312,7 @@ function buildDocs() {
         ['Thickness variation within sheet', 'ASTM D5947', 'Max – min, same sheet'],
         ['Width', 'ISO 11963', 'All sizes', V('−0 / +0.157 in', 'US Plast'), V('−0 / +4 mm')],
         ['Length', 'ISO 11963', 'All sizes', V('−0 / +0.236 in', 'US Plast'), V('−0 / +6 mm')],
-        ['Squareness (diagonal difference)', 'ISO 11963', 'All sizes', V('≤ 0.0035 × width', 'ISO 11963'), V('≤ 3.5×10⁻³ × width, min. 2 mm')],
+        ['Squareness (diagonal difference)', 'ISO 11963', 'All sizes', V('Max. 0.197 in', 'US Plast'), V('Max. 5 mm')],
         ['Flatness', 'ISO 11963 / EN 16240', 'Sheet length < 13 ft (4 m)', V('≤ 0.024 in/ft'), V('≤ 2 mm/m')],
         ['Flatness', 'ISO 11963 / EN 16240', 'Sheet length ≥ 13 ft (4 m)', V('≤ 0.048 in/ft'), V('≤ 4 mm/m')],
         ['Dimensional change on heating (MD / TD)', 'Internal (e.g. 30 min @ 300 °F)', 'All thicknesses'],
