@@ -262,8 +262,6 @@ function buildDocs() {
       ]) +
       propTable('Optical Properties', [
         ['Light Transmission, clear (@ 0.118 in)', 'ASTM D1003', '%', '', V('86')],
-        ['Light Transmission, gray / bronze (@ 0.118 in)', 'ASTM D1003', '%', '', V('50')],
-        ['Light Transmission, dark gray (@ 0.118 in)', 'ASTM D1003', '%', '', V('18')],
         ['Haze', 'ASTM D1003', '%', '', V('< 1', 'typ.')],
         ['Refractive Index', 'ASTM D542', '—', '', V('1.586')],
         ['Yellowness Index', 'ASTM E313', '—', ''],
