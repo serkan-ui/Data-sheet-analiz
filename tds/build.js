@@ -249,10 +249,15 @@ function buildDocs() {
   docs.push({
     slug: 'Solid-Polycarbonate',
     final: true,
+    hero: [
+      { file: 'solid-security', caption: 'Security Barriers' },
+      { file: 'solid-noisebarrier', caption: 'Noise Barriers' },
+      { file: 'solid-skylight', caption: 'Skylights' },
+    ],
     code: 'TDS-PC-S-___',
     family: 'Solid Polycarbonate Sheet',
     subtitle: 'Extruded, UV-protected solid polycarbonate sheet',
-    body: intro(['Glazing &amp; skylights', 'Machine guards &amp; protective barriers', 'Signage &amp; displays', 'Security / vandal-resistant glazing', 'Thermoformed parts', 'Other: ____________________'], {
+    body: intro(['Glazing &amp; skylights', 'Machine guards &amp; protective barriers', 'Signage &amp; displays', 'Security / vandal-resistant glazing', 'Highway &amp; railway noise barriers', 'Thermoformed parts', 'Other: ____________________'], {
       text: 'US Plast solid polycarbonate sheet is a transparent, UV-protected thermoplastic glazing material that combines glass-like clarity with exceptional toughness. Virtually unbreakable and roughly half the weight of glass, it provides lasting performance in demanding indoor and outdoor applications where safety, durability and design freedom matter.',
       features: [`Over ${fv('90')} times the impact energy of glass (ASTM D3763)`, `High light transmission — up to ${fv('86')} % (clear, 0.118")`, 'Co-extruded UV protection against yellowing and loss of clarity', 'Evaluated by UL to UL 972 (burglary-resistant glazing)', 'Can be cold-formed, thermoformed, drilled, cut and machined with standard tools', `Wide service temperature range: ${fv('−40 °F to 250 °F')}`],
     }) +
