@@ -61,7 +61,7 @@ function propTable(title, rows, note = '') {
       ? '<colgroup><col style="width:42%"><col style="width:18%"><col style="width:16%"><col style="width:24%"></colgroup><thead><tr><th>Property</th><th>Test Method</th><th>Units</th><th>Value</th></tr></thead>'
       : '<colgroup><col style="width:32%"><col style="width:14%"><col style="width:12%"><col style="width:15%"><col style="width:12%"><col style="width:15%"></colgroup><thead><tr><th>Property</th><th>Test Method</th><th>Units</th><th>Value</th><th>Units (SI)</th><th>Value (SI)</th></tr></thead>'}
     <tbody>
-    ${rows.map(([p, m, u, si, us, siv]) => `<tr><td>${p}</td><td class="m">${m}</td><td class="u">${u}</td>${vc(us)}${NO_SI ? '' : `<td class="u">${si}</td>${si === '' ? '<td class="na"></td>' : vc(siv)}`}</tr>`).join('')}
+    ${rows.filter((r) => !FINAL || (r[4] && r[4][0])).map(([p, m, u, si, us, siv]) => `<tr><td>${p}</td><td class="m">${m}</td><td class="u">${u}</td>${vc(us)}${NO_SI ? '' : `<td class="u">${si}</td>${si === '' ? '<td class="na"></td>' : vc(siv)}`}</tr>`).join('')}
     </tbody>
   </table>${note ? `<p class="note">${note}</p>` : ''}`;
 }
@@ -73,7 +73,7 @@ function resultTable(title, rows) {
   <table class="props">
     <colgroup><col style="width:36%"><col style="width:22%"><col style="width:42%"></colgroup>
     <thead><tr><th>Property</th><th>Test Method / Standard</th><th>Result</th></tr></thead>
-    <tbody>${rows.map(([p, m, r]) => `<tr><td>${p}</td><td class="m">${m}</td>${vc(r)}</tr>`).join('')}</tbody>
+    <tbody>${rows.filter((x) => !FINAL || (x[2] && x[2][0])).map(([p, m, r]) => `<tr><td>${p}</td><td class="m">${m}</td>${vc(r)}</tr>`).join('')}</tbody>
   </table>`;
 }
 
@@ -127,7 +127,7 @@ function tolTable(rows, note = '') {
   <table class="props">
     <colgroup><col style="width:26%"><col style="width:17%"><col style="width:20%"><col style="width:${NO_SI ? (notes ? 26 : 37) : (notes ? 17 : 22)}%">${NO_SI ? '' : `<col style="width:${notes ? 15 : 21}%">`}${notes ? '<col style="width:11%">' : ''}</colgroup>
     <thead><tr><th>Parameter</th><th>Standard / Method</th><th>Condition / Range</th><th>Tolerance</th>${NO_SI ? '' : '<th>Tolerance (SI)</th>'}${notes ? '<th>Notes</th>' : ''}</tr></thead>
-    <tbody>${rows.map(([p, m, c, us, si, n]) => `<tr><td>${p}</td><td class="m">${m}</td><td class="m">${c}</td>${vc(us)}${NO_SI ? '' : vc(si)}${notes ? vc(n, 'sm') : ''}</tr>`).join('')}</tbody>
+    <tbody>${rows.filter((r) => !FINAL || (r[3] && r[3][0])).map(([p, m, c, us, si, n]) => `<tr><td>${p}</td><td class="m">${m}</td><td class="m">${c}</td>${vc(us)}${NO_SI ? '' : vc(si)}${notes ? vc(n, 'sm') : ''}</tr>`).join('')}</tbody>
   </table>${note ? `<p class="note">${note}</p>` : ''}</div>`;
 }
 
@@ -248,12 +248,13 @@ function buildDocs() {
   const mmPC = ['1.5', '2.4', '3.0', '4.5', '6.0', '9.5', '12.7'];
   docs.push({
     slug: 'Solid-Polycarbonate',
+    final: true,
     code: 'TDS-PC-S-___',
     family: 'Solid Polycarbonate Sheet',
     subtitle: 'Extruded, UV-protected solid polycarbonate sheet',
     body: intro(['Glazing &amp; skylights', 'Machine guards &amp; protective barriers', 'Signage &amp; displays', 'Security / vandal-resistant glazing', 'Thermoformed parts', 'Other: ____________________'], {
       text: 'US Plast solid polycarbonate sheet is a transparent, UV-protected thermoplastic glazing material that combines glass-like clarity with exceptional toughness. Virtually unbreakable and roughly half the weight of glass, it provides lasting performance in demanding indoor and outdoor applications where safety, durability and design freedom matter.',
-      features: [`Over ${fv('90')} times the impact energy of glass (ASTM D3763)`, `High light transmission — up to ${fv('86')} % (clear, 0.118")`, 'Co-extruded UV protection against yellowing and loss of clarity', 'Can be cold-formed, thermoformed, drilled, cut and machined with standard tools', `Wide service temperature range: ${fv('−40 °F to 250 °F')}`],
+      features: [`Over ${fv('90')} times the impact energy of glass (ASTM D3763)`, `High light transmission — up to ${fv('86')} % (clear, 0.118")`, 'Co-extruded UV protection against yellowing and loss of clarity', 'Evaluated by UL to UL 972 (burglary-resistant glazing)', 'Can be cold-formed, thermoformed, drilled, cut and machined with standard tools', `Wide service temperature range: ${fv('−40 °F to 250 °F')}`],
     }) +
       propTable('Physical Properties', [
         ['Specific Gravity', 'ASTM D792', '—', 'g/cm³', V('1.20'), V('1.20')],
@@ -295,12 +296,15 @@ function buildDocs() {
         ['Self-Ignition Temperature, °F', 'ASTM D1929', V('Self-ignition 825 °F (FBC requirement &gt; 650 °F)', 'US Plast · QAI')],
         ['Flame Spread Index / Smoke-Developed Index', 'ASTM E84 (UL 723)', V('Flame spread 10 / Smoke developed 250 — Class A', 'US Plast · QAI')],
       ]) +
-      (DRAFT ? `<p class="note">ASTM E84-24a, D635-18 and D1929-16 tested by QAI Laboratories on 0.118 in (3 mm) clear sheet — Reports QA-1634F-1a-R1, QA-1634F-2, QA-1634-FT. E84 classification per NFPA 101 and IBC Section 803.</p>` : '') +
+      `<p class="note">ASTM D635, D1929 and E84 results on 0.118 in (3 mm) clear sheet. E84 classification per NFPA 101 and IBC Section 803.</p>` +
+      resultTable('Certifications', [
+        ['Burglary-Resistant Glazing Material (UL category CVYU)', 'UL 972, 6th Edition', V('Certificate of Compliance UL-US-2588644-0', 'US Plast · UL')],
+      ]) +
       `<div class="avoid">` + resultTable('Weathering Performance — Tensile Strength Retention', [
         ['Tensile Strength, Ultimate — unexposed', 'ASTM D638', V('9,550 psi', 'US Plast · QAI')],
         ['Tensile Strength, Ultimate — after 4,500 h UV (ASTM G155)', 'ASTM D638', V('9,779 psi', 'US Plast · QAI')],
         ['Change in tensile strength', 'Miami-Dade Checklist #0445 (&lt; 10 %)', V('+2.4 % — PASS', 'US Plast · QAI')],
-      ]) + (DRAFT ? `<p class="note">Tested by QAI Laboratories on 0.118 in (3 mm) clear sheet — Report QA-1634-3.</p>` : '') + `</div>` +
+      ]) + `<p class="note">Tested on 0.118 in (3 mm) clear sheet.</p>` + `</div>` +
       `<div class="avoid">` + matrix('Product Availability*', ['Thickness (in)', 'Thickness (mm)', 'Tolerance (±)', 'Standard Sizes (in)', 'Max Width × Length', 'Colors / Finish'],
         thkPC.map((t, i) => [DRAFT ? t + '"' : '', V(mmPC[i]), V('10 %', 'distributor std.'), V('48×96, 60×96, 72×96', 'typ.'), undefined, V('Clear, gray, bronze, dark gray')]).concat(DRAFT ? [] : ['', '', '', '', '', '', ''].slice(7)),
         '<b>* For other colors and sizes, please contact our sales team.</b>') + `</div>` +
@@ -315,7 +319,7 @@ function buildDocs() {
         ['Flatness', 'ISO 11963 / EN 16240', 'Sheet length < 13 ft (4 m)', V('≤ 0.024 in/ft'), V('≤ 2 mm/m')],
         ['Flatness', 'ISO 11963 / EN 16240', 'Sheet length ≥ 13 ft (4 m)', V('≤ 0.048 in/ft'), V('≤ 4 mm/m')],
         ['Dimensional change on heating (MD / TD)', 'Internal (e.g. 30 min @ 300 °F)', 'All thicknesses'],
-      ], (NO_SI ? 'Width/length measured at 73 °F.' : 'Width/length measured at 73 °F (23 °C).') + ' State whether tolerances apply to mill-run or cut-to-size sheet.') +
+      ], (NO_SI ? 'Width/length measured at 73 °F.' : 'Width/length measured at 73 °F (23 °C).') + (FINAL ? '' : ' State whether tolerances apply to mill-run or cut-to-size sheet.')) +
       storage('Store sheets flat on a smooth, full-size pallet, indoors, away from direct sunlight and heat sources; do not store outdoors with masking in place. Remove masking promptly after installation. Clean with mild soap and lukewarm water using a soft cloth or sponge, rinse and dry. Do not use abrasive cleaners, ammonia, acetone, benzene, MEK or chlorinated solvents.'),
   });
 
