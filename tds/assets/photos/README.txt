@@ -9,3 +9,4 @@ Kaynaklar / lisans:
 - twinwall-skylight.jpg: Adobe Firefly ile uretildi (kullanici tarafindan). 2000x1116 webp; yatay kirpildi.
 - Solid PC icin dosya adlari: solid-security, solid-noisebarrier, solid-skylight
 - solid-security.jpg: Adobe Firefly ile uretildi (kullanici tarafindan). 2000x1116 webp; yatay kirpildi.
+- solid-noisebarrier.jpg: Adobe Firefly ile uretildi (kullanici tarafindan). 2000x1116 webp; yatay kirpildi.
