@@ -8,3 +8,4 @@ Kaynaklar / lisans:
 - twinwall-datacenter.jpg: Adobe Firefly ile uretildi (kullanici tarafindan, Firefly ticari kullanim kosullari). 1280x720 webp; ortadan kirpildi, parlaklik hafif artirildi.
 - twinwall-skylight.jpg: Adobe Firefly ile uretildi (kullanici tarafindan). 2000x1116 webp; yatay kirpildi.
 - Solid PC icin dosya adlari: solid-security, solid-noisebarrier, solid-skylight
+- solid-security.jpg: Adobe Firefly ile uretildi (kullanici tarafindan). 2000x1116 webp; yatay kirpildi.
