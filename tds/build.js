@@ -303,8 +303,8 @@ function buildDocs() {
         ['Tensile Strength, Ultimate — after 4,500 h UV (ASTM G155)', 'ASTM D638', V('9,779 psi', 'US Plast · QAI')],
         ['Change in tensile strength', 'Miami-Dade Checklist #0445 (&lt; 10 %)', V('+2.4 % — PASS', 'US Plast · QAI')],
       ]) + `<p class="note">Tested on 0.118 in (3 mm) clear sheet.</p>` + `</div>` +
-      `<div class="avoid">` + matrix('Product Availability*', ['Thickness (in)', 'Thickness (mm)', 'Tolerance (±)', 'Standard Sizes (in)', 'Max Width × Length', 'Colors / Finish'],
-        thkPC.map((t, i) => [DRAFT ? t + '"' : '', V(mmPC[i]), parseFloat(mmPC[i]) >= 6 ? V('5 %', 'US Plast') : V('10 %', 'distributor std.'), V('48×96, 60×96, 72×96', 'typ.'), undefined, V('Clear**', 'US Plast')]),
+      `<div class="avoid">` + matrix('Product Availability*', ['Thickness (in)', 'Thickness (mm)', 'Standard Sizes (in)', 'Max Width × Length', 'Colors / Finish'],
+        thkPC.map((t, i) => [DRAFT ? t + '"' : '', V(mmPC[i]), V('48×96, 60×96, 72×96', 'typ.'), undefined, V('Clear**', 'US Plast')]),
         '<b>* For other colors and sizes, please contact our sales team.</b><br><b>** Colored sheets can be produced upon customer request.</b>') + `</div>` +
       tolTable([
         ['Thickness', 'ASTM D5947', '< 0.236 in (6 mm)', V('± 10 %', 'distributor std.'), V('± 10 %')],
