@@ -313,8 +313,8 @@ function buildDocs() {
         ['Width', 'ISO 11963', 'All sizes', V('−0 / +0.157 in', 'US Plast'), V('−0 / +4 mm')],
         ['Length', 'ISO 11963', 'All sizes', V('−0 / +0.236 in', 'US Plast'), V('−0 / +6 mm')],
         ['Squareness (diagonal difference)', 'ISO 11963', 'All sizes', V('Max. 0.197 in', 'US Plast'), V('Max. 5 mm')],
-        ['Flatness', 'ISO 11963 / EN 16240', 'Sheet length < 13 ft (4 m)', V('≤ 0.024 in/ft'), V('≤ 2 mm/m')],
-        ['Flatness', 'ISO 11963 / EN 16240', 'Sheet length ≥ 13 ft (4 m)', V('≤ 0.048 in/ft'), V('≤ 4 mm/m')],
+        ['Flatness — across width', 'ISO 11963 / EN 16240', 'All sizes', V('≤ 0.06 in per ft of width (0.5 %)', 'ISO 11963'), V('≤ 5 mm/m (0.5 %)')],
+        ['Flatness — along length', 'ISO 11963 / EN 16240', 'All sizes', V('≤ 0.06 in per ft of length (0.5 %)', 'ISO 11963'), V('≤ 5 mm/m (0.5 %)')],
         ['Dimensional change on heating (MD / TD)', 'Internal (e.g. 30 min @ 300 °F)', 'All thicknesses'],
       ], (NO_SI ? 'Width/length measured at 73 °F.' : 'Width/length measured at 73 °F (23 °C).') + (FINAL ? '' : ' State whether tolerances apply to mill-run or cut-to-size sheet.')) +
       storage('Store sheets flat on a smooth, full-size pallet, indoors, away from direct sunlight and heat sources; do not store outdoors with masking in place. Remove masking promptly after installation. Clean with mild soap and lukewarm water using a soft cloth or sponge, rinse and dry. Do not use abrasive cleaners, ammonia, acetone, benzene, MEK or chlorinated solvents.'),
