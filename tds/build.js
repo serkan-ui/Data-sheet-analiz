@@ -244,8 +244,8 @@ function buildDocs() {
   // ===================== 1. SOLID POLYCARBONATE =====================
   NO_SI = true; // US units only (ASTM) — requested for Solid PC
   // Draft sources: Plaskolite TUFFAK first; LEXAN / PALSUN where TUFFAK value not found; typ. = industry typical.
-  const thkPC = ['0.060', '0.093', '0.118', '0.177', '0.236', '0.375', '0.500'];
-  const mmPC = ['1.5', '2.4', '3.0', '4.5', '6.0', '9.5', '12.7'];
+  const thkPC = ['0.060', '0.093', '0.118', '0.177', '0.236', '0.375', '0.500', '0.590'];
+  const mmPC = ['1.5', '2.4', '3.0', '4.5', '6.0', '9.5', '12.7', '15.0'];
   docs.push({
     slug: 'Solid-Polycarbonate',
     final: true,
@@ -306,12 +306,11 @@ function buildDocs() {
         ['Change in tensile strength', 'Miami-Dade Checklist #0445 (&lt; 10 %)', V('+2.4 % — PASS', 'US Plast · QAI')],
       ]) + `<p class="note">Tested on 0.118 in (3 mm) clear sheet.</p>` + `</div>` +
       `<div class="avoid">` + matrix('Product Availability*', ['Thickness (in)', 'Thickness (mm)', 'Tolerance (±)', 'Standard Sizes (in)', 'Max Width × Length', 'Colors / Finish'],
-        thkPC.map((t, i) => [DRAFT ? t + '"' : '', V(mmPC[i]), V('10 %', 'distributor std.'), V('48×96, 60×96, 72×96', 'typ.'), undefined, V('Clear, gray, bronze, dark gray')]).concat(DRAFT ? [] : ['', '', '', '', '', '', ''].slice(7)),
-        '<b>* For other colors and sizes, please contact our sales team.</b>') + `</div>` +
+        thkPC.map((t, i) => [DRAFT ? t + '"' : '', V(mmPC[i]), parseFloat(mmPC[i]) >= 6 ? V('5 %', 'US Plast') : V('10 %', 'distributor std.'), V('48×96, 60×96, 72×96', 'typ.'), undefined, V('Clear**', 'US Plast')]),
+        '<b>* For other colors and sizes, please contact our sales team.</b><br><b>** Colored sheets can be produced upon customer request.</b>') + `</div>` +
       tolTable([
-        ['Thickness', 'ASTM D5947', '< 1.5 mm / 1.5–2.0 mm', V('± 8 % / ± 4 %'), V('± 8 % / ± 4 %')],
-        ['Thickness', 'ASTM D5947', '2–6 mm', V('± 3 %'), V('± 3 %')],
-        ['Thickness', 'ASTM D5947', '> 6 mm (to 12 mm)', V('± 3 %'), V('± 3 %')],
+        ['Thickness', 'ASTM D5947', '< 0.236 in (6 mm)', V('± 10 %', 'distributor std.'), V('± 10 %')],
+        ['Thickness', 'ASTM D5947', '0.236–0.590 in (6–15 mm)', V('± 5 %', 'US Plast'), V('± 5 %')],
         ['Thickness variation within sheet', 'ASTM D5947', 'Max – min, same sheet'],
         ['Width', 'ISO 11963', 'All sizes', V('≤ 0.06 in/ft'), V('≤ 5 mm/m')],
         ['Length', 'ISO 11963', 'All sizes', V('≤ 0.06 in/ft'), V('≤ 5 mm/m')],
