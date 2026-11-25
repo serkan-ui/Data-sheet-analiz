@@ -292,10 +292,16 @@ function buildDocs() {
       flammability({
         title: 'Flammability',
         ul94: V('HB @ 0.060 in; V-0 @ 0.394 in', 'TUFFAK'),
-        d635: V('Average extent of burn < 1 in (CC1)', 'TUFFAK'),
-        d1929: V(NO_SI ? '1,022 °F (self); 824 °F (flash)' : '1,022 °F (550 °C)', 'TUFFAK'),
-        e84: V('Smoke-developed index ≤ 450', 'Palram · ESR-1893'),
+        d635: V('Burning extent 1 in — Class CC1 (IBC 2024 §2606.4)', 'US Plast · QAI'),
+        d1929: V('Self-ignition 825 °F (FBC requirement &gt; 650 °F)', 'US Plast · QAI'),
+        e84: V('Flame spread 10 / Smoke developed 250 — Class A', 'US Plast · QAI'),
       }, [['Safety Glazing', 'ANSI Z97.1 / CPSC 16 CFR 1201'], ['Bullet Resistance (if applicable)', 'UL 752 Level']]) +
+      (DRAFT ? `<p class="note">ASTM E84-24a, D635-18 and D1929-16 tested by QAI Laboratories on 0.118 in (3 mm) clear sheet — Reports QA-1634F-1a-R1, QA-1634F-2, QA-1634-FT. E84 classification per NFPA 101 and IBC Section 803.</p>` : '') +
+      `<div class="avoid">` + resultTable('Weathering Performance — Tensile Strength Retention', [
+        ['Tensile Strength, Ultimate — unexposed', 'ASTM D638', V('9,550 psi', 'US Plast · QAI')],
+        ['Tensile Strength, Ultimate — after 4,500 h UV (ASTM G155)', 'ASTM D638', V('9,779 psi', 'US Plast · QAI')],
+        ['Change in tensile strength', 'Miami-Dade Checklist #0445 (&lt; 10 %)', V('+2.4 % — PASS', 'US Plast · QAI')],
+      ]) + (DRAFT ? `<p class="note">Tested by QAI Laboratories on 0.118 in (3 mm) clear sheet — Report QA-1634-3.</p>` : '') + `</div>` +
       `<div class="avoid">` + matrix('Product Availability*', ['Thickness (in)', 'Thickness (mm)', 'Tolerance (±)', 'Standard Sizes (in)', 'Max Width × Length', 'Colors / Finish'],
         thkPC.map((t, i) => [DRAFT ? t + '"' : '', V(mmPC[i]), V('10 %', 'distributor std.'), V('48×96, 60×96, 72×96', 'typ.'), undefined, V('Clear, gray, bronze, dark gray', 'TUFFAK')]).concat(DRAFT ? [] : ['', '', '', '', '', '', ''].slice(7)),
         '<b>* For other colors and sizes, please contact our sales team.</b>') + `</div>` +
