@@ -466,8 +466,8 @@ function buildDocs() {
   // ===================== 4. EXTRUDED ACRYLIC =====================
   // Values: Plaskolite OPTIX PDS204 (verified, source tags removed per US Plast); typ. = unverified typical; ASTM D4802 for tolerances.
   NO_SI = true; // US units only (ASTM)
-  const thkA = ['0.060', '0.093', '0.118', '0.177', '0.236', '0.375', '0.500', '1.000'];
-  const mmA = ['1.5', '2.4', '3.0', '4.5', '6.0', '9.5', '12.7', '25.4'];
+  const thkA = ['0.079', '0.118', '0.157', '0.197', '0.236', '0.315', '0.394', '0.472'];
+  const mmA = ['2.0', '3.0', '4.0', '5.0', '6.0', '8.0', '10.0', '12.0'];
   docs.push({
     slug: 'Extruded-Acrylic',
     code: 'TDS-PMMA-X-___',
@@ -519,8 +519,8 @@ function buildDocs() {
         ['Volume Resistivity', 'ASTM D257', 'ohm·cm', '', V('> 10¹⁵', 'typ.')],
       ]) +
       `<div class="avoid">` + matrix('Product Availability*', ['Nominal (in)', 'Nominal (mm)', 'Standard Sizes (in)', 'Colors / Finish', 'Masking'],
-        thkA.map((t, i) => [DRAFT ? t + '"' : '', V(mmA[i]), V(i === 7 ? '48×96' : '48×96, 60×96, 72×96', i === 7 ? undefined : 'typ.'), V(i === 7 ? 'Clear' : 'Clear, white, colors', 'typ.'), V('PE film / paper', 'typ.')]),
-        '<b>* For other colors and sizes, please contact our sales team.</b>') + `</div>` +
+        thkA.map((t, i) => [DRAFT ? t + '"' : '', V(mmA[i]), V('48×96, 60×96, 72×96', 'typ.'), V('Clear**', 'US Plast'), V('PE film / paper', 'typ.')]),
+        '<b>* For other colors and sizes, please contact our sales team.</b><br><b>** Colored sheets can be produced upon customer request.</b>') + `</div>` +
       checklist('Fabrication Suitability', ['Saw / router cutting', 'Laser cutting (CO₂)', 'CNC machining', 'Solvent cementing', 'Thermoforming / line bending', 'Flame / diamond polishing', 'Screen / digital printing', 'Drilling']) +
       tolTable([
         ['Thickness', 'ASTM D5947', '< 0.236 in (6 mm)', V('± 10 %', 'US Plast'), V('± 10 %')],
