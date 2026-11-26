@@ -518,15 +518,13 @@ function buildDocs() {
         ['Dielectric Strength', 'ASTM D149', 'V/mil', 'kV/mm', V('400–500', 'typ.'), V('16–20', 'typ.')],
         ['Volume Resistivity', 'ASTM D257', 'ohm·cm', '', V('> 10¹⁵', 'typ.')],
       ]) +
-      `<div class="avoid">` + matrix('Product Availability &amp; Thickness Tolerance*', ['Nominal (in)', 'Nominal (mm)', 'Tolerance (±)', 'Standard Sizes (in)', 'Colors / Finish', 'Masking'],
-        thkA.map((t, i) => [DRAFT ? t + '"' : '', V(mmA[i]), V('10 %', 'typ.'), V(i === 7 ? '48×96' : '48×96, 60×96, 72×96', i === 7 ? undefined : 'typ.'), V(i === 7 ? 'Clear' : 'Clear, white, colors', 'typ.'), V('PE film / paper', 'typ.')]),
+      `<div class="avoid">` + matrix('Product Availability*', ['Nominal (in)', 'Nominal (mm)', 'Standard Sizes (in)', 'Colors / Finish', 'Masking'],
+        thkA.map((t, i) => [DRAFT ? t + '"' : '', V(mmA[i]), V(i === 7 ? '48×96' : '48×96, 60×96, 72×96', i === 7 ? undefined : 'typ.'), V(i === 7 ? 'Clear' : 'Clear, white, colors', 'typ.'), V('PE film / paper', 'typ.')]),
         '<b>* For other colors and sizes, please contact our sales team.</b>') + `</div>` +
       checklist('Fabrication Suitability', ['Saw / router cutting', 'Laser cutting (CO₂)', 'CNC machining', 'Solvent cementing', 'Thermoforming / line bending', 'Flame / diamond polishing', 'Screen / digital printing', 'Drilling']) +
       tolTable([
-        ['Thickness', 'ASTM D4802 / D5947', '0.060"–0.118"', V('≈ ± 10 %', 'typ.'), V('≈ ± 10 %'), V('≤ 0.125": may not meet D4802')],
-        ['Thickness', 'ASTM D4802 / D5947', '0.177"–0.236"', V('≈ ± 10 %', 'typ.'), V('≈ ± 10 %')],
-        ['Thickness', 'ASTM D4802 / D5947', '0.375"–0.500"', V('≈ ± 10 %', 'typ.'), V('≈ ± 10 %')],
-        ['Thickness', 'ASTM D4802 / D5947', '> 0.500"', V('≈ ± 10 %', 'typ.'), V('≈ ± 10 %')],
+        ['Thickness', 'ASTM D5947', '< 0.236 in (6 mm)', V('± 10 %', 'US Plast'), V('± 10 %')],
+        ['Thickness', 'ASTM D5947', '≥ 0.236 in (6 mm)', V('± 5 %', 'US Plast'), V('± 5 %')],
         ['Width', 'ASTM D4802', 'All sizes', V('+ 1/4 / − 0 in', 'ASTM D4802'), V('+ 6 / − 0 mm')],
         ['Length', 'ASTM D4802', 'All sizes', V('+ 1/4 / − 0 in', 'ASTM D4802'), V('+ 6 / − 0 mm')],
         ['Squareness (diagonal difference)', 'Internal', 'All sizes'],
