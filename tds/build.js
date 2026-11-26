@@ -138,8 +138,8 @@ const warrantyBlock = (years, scope, src) => DRAFT && years
   : `<h2>Warranty</h2><p class="fillline"><span class="fl w60"></span>-year limited warranty against
   <span class="fl w240"></span>. Full warranty terms: document <span class="fl w120"></span>.</p>`;
 
-const storage = (text) => DRAFT && text
-  ? `<h2>Storage, Handling &amp; Cleaning</h2><p class="desc">${text}${tag('typ.')}</p>`
+const storage = (text, src = 'typ.') => DRAFT && text
+  ? `<h2>Storage, Handling &amp; Cleaning</h2><p class="desc">${text}${tag(src)}</p>`
   : lines('Storage, Handling &amp; Cleaning', 3,
     'Store flat, indoors, protected from sunlight and heat; remove masking / protective film (if any) within ___ months of outdoor exposure. List approved / prohibited cleaning agents.');
 
@@ -470,12 +470,13 @@ function buildDocs() {
   const mmA = ['2.0', '3.0', '4.0', '5.0', '6.0', '8.0', '10.0', '12.0'];
   docs.push({
     slug: 'Extruded-Acrylic',
+    final: true,
     code: 'TDS-PMMA-X-___',
     family: 'Extruded Acrylic (PMMA) Sheet',
     subtitle: 'Continuously extruded acrylic sheet',
     body: intro(['Signage &amp; letters', 'Point-of-purchase displays', 'Picture framing', 'Sneeze guards &amp; protective barriers', 'Lighting &amp; LED diffusers', 'Other: ____________________'], {
       text: 'US Plast extruded acrylic sheet is a crystal-clear, continuously manufactured PMMA sheet offering outstanding optical quality, weatherability and consistent thickness. Lighter and more impact-resistant than glass, it is easy to cut, bond, thermoform and polish, making it the material of choice for signage, displays, glazing and fabricated parts.',
-      features: [`Light transmission of ${fv('92')} % — optically clear with low haze`, `Approx. half the weight of glass, with up to ${fv('10–17')} times its impact strength`, 'Excellent outdoor weathering and UV stability', 'Tight thickness tolerance and low internal stress for consistent fabrication', 'Easy to laser-cut, router, solvent-bond and thermoform'],
+      features: ['Light transmission of 92 % — optically clear with low haze', 'Approx. half the weight of glass and more impact-resistant', 'Excellent outdoor weathering and UV stability', 'Tight thickness tolerance and low internal stress for consistent fabrication', 'Easy to laser-cut, router, solvent-bond and thermoform'],
     }) +
       propTable('Physical &amp; Optical Properties', [
         ['Specific Gravity', 'ASTM D792', '—', 'g/cm³', V('1.19'), V('1.19')],
@@ -503,23 +504,20 @@ function buildDocs() {
         ['Coefficient of Linear Thermal Expansion', 'ASTM D696', 'in/in·°F', 'mm/mm·°C', V('3.0 × 10⁻⁵'), V('5.4 × 10⁻⁵')],
         ['Thermal Conductivity', 'ASTM C177', 'BTU·ft/h·ft²·°F', 'W/m·K', V('0.075'), V('0.13')],
         ['Max. Continuous Service Temperature', '—', '°F', '°C', V('170–190'), V('77–88')],
-        ['Thermoforming Temperature Range', '—', '°F', '°C', V('290–340', 'typ.'), V('145–170', 'typ.')],
+        ['Thermoforming Temperature Range', '—', '°F', '°C', V('290–340'), V('145–170')],
         ['Annealing Temperature', '—', '°F', '°C', V('180'), V('82')],
         ['Shrinkage (after heating, MD / TD)', 'Internal', '%', ''],
       ]) +
-      flammability({
-        ul94: V('HB'),
-        d635: V('Burning rate 1.0 in/min — Class CC2'),
-        d1929: V(NO_SI ? '833 °F' : '833 °F (445 °C)'),
-        e84: V('Flame spread 115 / Smoke developed 550'),
-        d2843: V('3.4 %'),
-      }) +
+      resultTable('Flammability', [
+        ['Flammability Rating', 'UL 94', V('HB')],
+        ['Building Material Class', 'DIN 4102-1', V('B2', 'US Plast')],
+      ]) +
       propTable('Electrical Properties (optional)', [
-        ['Dielectric Strength', 'ASTM D149', 'V/mil', 'kV/mm', V('400–500', 'typ.'), V('16–20', 'typ.')],
-        ['Volume Resistivity', 'ASTM D257', 'ohm·cm', '', V('> 10¹⁵', 'typ.')],
+        ['Dielectric Strength', 'ASTM D149', 'V/mil', 'kV/mm', V('400–500'), V('16–20')],
+        ['Volume Resistivity', 'ASTM D257', 'ohm·cm', '', V('> 10¹⁵')],
       ]) +
       `<div class="avoid">` + matrix('Product Availability*', ['Nominal (in)', 'Nominal (mm)', 'Standard Sizes (in)', 'Colors / Finish', 'Masking'],
-        thkA.map((t, i) => [DRAFT ? t + '"' : '', V(mmA[i]), V('48×96, 60×96, 72×96', 'typ.'), V('Clear**', 'US Plast'), V('PE film / paper', 'typ.')]),
+        thkA.map((t, i) => [DRAFT ? t + '"' : '', V(mmA[i]), V('48×96, 60×96, 72×96'), V('Clear; White 7328, 7508, 2447; Gray 2064, 2074**', 'US Plast'), V('PE film / paper')]),
         '<b>* For other colors and sizes, please contact our sales team.</b><br><b>** Colored sheets can be produced upon customer request.</b>') + `</div>` +
       checklist('Fabrication Suitability', ['Saw / router cutting', 'Laser cutting (CO₂)', 'CNC machining', 'Solvent cementing', 'Thermoforming / line bending', 'Flame / diamond polishing', 'Screen / digital printing', 'Drilling']) +
       tolTable([
@@ -532,7 +530,7 @@ function buildDocs() {
         ['Edge kink / edge "S" warp', 'ASTM D4802', 'All sheet (state: none permitted)', V('None permitted', 'ASTM D4802'), V('None permitted')],
         ['Shrinkage on heating (MD / TD)', 'Internal (e.g. 30 min @ 320 °F)', 'All thicknesses'],
       ], 'Extruded sheet shrinks mainly in the extrusion (machine) direction; state test temperature and time.') +
-      storage('Store sheets flat or on A-frame racks inclined ≈ 10°, indoors, away from heat sources and direct sunlight. Keep masking on during fabrication. Clean with mild soap and lukewarm water or a plastic cleaner using a soft cloth; do not use ammonia-based glass cleaners, alcohol, acetone, gasoline or abrasive cleaners.'),
+      storage('Store sheets flat or on A-frame racks inclined ≈ 10°, indoors, away from heat sources and direct sunlight. Keep masking on during fabrication. Clean with mild soap and lukewarm water or a plastic cleaner using a soft cloth; do not use ammonia-based glass cleaners, alcohol, acetone, gasoline or abrasive cleaners.', null),
   });
 
   NO_SI = false;
