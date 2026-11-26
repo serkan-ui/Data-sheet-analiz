@@ -417,7 +417,7 @@ function buildDocs() {
       features: ['Corona-treated on both sides for excellent ink adhesion (min. 46 dyne/cm)', 'Waterproof, moisture- and chemical-resistant; non-toxic', 'Lightweight yet rigid — easy to cut, score, fold, die-cut and fasten', 'Available UV-stabilized, flame-retardant, anti-static and in custom colors', '100 % recyclable (#5 PP)'],
     }) +
       propTable('Material Properties (Resin)', [
-        ['Polymer Type', '—', 'PP homo / copolymer', '', V('Impact copolymer', 'Coroplast')],
+        ['Polymer Type', '—', FINAL ? '—' : 'PP homo / copolymer', '', V('Impact copolymer', 'Coroplast')],
         ['Density', 'ASTM D792', '—', 'g/cm³', V('0.90', 'Coroplast'), V('0.90', 'Coroplast')],
         ['Melt Flow Rate (230 °C / 2.16 kg)', 'ASTM D1238', 'g/10 min', ''],
         ['Tensile Strength, Yield', 'ASTM D638', 'psi', 'MPa', V('4,000', 'Coroplast'), V('27.6', 'Coroplast')],
@@ -429,11 +429,11 @@ function buildDocs() {
         ['Brittleness Temperature', 'ASTM D746', '°F', '°C'],
         ['Service Temperature Range', '—', '°F', '°C', V('−17 to 160', 'Coroplast'), V('−27 to 71', 'Coroplast')],
       ]) +
-      matrix('Board Weight by Thickness', ['Property', '3 mm', '4 mm', '5 mm', '6 mm', '8 mm', '10 mm', '13 mm'],
+      `<div class="avoid">` + matrix('Board Weight by Thickness', ['Property', '3 mm', '4 mm', '5 mm', '6 mm', '8 mm', '10 mm', '13 mm'],
         [
           ['Board weight, g/m²', V('500–550', 'typ.'), V('550–750', 'US Plast'), V('900–1,000', 'typ.'), V('1,100–1,300', 'typ.'), V('1,800', 'US Plast'), V('2,130', 'COR-X'), V('2,200', 'US Plast')],
         ],
-        'Values for standard (natural / white) board.') +
+        'Values for standard (natural / white) board.') + `</div>` +
       matrix('Print &amp; Surface Characteristics', ['Property', 'Value', 'Notes'],
         [
           ['Corona treatment level (dyne pens), dyne/cm', V('≥ 46', 'Coroplast'), V('3–13 mm')],

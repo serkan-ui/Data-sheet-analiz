@@ -18,3 +18,4 @@ Kaynaklar / lisans:
 - Twin Wall PP icin dosya adlari: pp-signage, pp-packaging, pp-protection
 - pp-signage.jpg: Adobe Firefly ile uretildi (kullanici tarafindan, US Plast yazili tabela). 2000x1116 webp; kirpildi.
 - pp-packaging.jpg: Adobe Firefly ile uretildi (kullanici tarafindan). 2000x1116 webp; kirpildi.
+- pp-protection.jpg: Adobe Firefly ile uretildi (kullanici tarafindan). 2000x1116 webp; kirpildi.
