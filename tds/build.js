@@ -439,8 +439,7 @@ function buildDocs() {
           ['Corona treatment level (dyne pens), dyne/cm', V('≥ 46', 'Coroplast'), V('3–13 mm')],
           ['Sides treated', V('2', 'Coroplast')],
           ['Recommended inks', V('Screen &amp; digital', 'Coroplast'), V('UV print not rec. < 4 mm', 'Coroplast')],
-          ['Surface resistivity (anti-static / conductive), Ω/sq', V('≤ 10⁵ (conductive)', 'COR-X')],
-        ]) +
+        ], 'Anti-static (10⁶–10¹¹ Ω/sq) and conductive (≤ 10⁵ Ω/sq) grades available on request.') +
       checklist('Options', [FINAL ? 'UV-stabilized' : 'UV-stabilized (outdoor life ____ years)', FINAL ? 'Flame retardant' : 'Flame retardant (UL 94 ____ )', 'Anti-static / conductive', 'FDA-compliant resin (21 CFR 177.1520)', FINAL ? 'Post-consumer recycled content' : 'Post-consumer recycled content ____ %', 'Custom color matching', 'Edge-sealed / ultrasonic sealed', 'Die-cutting &amp; printing service']) +
       matrix('Product Availability*', ['Thickness', 'Standard Sizes (in)', 'Flute Direction', 'Colors', 'Pack Qty / Pallet', 'Min. Order'],
         [
