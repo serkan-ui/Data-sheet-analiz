@@ -464,7 +464,8 @@ function buildDocs() {
   });
 
   // ===================== 4. EXTRUDED ACRYLIC =====================
-  // Draft sources: Röhm ACRYLITE first; PLEXIGLAS / ASTM D4802; OPTIX (Plaskolite) where ACRYLITE value not found.
+  // Values: Plaskolite OPTIX PDS204 (verified, source tags removed per US Plast); typ. = unverified typical; ASTM D4802 for tolerances.
+  NO_SI = true; // US units only (ASTM)
   const thkA = ['0.060', '0.093', '0.118', '0.177', '0.236', '0.375', '0.500', '1.000'];
   const mmA = ['1.5', '2.4', '3.0', '4.5', '6.0', '9.5', '12.7', '25.4'];
   docs.push({
@@ -477,48 +478,52 @@ function buildDocs() {
       features: [`Light transmission of ${fv('92')} % — optically clear with low haze`, `Approx. half the weight of glass, with up to ${fv('10–17')} times its impact strength`, 'Excellent outdoor weathering and UV stability', 'Tight thickness tolerance and low internal stress for consistent fabrication', 'Easy to laser-cut, router, solvent-bond and thermoform'],
     }) +
       propTable('Physical &amp; Optical Properties', [
-        ['Specific Gravity', 'ASTM D792', '—', 'g/cm³', V('1.19', 'ACRYLITE'), V('1.19', 'ACRYLITE')],
-        ['Water Absorption, 24 h', 'ASTM D570', '%', '', V('0.2', 'ACRYLITE')],
-        ['Total Light Transmission (@ ____ in)', 'ASTM D1003', '%', '', V('92', 'OPTIX')],
-        ['Haze', 'ASTM D1003', '%', '', V('< 1', 'typ.')],
-        ['Refractive Index', 'ASTM D542', '—', '', V('1.49', 'typ.')],
+        ['Specific Gravity', 'ASTM D792', '—', 'g/cm³', V('1.19'), V('1.19')],
+        ['Water Absorption, 24 h', 'ASTM D570', '%', '', V('0.4')],
+        ['Total Light Transmission', 'ASTM D1003', '%', '', V('92')],
+        ['Haze', 'ASTM D1003', '%', '', V('< 2')],
+        ['Refractive Index', 'ASTM D542', '—', '', V('1.49')],
+        ['Sound Transmission', 'ASTM E90 / E413', 'dB', '', V('27')],
       ]) +
       propTable('Mechanical Properties', [
-        ['Tensile Strength', 'ASTM D638', 'psi', 'MPa', V('10,000', 'ACRYLITE'), V('69', 'ACRYLITE')],
-        ['Tensile Modulus', 'ASTM D638', 'psi', 'MPa', V('450,000', 'typ.'), V('3,100', 'typ.')],
-        ['Elongation at Break', 'ASTM D638', '%', '', V('4–5', 'typ.')],
-        ['Flexural Strength', 'ASTM D790', 'psi', 'MPa', V('15,000–17,000', 'typ.'), V('105–117', 'typ.')],
-        ['Flexural Modulus', 'ASTM D790', 'psi', 'MPa', V('400,000–480,000', 'typ.'), V('2,750–3,300', 'typ.')],
-        ['Izod Impact, Molded Notch', 'ASTM D256', 'ft-lb/in', 'J/m', V('0.4', 'OPTIX'), V('21', 'OPTIX')],
-        ['Izod Impact, Milled Notch', 'ASTM D256', 'ft-lb/in', 'J/m', V('0.28', 'OPTIX'), V('15', 'OPTIX')],
-        ['Rockwell Hardness', 'ASTM D785', 'M scale', '', V('M-95', 'OPTIX')],
+        ['Tensile Strength', 'ASTM D638', 'psi', 'MPa', V('11,030'), V('76')],
+        ['Tensile Modulus', 'ASTM D638', 'psi', 'MPa', V('490,000'), V('3,380')],
+        ['Elongation at Break', 'ASTM D638', '%', '', V('5.8')],
+        ['Flexural Strength', 'ASTM D790', 'psi', 'MPa', V('17,000'), V('117')],
+        ['Flexural Modulus', 'ASTM D790', 'psi', 'MPa', V('490,000'), V('3,380')],
+        ['Izod Impact, Molded Notch', 'ASTM D256', 'ft-lb/in', 'J/m', V('0.4'), V('21')],
+        ['Izod Impact, Milled Notch', 'ASTM D256', 'ft-lb/in', 'J/m', V('0.28'), V('15')],
+        ['Tensile Impact Strength', 'ASTM D1822', 'ft-lb/in²', '', V('20')],
+        ['Rockwell Hardness', 'ASTM D785', 'M scale', '', V('M-95')],
       ]) +
       propTable('Thermal Properties', [
-        ['Heat Deflection Temperature @ 264 psi', 'ASTM D648', '°F', '°C', V('203', 'OPTIX'), V('95', 'OPTIX')],
-        ['Heat Deflection Temperature @ 66 psi', 'ASTM D648', '°F', '°C', V('207', 'OPTIX'), V('97', 'OPTIX')],
-        ['Vicat Softening Temperature', 'ASTM D1525', '°F', '°C', V('220', 'typ.'), V('105', 'typ.')],
-        ['Coefficient of Linear Thermal Expansion', 'ASTM D696', 'in/in·°F', 'mm/mm·°C', V('4.0 × 10⁻⁵', 'typ.'), V('7.2 × 10⁻⁵', 'typ.')],
-        ['Max. Continuous Service Temperature', '—', '°F', '°C', V('160 (190 intermittent)', 'ACRYLITE'), V('71 (88)', 'ACRYLITE')],
+        ['Heat Deflection Temperature @ 264 psi', 'ASTM D648', '°F', '°C', V('203'), V('95')],
+        ['Heat Deflection Temperature @ 66 psi', 'ASTM D648', '°F', '°C', V('207'), V('97')],
+        ['Vicat Softening Temperature', 'ASTM D1525', '°F', '°C', V('210–220'), V('99–104')],
+        ['Coefficient of Linear Thermal Expansion', 'ASTM D696', 'in/in·°F', 'mm/mm·°C', V('3.0 × 10⁻⁵'), V('5.4 × 10⁻⁵')],
+        ['Thermal Conductivity', 'ASTM C177', 'BTU·ft/h·ft²·°F', 'W/m·K', V('0.075'), V('0.13')],
+        ['Max. Continuous Service Temperature', '—', '°F', '°C', V('170–190'), V('77–88')],
         ['Thermoforming Temperature Range', '—', '°F', '°C', V('290–340', 'typ.'), V('145–170', 'typ.')],
-        ['Annealing Temperature', '—', '°F', '°C', V('180', 'ACRYLITE'), V('82', 'ACRYLITE')],
+        ['Annealing Temperature', '—', '°F', '°C', V('180'), V('82')],
         ['Shrinkage (after heating, MD / TD)', 'Internal', '%', ''],
       ]) +
       flammability({
-        ul94: V('HB', 'OPTIX'),
-        d635: V('≈ 1.0 in/min — CC2', 'OPTIX'),
-        d1929: V('≈ 850 °F (455 °C)', 'typ.'),
-        e84: V('Flame spread index 115', 'OPTIX'),
+        ul94: V('HB'),
+        d635: V('Burning rate 1.0 in/min — Class CC2'),
+        d1929: V(NO_SI ? '833 °F' : '833 °F (445 °C)'),
+        e84: V('Flame spread 115 / Smoke developed 550'),
+        d2843: V('3.4 %'),
       }) +
       propTable('Electrical Properties (optional)', [
         ['Dielectric Strength', 'ASTM D149', 'V/mil', 'kV/mm', V('400–500', 'typ.'), V('16–20', 'typ.')],
         ['Volume Resistivity', 'ASTM D257', 'ohm·cm', '', V('> 10¹⁵', 'typ.')],
       ]) +
       `<div class="avoid">` + matrix('Product Availability &amp; Thickness Tolerance*', ['Nominal (in)', 'Nominal (mm)', 'Tolerance (±)', 'Standard Sizes (in)', 'Colors / Finish', 'Masking'],
-        thkA.map((t, i) => [DRAFT ? t + '"' : '', V(mmA[i]), V('10 %', 'typ.'), V(i === 7 ? '48×96' : '48×96, 60×96, 72×96', i === 7 ? 'OPTIX' : 'typ.'), V(i === 7 ? 'Clear' : 'Clear, white, colors', 'typ.'), V('PE film / paper', 'typ.')]),
+        thkA.map((t, i) => [DRAFT ? t + '"' : '', V(mmA[i]), V('10 %', 'typ.'), V(i === 7 ? '48×96' : '48×96, 60×96, 72×96', i === 7 ? undefined : 'typ.'), V(i === 7 ? 'Clear' : 'Clear, white, colors', 'typ.'), V('PE film / paper', 'typ.')]),
         '<b>* For other colors and sizes, please contact our sales team.</b>') + `</div>` +
       checklist('Fabrication Suitability', ['Saw / router cutting', 'Laser cutting (CO₂)', 'CNC machining', 'Solvent cementing', 'Thermoforming / line bending', 'Flame / diamond polishing', 'Screen / digital printing', 'Drilling']) +
       tolTable([
-        ['Thickness', 'ASTM D4802 / D5947', '0.060"–0.118"', V('≈ ± 10 %', 'typ.'), V('≈ ± 10 %'), V('≤ 0.125": may not meet D4802', 'A&amp;C')],
+        ['Thickness', 'ASTM D4802 / D5947', '0.060"–0.118"', V('≈ ± 10 %', 'typ.'), V('≈ ± 10 %'), V('≤ 0.125": may not meet D4802')],
         ['Thickness', 'ASTM D4802 / D5947', '0.177"–0.236"', V('≈ ± 10 %', 'typ.'), V('≈ ± 10 %')],
         ['Thickness', 'ASTM D4802 / D5947', '0.375"–0.500"', V('≈ ± 10 %', 'typ.'), V('≈ ± 10 %')],
         ['Thickness', 'ASTM D4802 / D5947', '> 0.500"', V('≈ ± 10 %', 'typ.'), V('≈ ± 10 %')],
@@ -531,6 +536,8 @@ function buildDocs() {
       ], 'Extruded sheet shrinks mainly in the extrusion (machine) direction; state test temperature and time.') +
       storage('Store sheets flat or on A-frame racks inclined ≈ 10°, indoors, away from heat sources and direct sunlight. Keep masking on during fabrication. Clean with mild soap and lukewarm water or a plastic cleaner using a soft cloth; do not use ammonia-based glass cleaners, alcohol, acetone, gasoline or abrasive cleaners.'),
   });
+
+  NO_SI = false;
 
   return docs;
 }
