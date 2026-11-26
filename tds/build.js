@@ -414,11 +414,13 @@ function buildDocs() {
         ['Density', 'ASTM D792', '—', 'g/cm³', V('0.90', 'Coroplast'), V('0.90', 'Coroplast')],
         ['Melt Flow Rate (230 °C / 2.16 kg)', 'ASTM D1238', 'g/10 min', ''],
         ['Tensile Strength, Yield', 'ASTM D638', 'psi', 'MPa', V('4,000', 'Coroplast'), V('27.6', 'Coroplast')],
+        ['Elongation at Yield', 'ASTM D638', '%', '', V('10', 'Coroplast')],
         ['Flexural Modulus', 'ASTM D790', 'psi', 'MPa', V('150,000–200,000', 'typ.'), V('1,000–1,400', 'typ.')],
-        ['Izod Impact, Notched', 'ASTM D256', 'ft-lb/in', 'J/m'],
+        ['Izod Impact, Notched (@ 70 °F)', 'ASTM D256', 'ft-lb/in', 'J/m', V('3', 'Coroplast'), V('160', 'Coroplast')],
         ['Heat Deflection Temperature @ 66 psi', 'ASTM D648', '°F', '°C', V('194', 'Coroplast'), V('90', 'Coroplast')],
+        ['Melting Point', '—', '°F', '°C', V('324', 'Coroplast'), V('162', 'Coroplast')],
         ['Brittleness Temperature', 'ASTM D746', '°F', '°C'],
-        ['Service Temperature Range', '—', '°F', '°C', V('0 to 180', 'typ.'), V('−18 to 82', 'typ.')],
+        ['Service Temperature Range', '—', '°F', '°C', V('−17 to 160', 'Coroplast'), V('−27 to 71', 'Coroplast')],
       ]) +
       matrix('Board Performance by Thickness', ['Property / Method', '2 mm', '3 mm', '4 mm', '5 mm', '6 mm', '8 mm', '10 mm'],
         [
