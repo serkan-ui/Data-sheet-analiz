@@ -472,6 +472,11 @@ function buildDocs() {
   docs.push({
     slug: 'Extruded-Acrylic',
     final: true,
+    hero: [
+      { file: 'acrylic-signage', caption: 'Signage' },
+      { file: 'acrylic-display', caption: 'Retail Displays' },
+      { file: 'acrylic-barrier', caption: 'Protective Barriers' },
+    ],
     code: 'TDS-PMMA-X-___',
     family: 'Extruded Acrylic (PMMA) Sheet',
     subtitle: 'Continuously extruded acrylic sheet',
