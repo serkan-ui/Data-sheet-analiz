@@ -400,6 +400,7 @@ function buildDocs() {
 
   // ===================== 3. TWIN WALL POLYPROPYLENE =====================
   // Draft sources: Coroplast first; Primex COR-X where Coroplast value not found.
+  NO_SI = true; // US units only (ASTM)
   docs.push({
     slug: 'Twin-Wall-Polypropylene',
     code: 'TDS-PP-TW-___',
@@ -422,14 +423,14 @@ function buildDocs() {
         ['Brittleness Temperature', 'ASTM D746', '°F', '°C'],
         ['Service Temperature Range', '—', '°F', '°C', V('−17 to 160', 'Coroplast'), V('−27 to 71', 'Coroplast')],
       ]) +
-      matrix('Board Weight by Thickness', ['Property', '3 mm', '4 mm', '5 mm', '6 mm', '8 mm', '10 mm'],
+      matrix('Board Weight by Thickness', ['Property', '3 mm', '4 mm', '5 mm', '6 mm', '8 mm', '10 mm', '13 mm'],
         [
-          ['Board weight, g/m²', V('500–550', 'typ.'), V('550–750', 'US Plast'), V('900–1,000', 'typ.'), V('1,100–1,300', 'typ.'), V('1,800', 'US Plast'), V('2,130', 'COR-X')],
+          ['Board weight, g/m²', V('500–550', 'typ.'), V('550–750', 'US Plast'), V('900–1,000', 'typ.'), V('1,100–1,300', 'typ.'), V('1,800', 'US Plast'), V('2,130', 'COR-X'), V('2,200', 'US Plast')],
         ],
         'Values for standard (natural / white) board.') +
       matrix('Print &amp; Surface Characteristics', ['Property', 'Value', 'Notes'],
         [
-          ['Corona treatment level (dyne pens), dyne/cm', V('≥ 46', 'Coroplast'), V('2–12 mm')],
+          ['Corona treatment level (dyne pens), dyne/cm', V('≥ 46', 'Coroplast'), V('3–13 mm')],
           ['Sides treated', V('2', 'Coroplast')],
           ['Recommended inks', V('Screen &amp; digital', 'Coroplast'), V('UV print not rec. < 4 mm', 'Coroplast')],
           ['Surface resistivity (anti-static / conductive), Ω/sq', V('≤ 10⁵ (conductive)', 'COR-X')],
@@ -441,11 +442,12 @@ function buildDocs() {
           ['4 mm', V('48×96; 18×24, 24×18', 'typ.'), V('96 in / 24 in', 'typ.'), V('White, natural, colors', 'Coroplast')],
           ['5–6 mm', V('48×96', 'typ.'), V('96 in', 'typ.'), V('White, natural, colors', 'Coroplast')],
           ['8–10 mm', V('48×96', 'typ.'), V('96 in', 'typ.'), V('White, natural, black', 'typ.')],
+          ['13 mm', V('48×96', 'typ.'), V('96 in', 'typ.'), V('White, natural, black', 'typ.')],
         ], '<b>* For other colors and sizes, please contact our sales team.</b>') +
       tolTable([
-        ['Thickness', 'Caliper', '2–12 mm', V('± 5 %', 'Coroplast'), V('± 5 %')],
-        ['Width — standard sheet', 'Tape', '2–12 mm', V('± 1/8 in', 'Coroplast'), V('± 3 mm')],
-        ['Width — square-cut sheet', 'Tape', '2–12 mm', V('± 1/8 in', 'Coroplast'), V('± 3 mm')],
+        ['Thickness', 'Caliper', '3–13 mm', V('± 5 %', 'Coroplast'), V('± 5 %')],
+        ['Width — standard sheet', 'Tape', '3–13 mm', V('± 1/8 in', 'Coroplast'), V('± 3 mm')],
+        ['Width — square-cut sheet', 'Tape', '3–13 mm', V('± 1/8 in', 'Coroplast'), V('± 3 mm')],
         ['Length — standard sheet', 'Tape', '< 36"', V('0 / +3/8 in', 'Coroplast'), V('0 / +10 mm')],
         ['Length — standard sheet', 'Tape', '36" – < 60"', V('0 / +1/2 in', 'Coroplast'), V('0 / +13 mm')],
         ['Length — standard sheet', 'Tape', '60" – < 97"', V('0 / +1 in', 'Coroplast'), V('0 / +25 mm')],
@@ -454,7 +456,7 @@ function buildDocs() {
         ['Squareness (diagonal difference)', 'Tape', 'Standard sheet ≥ 60"', V('5/8 in', 'Coroplast'), V('16 mm')],
         ['Squareness (diagonal difference)', 'Tape', 'Square-cut sheet < 60"', V('1/8 in', 'Coroplast'), V('3 mm')],
         ['Board weight', 'Gravimetric', 'Per thickness', V('± 5 %', 'Coroplast'), V('± 5 %')],
-        ['Corona treatment level (min.)', 'Dyne pens, ASTM D2578', '2–12 mm', V('46 dyne/cm', 'Coroplast'), V('46 mN/m')],
+        ['Corona treatment level (min.)', 'Dyne pens, ASTM D2578', '3–13 mm', V('46 dyne/cm', 'Coroplast'), V('46 mN/m')],
         ['Warp / bow (max. height above flat surface)', 'Internal', 'Sheet size < 96"', V('1/4 in', 'Coroplast'), V('6 mm')],
         ['Warp / bow (max. height above flat surface)', 'Internal', 'Sheet size > 96"', V('1 in', 'Coroplast'), V('25 mm')],
         ['Warp / bow (max. height above flat surface)', 'Internal', 'Sheet size ≥ 70" × 70"', V('2 in', 'Coroplast'), V('51 mm')],
@@ -462,6 +464,8 @@ function buildDocs() {
       ], 'Specify flute direction for every size (e.g. 48" × 96", flutes running 96").' + (DRAFT ? ' Coroplast warp table: a 48"×96" sheet sits on the < / > 96" boundary — define our own limit.' : '')) +
       storage('Store sheets flat on a full-size pallet, indoors, away from direct sunlight and heat sources; standard (non-UV) grades are intended for short-term outdoor use only. Keep printing surfaces clean and dry; handle with clean gloves to preserve corona treatment. Clean with mild detergent and water.'),
   });
+
+  NO_SI = false;
 
   // ===================== 4. EXTRUDED ACRYLIC =====================
   // Values: Plaskolite OPTIX PDS204 (verified, source tags removed per US Plast); typ. = unverified typical; ASTM D4802 for tolerances.
