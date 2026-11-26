@@ -12,3 +12,4 @@ Kaynaklar / lisans:
 - solid-noisebarrier.jpg: Adobe Firefly ile uretildi (kullanici tarafindan). 2000x1116 webp; yatay kirpildi.
 - solid-skylight.jpg: Adobe Firefly ile uretildi (kullanici tarafindan). 2000x1116 webp; yatay kirpildi.
 - Akrilik icin dosya adlari: acrylic-signage, acrylic-display, acrylic-barrier
+- acrylic-signage.jpg: Adobe Firefly ile uretildi (kullanici tarafindan, US Plast logolu tabela). 2000x1116 webp; yatay kirpildi.
