@@ -403,12 +403,18 @@ function buildDocs() {
   NO_SI = true; // US units only (ASTM)
   docs.push({
     slug: 'Twin-Wall-Polypropylene',
+    final: true,
+    hero: [
+      { file: 'pp-signage', caption: 'Signage &amp; Printing' },
+      { file: 'pp-packaging', caption: 'Returnable Packaging' },
+      { file: 'pp-protection', caption: 'Floor &amp; Surface Protection' },
+    ],
     code: 'TDS-PP-TW-___',
     family: 'Twin Wall (Fluted) Polypropylene Sheet',
     subtitle: 'Extruded twin wall polypropylene copolymer sheet',
     body: intro(['Signage &amp; screen / digital printing', 'Returnable packaging &amp; dividers', 'Construction floor &amp; surface protection', 'Agriculture &amp; horticulture', 'Point-of-purchase displays', 'Other: ____________________'], {
       text: 'US Plast twin wall polypropylene sheet is a lightweight, rigid fluted board made from high-impact polypropylene copolymer. It is waterproof, chemical- and stain-resistant and will not rot, warp or delaminate when wet. Corona-treated surfaces accept screen and digital printing inks, making it an economical, reusable choice for signage, packaging and protection applications.',
-      features: [`Corona-treated on both sides for excellent ink adhesion (min. ${fv('46')} dyne/cm)`, 'Waterproof, moisture- and chemical-resistant; non-toxic', 'Lightweight yet rigid — easy to cut, score, fold, die-cut and fasten', 'Available UV-stabilized, flame-retardant, anti-static and in custom colors', '100 % recyclable (#5 PP)'],
+      features: ['Corona-treated on both sides for excellent ink adhesion (min. 46 dyne/cm)', 'Waterproof, moisture- and chemical-resistant; non-toxic', 'Lightweight yet rigid — easy to cut, score, fold, die-cut and fasten', 'Available UV-stabilized, flame-retardant, anti-static and in custom colors', '100 % recyclable (#5 PP)'],
     }) +
       propTable('Material Properties (Resin)', [
         ['Polymer Type', '—', 'PP homo / copolymer', '', V('Impact copolymer', 'Coroplast')],
@@ -435,7 +441,7 @@ function buildDocs() {
           ['Recommended inks', V('Screen &amp; digital', 'Coroplast'), V('UV print not rec. < 4 mm', 'Coroplast')],
           ['Surface resistivity (anti-static / conductive), Ω/sq', V('≤ 10⁵ (conductive)', 'COR-X')],
         ]) +
-      checklist('Options', ['UV-stabilized (outdoor life ____ years)', 'Flame retardant (UL 94 ____ )', 'Anti-static / conductive', 'FDA-compliant resin (21 CFR 177.1520)', 'Post-consumer recycled content ____ %', 'Custom color matching', 'Edge-sealed / ultrasonic sealed', 'Die-cutting &amp; printing service']) +
+      checklist('Options', [FINAL ? 'UV-stabilized' : 'UV-stabilized (outdoor life ____ years)', FINAL ? 'Flame retardant' : 'Flame retardant (UL 94 ____ )', 'Anti-static / conductive', 'FDA-compliant resin (21 CFR 177.1520)', FINAL ? 'Post-consumer recycled content' : 'Post-consumer recycled content ____ %', 'Custom color matching', 'Edge-sealed / ultrasonic sealed', 'Die-cutting &amp; printing service']) +
       matrix('Product Availability*', ['Thickness', 'Standard Sizes (in)', 'Flute Direction', 'Colors', 'Pack Qty / Pallet', 'Min. Order'],
         [
           ['3 mm', V('48×96', 'typ.'), V('96 in', 'typ.'), V('White, natural, colors', 'Coroplast')],
@@ -461,7 +467,7 @@ function buildDocs() {
         ['Warp / bow (max. height above flat surface)', 'Internal', 'Sheet size > 96"', V('1 in', 'Coroplast'), V('25 mm')],
         ['Warp / bow (max. height above flat surface)', 'Internal', 'Sheet size ≥ 70" × 70"', V('2 in', 'Coroplast'), V('51 mm')],
         ['Edge straightness', 'Straight edge, corner to corner', 'Length < 98"', V('1/8 in', 'Coroplast'), V('3 mm')],
-      ], 'Specify flute direction for every size (e.g. 48" × 96", flutes running 96").' + (DRAFT ? ' Coroplast warp table: a 48"×96" sheet sits on the < / > 96" boundary — define our own limit.' : '')) +
+      ], FINAL ? '' : 'Specify flute direction for every size (e.g. 48" × 96", flutes running 96").' + (DRAFT ? ' Coroplast warp table: a 48"×96" sheet sits on the < / > 96" boundary — define our own limit.' : '')) +
       storage('Store sheets flat on a full-size pallet, indoors, away from direct sunlight and heat sources; standard (non-UV) grades are intended for short-term outdoor use only. Keep printing surfaces clean and dry; handle with clean gloves to preserve corona treatment. Clean with mild detergent and water.'),
   });
 

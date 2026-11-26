@@ -15,3 +15,4 @@ Kaynaklar / lisans:
 - acrylic-signage.jpg: Adobe Firefly ile uretildi (kullanici tarafindan, US Plast logolu tabela). 2000x1116 webp; yatay kirpildi.
 - acrylic-barrier.jpg: Adobe Firefly ile uretildi (kullanici tarafindan). 2000x1116 webp; yatay kirpildi.
 - acrylic-display.jpg: Adobe Firefly ile uretildi (kullanici tarafindan). 2000x1493 webp; yatay kirpildi.
+- Twin Wall PP icin dosya adlari: pp-signage, pp-packaging, pp-protection
