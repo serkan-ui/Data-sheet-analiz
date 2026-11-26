@@ -104,6 +104,7 @@ function lines(title, n, hint) {
 }
 
 function checklist(title, items) {
+  if (FINAL) return `<h2>${title}</h2><ul class="feat" style="columns:2;column-gap:18px">${items.map((i) => `<li>${i}</li>`).join('')}</ul>`;
   return `<h2>${title}</h2><div class="checks">${items.map((i) => `<div class="ck"><span class="box"></span>${i}</div>`).join('')}</div>`;
 }
 
@@ -512,7 +513,7 @@ function buildDocs() {
         ['Flammability Rating', 'UL 94', V('HB')],
         ['Building Material Class', 'DIN 4102-1', V('B2', 'US Plast')],
       ]) +
-      propTable('Electrical Properties (optional)', [
+      propTable(FINAL ? 'Electrical Properties' : 'Electrical Properties (optional)', [
         ['Dielectric Strength', 'ASTM D149', 'V/mil', 'kV/mm', V('400–500'), V('16–20')],
         ['Volume Resistivity', 'ASTM D257', 'ohm·cm', '', V('> 10¹⁵')],
       ]) +
